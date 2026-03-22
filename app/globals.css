@@ -1,26 +1,527 @@
 @import "tailwindcss";
 
+/* -------------------------------------------------------------------------- */
+/* Palette & semantic colors (--palette-*)                                     */
+/* -------------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --palette-neutral-0: #ffffff;
+  --palette-neutral-50: #fafafa;
+  --palette-neutral-100: #f4f4f5;
+  --palette-neutral-200: #e4e4e7;
+  --palette-neutral-300: #d4d4d8;
+  --palette-neutral-400: #a1a1aa;
+  --palette-neutral-500: #71717a;
+  --palette-neutral-600: #52525b;
+  --palette-neutral-700: #3f3f46;
+  --palette-neutral-800: #27272a;
+  --palette-neutral-900: #18181b;
+  --palette-neutral-950: #09090b;
+
+  --palette-accent: #2563eb;
+  --palette-accent-hover: #1d4ed8;
+  --palette-accent-muted: #dbeafe;
+  --palette-accent-fg: #ffffff;
+
+  --palette-primary: #2563eb;
+  --palette-primary-hover: #1d4ed8;
+  --palette-primary-ring: #3b82f6;
+  --palette-primary-border: #2563eb;
+
+  --palette-danger: #dc2626;
+  --palette-danger-muted: #fef2f2;
+  --palette-danger-ring: #f87171;
+
+  --palette-success: #16a34a;
+  --palette-warning: #ca8a04;
+
+  --palette-surface-default: var(--palette-neutral-0);
+  --palette-surface-muted: var(--palette-neutral-50);
+  --palette-surface-elevated: var(--palette-neutral-0);
+  --palette-surface-overlay: rgba(9, 9, 11, 0.5);
+
+  --palette-fg-default: var(--palette-neutral-900);
+  --palette-fg-muted: var(--palette-neutral-600);
+  --palette-fg-subtle: var(--palette-neutral-500);
+  --palette-fg-inverse: var(--palette-neutral-0);
+
+  --palette-border-default: var(--palette-neutral-200);
+  --palette-border-strong: var(--palette-neutral-300);
+  --palette-border-input: var(--palette-neutral-300);
+
+  /* Radius & elevation (--ds-*) */
+  --ds-radius-sm: 6px;
+  --ds-radius-md: 8px;
+  --ds-radius-lg: 12px;
+  --ds-radius-xl: 16px;
+  --ds-radius-full: 9999px;
+
+  --ds-shadow-1: 0 1px 2px rgba(9, 9, 11, 0.06);
+  --ds-shadow-2: 0 4px 12px rgba(9, 9, 11, 0.08);
+  --ds-shadow-3: 0 12px 40px rgba(9, 9, 11, 0.12);
+
+  /* Layout: 1440 / 16-col, gutter 8px, margin compact 10px · expanded 30px (3×) from sm */
+  --ds-container-max-width: 1440px;
+  --ds-container-margin-inline-compact: 10px;
+  --ds-container-margin-inline-expanded: 30px;
+  --ds-container-margin-inline: var(--ds-container-margin-inline-compact);
+  --ds-grid-columns: 16;
+  --ds-grid-gutter: 8px;
+
+  /* Motion */
+  --ds-duration-fast: 150ms;
+  --ds-duration-normal: 200ms;
+  --ds-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Spacing scale → mapped to Tailwind --spacing-* in @theme */
+  --spacing-scale-0: 0px;
+  --spacing-scale-px: 1px;
+  --spacing-scale-0-5: 2px;
+  --spacing-scale-1: 4px;
+  --spacing-scale-1-5: 6px;
+  --spacing-scale-2: 8px;
+  --spacing-scale-2-5: 10px;
+  --spacing-scale-3: 12px;
+  --spacing-scale-4: 16px;
+  --spacing-scale-5: 20px;
+  --spacing-scale-6: 24px;
+  --spacing-scale-8: 32px;
+  --spacing-scale-10: 40px;
+  --spacing-scale-12: 48px;
+  --spacing-scale-16: 64px;
+  --spacing-scale-20: 80px;
+  --spacing-scale-24: 96px;
+
+  /* Typography scale */
+  --ds-text-caption-size: 0.75rem;
+  --ds-text-caption-leading: 1rem;
+  --ds-text-caption-tracking: 0.02em;
+
+  --ds-text-body-sm-size: 0.875rem;
+  --ds-text-body-sm-leading: 1.25rem;
+
+  --ds-text-body-size: 1rem;
+  --ds-text-body-leading: 1.5rem;
+
+  --ds-text-subtitle-size: 1.125rem;
+  --ds-text-subtitle-leading: 1.75rem;
+
+  --ds-text-title-size: 1.5rem;
+  --ds-text-title-leading: 2rem;
+  --ds-text-title-tracking: -0.02em;
+
+  --ds-text-headline-size: 1.875rem;
+  --ds-text-headline-leading: 2.25rem;
+  --ds-text-headline-tracking: -0.02em;
+
+  --ds-text-display-size: 2.25rem;
+  --ds-text-display-leading: 2.5rem;
+  --ds-text-display-tracking: -0.02em;
+
+  /* Icons (lucide: stroke 2, default 20px) */
+  --size-icon-sm: 16px;
+  --size-icon-md: 20px;
+  --size-icon-lg: 24px;
+
+  /* Z-index layers for overlays */
+  --ds-z-dropdown: 50;
+  --ds-z-tooltip: 60;
+  --ds-z-toast: 70;
+  --ds-z-modal: 80;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --ds-container-margin-inline: var(--ds-container-margin-inline-expanded);
+  }
+}
+
+/* Dark palette: toggled with `html.dark` (see ThemeToggle + localStorage). */
+html.dark {
+  --palette-surface-default: var(--palette-neutral-950);
+  --palette-surface-muted: var(--palette-neutral-900);
+  --palette-surface-elevated: var(--palette-neutral-900);
+  --palette-surface-overlay: rgba(9, 9, 11, 0.7);
+
+  --palette-fg-default: var(--palette-neutral-50);
+  --palette-fg-muted: var(--palette-neutral-400);
+  --palette-fg-subtle: var(--palette-neutral-500);
+  --palette-fg-inverse: var(--palette-neutral-950);
+
+  --palette-border-default: var(--palette-neutral-800);
+  --palette-border-strong: var(--palette-neutral-700);
+  --palette-border-input: var(--palette-neutral-600);
+
+  --palette-accent-muted: #1e3a5f;
+  --palette-accent-fg: #ffffff;
+
+  --ds-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --ds-shadow-2: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --ds-shadow-3: 0 12px 40px rgba(0, 0, 0, 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ds-duration-fast: 0ms;
+    --ds-duration-normal: 0ms;
+  }
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-background: var(--palette-surface-default);
+  --color-foreground: var(--palette-fg-default);
+  --color-muted: var(--palette-fg-muted);
+  --color-subtle: var(--palette-fg-subtle);
+  --color-border: var(--palette-border-default);
+  --color-border-strong: var(--palette-border-strong);
+  --color-accent: var(--palette-accent);
+  --color-accent-hover: var(--palette-accent-hover);
+  --color-accent-muted: var(--palette-accent-muted);
+  --color-accent-fg: var(--palette-accent-fg);
+  --color-primary: var(--palette-primary);
+  --color-danger: var(--palette-danger);
+  --color-danger-muted: var(--palette-danger-muted);
+  --color-surface-muted: var(--palette-surface-muted);
+  --color-surface-elevated: var(--palette-surface-elevated);
+
+  --radius-sm: var(--ds-radius-sm);
+  --radius-md: var(--ds-radius-md);
+  --radius-lg: var(--ds-radius-lg);
+  --radius-xl: var(--ds-radius-xl);
+  --radius-full: var(--ds-radius-full);
+
+  --shadow-ds-1: var(--ds-shadow-1);
+  --shadow-ds-2: var(--ds-shadow-2);
+  --shadow-ds-3: var(--ds-shadow-3);
+
+  --font-sans: var(--font-metropolis);
   --font-mono: var(--font-geist-mono);
+
+  --spacing-0: var(--spacing-scale-0);
+  --spacing-px: var(--spacing-scale-px);
+  --spacing-0-5: var(--spacing-scale-0-5);
+  --spacing-1: var(--spacing-scale-1);
+  --spacing-1-5: var(--spacing-scale-1-5);
+  --spacing-2: var(--spacing-scale-2);
+  --spacing-2-5: var(--spacing-scale-2-5);
+  --spacing-3: var(--spacing-scale-3);
+  --spacing-4: var(--spacing-scale-4);
+  --spacing-5: var(--spacing-scale-5);
+  --spacing-6: var(--spacing-scale-6);
+  --spacing-8: var(--spacing-scale-8);
+  --spacing-10: var(--spacing-scale-10);
+  --spacing-12: var(--spacing-scale-12);
+  --spacing-16: var(--spacing-scale-16);
+  --spacing-20: var(--spacing-scale-20);
+  --spacing-24: var(--spacing-scale-24);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* -------------------------------------------------------------------------- */
+/* Base                                                                        */
+/* -------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--palette-surface-default);
+  color: var(--palette-fg-default);
+  font-family: var(--font-metropolis), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Typography (.ds-text-*)                                                     */
+/* -------------------------------------------------------------------------- */
+.ds-text-caption {
+  font-size: var(--ds-text-caption-size);
+  line-height: var(--ds-text-caption-leading);
+  letter-spacing: var(--ds-text-caption-tracking);
+  font-weight: 500;
+}
+
+.ds-text-body-sm {
+  font-size: var(--ds-text-body-sm-size);
+  line-height: var(--ds-text-body-sm-leading);
+  font-weight: 400;
+}
+
+.ds-text-body {
+  font-size: var(--ds-text-body-size);
+  line-height: var(--ds-text-body-leading);
+  font-weight: 400;
+}
+
+.ds-text-subtitle {
+  font-size: var(--ds-text-subtitle-size);
+  line-height: var(--ds-text-subtitle-leading);
+  font-weight: 500;
+}
+
+.ds-text-title {
+  font-size: var(--ds-text-title-size);
+  line-height: var(--ds-text-title-leading);
+  letter-spacing: var(--ds-text-title-tracking);
+  font-weight: 600;
+}
+
+.ds-text-headline {
+  font-size: var(--ds-text-headline-size);
+  line-height: var(--ds-text-headline-leading);
+  letter-spacing: var(--ds-text-headline-tracking);
+  font-weight: 600;
+}
+
+.ds-text-display {
+  font-size: var(--ds-text-display-size);
+  line-height: var(--ds-text-display-leading);
+  letter-spacing: var(--ds-text-display-tracking);
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Layout (.ds-container, .ds-grid)                                            */
+/* -------------------------------------------------------------------------- */
+.ds-container {
+  width: 100%;
+  max-width: var(--ds-container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--ds-container-margin-inline);
+}
+
+.ds-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--ds-grid-columns), minmax(0, 1fr));
+  gap: var(--ds-grid-gutter);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Buttons — focus: accent outline (not input ring pattern)                    */
+/* -------------------------------------------------------------------------- */
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  min-height: 40px;
+  padding-inline: var(--spacing-4);
+  padding-block: var(--spacing-2);
+  font-family: inherit;
+  font-size: var(--ds-text-body-sm-size);
+  line-height: var(--ds-text-body-sm-leading);
+  font-weight: 500;
+  border-radius: var(--ds-radius-md);
+  border: 1px solid var(--palette-border-strong);
+  background: var(--palette-surface-elevated);
+  color: var(--palette-fg-default);
+  box-shadow: var(--ds-shadow-1);
+  cursor: pointer;
+  transition:
+    background-color var(--ds-duration-fast) var(--ds-ease-standard),
+    border-color var(--ds-duration-fast) var(--ds-ease-standard),
+    box-shadow var(--ds-duration-fast) var(--ds-ease-standard),
+    color var(--ds-duration-fast) var(--ds-ease-standard);
+}
+
+.ds-btn:hover {
+  background: var(--palette-surface-muted);
+  box-shadow: var(--ds-shadow-2);
+}
+
+.ds-btn:focus {
+  outline: none;
+}
+
+.ds-btn:focus-visible {
+  outline: 2px solid var(--palette-accent);
+  outline-offset: 2px;
+}
+
+.ds-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.ds-btn-primary {
+  border-color: transparent;
+  background: var(--palette-primary);
+  color: var(--palette-accent-fg);
+  box-shadow: var(--ds-shadow-1);
+}
+
+.ds-btn-primary:hover {
+  background: var(--palette-primary-hover);
+  border-color: transparent;
+}
+
+.ds-btn-primary:focus-visible {
+  outline-color: var(--palette-accent);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Inputs — primary border + ring on focus (single focused treatment)           */
+/* -------------------------------------------------------------------------- */
+.ds-input {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding-inline: var(--spacing-3);
+  padding-block: var(--spacing-2);
+  font-family: inherit;
+  font-size: var(--ds-text-body-size);
+  line-height: var(--ds-text-body-leading);
+  color: var(--palette-fg-default);
+  background: var(--palette-surface-default);
+  border: 1px solid var(--palette-border-input);
+  border-radius: var(--ds-radius-md);
+  box-shadow: none;
+  transition:
+    border-color var(--ds-duration-fast) var(--ds-ease-standard),
+    box-shadow var(--ds-duration-fast) var(--ds-ease-standard);
+}
+
+.ds-input::placeholder {
+  color: var(--palette-fg-subtle);
+}
+
+.ds-input:hover:not(:disabled):not(:focus) {
+  border-color: var(--palette-border-strong);
+}
+
+.ds-input:focus {
+  outline: none;
+  border-color: var(--palette-primary-border);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--palette-primary-ring) 35%, transparent);
+}
+
+.ds-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--palette-surface-muted);
+}
+
+.ds-input[aria-invalid="true"] {
+  border-color: var(--palette-danger);
+}
+
+.ds-input[aria-invalid="true"]:focus {
+  border-color: var(--palette-danger);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--palette-danger-ring) 35%, transparent);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Card                                                                        */
+/* -------------------------------------------------------------------------- */
+.ds-card {
+  background: var(--palette-surface-elevated);
+  color: var(--palette-fg-default);
+  border: 1px solid var(--palette-border-default);
+  border-radius: var(--ds-radius-lg);
+  box-shadow: var(--ds-shadow-1);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Modal                                                                       */
+/* -------------------------------------------------------------------------- */
+.ds-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ds-z-modal);
+  background: var(--palette-surface-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-4);
+}
+
+.ds-modal {
+  width: 100%;
+  max-width: min(32rem, 100%);
+  max-height: min(90vh, 100%);
+  overflow: auto;
+  background: var(--palette-surface-elevated);
+  color: var(--palette-fg-default);
+  border: 1px solid var(--palette-border-default);
+  border-radius: var(--ds-radius-xl);
+  box-shadow: var(--ds-shadow-3);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Dropdown                                                                    */
+/* -------------------------------------------------------------------------- */
+.ds-dropdown {
+  position: relative;
+  z-index: var(--ds-z-dropdown);
+  min-width: 12rem;
+  padding-block: var(--spacing-1);
+  background: var(--palette-surface-elevated);
+  border: 1px solid var(--palette-border-default);
+  border-radius: var(--ds-radius-md);
+  box-shadow: var(--ds-shadow-2);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Tooltip                                                                     */
+/* -------------------------------------------------------------------------- */
+.ds-tooltip {
+  z-index: var(--ds-z-tooltip);
+  max-width: 16rem;
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--ds-text-body-sm-size);
+  line-height: var(--ds-text-body-sm-leading);
+  color: var(--palette-fg-inverse);
+  background: var(--palette-neutral-800);
+  border-radius: var(--ds-radius-sm);
+  box-shadow: var(--ds-shadow-2);
+}
+
+html.dark .ds-tooltip {
+  color: var(--palette-neutral-950);
+  background: var(--palette-neutral-100);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Toast                                                                       */
+/* -------------------------------------------------------------------------- */
+.ds-toast {
+  z-index: var(--ds-z-toast);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  min-width: min(20rem, calc(100vw - var(--spacing-8)));
+  max-width: 24rem;
+  padding: var(--spacing-3) var(--spacing-4);
+  background: var(--palette-surface-elevated);
+  color: var(--palette-fg-default);
+  border: 1px solid var(--palette-border-default);
+  border-radius: var(--ds-radius-lg);
+  box-shadow: var(--ds-shadow-3);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Links — accent focus outline                                                */
+/* -------------------------------------------------------------------------- */
+a.ds-link {
+  color: var(--palette-accent);
+  text-underline-offset: 2px;
+  transition: color var(--ds-duration-fast) var(--ds-ease-standard);
+}
+
+a.ds-link:hover {
+  color: var(--palette-accent-hover);
+}
+
+a.ds-link:focus {
+  outline: none;
+}
+
+a.ds-link:focus-visible {
+  outline: 2px solid var(--palette-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
