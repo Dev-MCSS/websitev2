@@ -1,0 +1,16 @@
+---
+description: MCSS design system — tokens, Tailwind, components
+alwaysApply: true
+---
+
+# Design system
+
+The canonical tokens and component rules live in `app/globals.css` (`:root`, `@theme inline`, `.ds-*` classes). **Source values** use `--palette-*` (colors) and `--ds-*` (radius, elevation shadows); `@theme` maps Tailwind `--color-*`, `--radius-*`, and `--shadow-*` utilities from those. **Use only values defined there** (or the same literals from the written spec). Do not invent spacing, radii, colors, motion, or shadows outside that file.
+
+- **Layout**: Use `.ds-container` and `.ds-grid` for the 1440px / 16-col pattern (gutter 8px, margin 10px). Tailwind spacing uses `--spacing-*` from the scale in `globals.css`.
+- **Typography**: Metropolis via `--font-metropolis` (all UI). Use `.ds-text-caption` through `.ds-text-display` or match those CSS variables exactly.
+- **Components**: Prefer `.ds-btn`, `.ds-btn-primary`, `.ds-card`, `.ds-input`, modal/dropdown/tooltip/toast classes in `globals.css` for spec-aligned behavior (focus, hover, elevation).
+- **Icons**: `lucide-react`, stroke width 2, default size 20px (`--size-icon-md`), round caps — per project spec.
+- **Accessibility**: Focus rings per spec (accent outline on buttons/links; primary border + ring on inputs — never both on one element). Honor `prefers-reduced-motion` (already global).
+
+When adding UI, extend patterns in `globals.css` rather than hard-coding one-off design values.
