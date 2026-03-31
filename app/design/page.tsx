@@ -67,7 +67,7 @@ export default function DesignOverviewPage() {
   return (
     <div
       id="top"
-      className="flex min-h-0 flex-1 flex-col bg-background text-foreground"
+      className="flex min-h-0 flex-1 flex-col text-foreground"
     >
       <div className="ds-container flex flex-1 flex-col gap-8 py-8 pb-16">
         <header className="flex flex-col gap-3 border-b border-border pb-8">
@@ -155,7 +155,7 @@ export default function DesignOverviewPage() {
                 <p className="ds-text-headline">Headline — hero statements</p>
                 <p className="ds-text-display">Display — maximum impact</p>
                 <p className="ds-text-body-sm font-mono text-muted">
-                  font-mono — Geist Mono for code &amp; technical strings
+                  font-mono — system monospace for code &amp; technical strings
                 </p>
               </div>
             </MoodSection>

@@ -1,10 +1,14 @@
-import { ThemeToggle } from "./components/theme-toggle";
+import HeroNavbar from "./components/HeroNavbar";
+import HeroImageSwitcher from "./components/HeroImageSwitcher";
 
 export default function Home() {
   return (
-    <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-6 bg-background px-4 py-8">
-      <h1 className="ds-text-headline text-foreground">Hello</h1>
-      <ThemeToggle />
-    </div>
+    <main className="flex min-h-0 flex-1 flex-col">
+      <section className="relative h-screen w-full overflow-hidden">
+        <HeroNavbar />
+        <HeroImageSwitcher />
+      </section>
+      <section aria-hidden="true" className="h-screen w-full" />
+    </main>
   );
 }
