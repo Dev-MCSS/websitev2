@@ -132,11 +132,6 @@
   --ds-z-toast: 70;
   --ds-z-modal: 80;
 
-  /* Page background: subtle paper grain (public asset; large source — scale so repeat reads as grain).
-     Texture is currently disabled via opacity = 0 to keep a flat background while preserving token hooks. */
-  --ds-paper-texture-url: url("/images/optimized/paper_texture.webp");
-  --ds-paper-texture-opacity: 0;
-  --ds-paper-texture-size: 512px;
 }
 
 @media (min-width: 640px) {
@@ -247,22 +242,6 @@ body {
   font-family: var(--font-metropolis), ui-sans-serif, system-ui, sans-serif;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  background-image: var(--ds-paper-texture-url);
-  background-repeat: repeat;
-  background-size: var(--ds-paper-texture-size) auto;
-  opacity: var(--ds-paper-texture-opacity);
-  pointer-events: none;
-}
-
-body > * {
-  position: relative;
-  z-index: 1;
-}
 
 /* -------------------------------------------------------------------------- */
 /* Typography (.ds-text-*)                                                     */

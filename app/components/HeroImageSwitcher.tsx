@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { MapPin, Star } from "lucide-react";
-import { useEffect, useState } from "react";
+import { MapPin } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 export interface HeroSlide {
   title: string;
@@ -40,8 +40,10 @@ function HeroEdgeVignette() {
       className="pointer-events-none absolute inset-0"
       style={{
         zIndex: 2,
-        background:
+        background: [
           "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 25%, transparent 75%, rgba(0,0,0,0.6) 100%)",
+          "linear-gradient(to right, rgba(0,0,0,0.35) 0%, transparent 60%)",
+        ].join(", "),
       }}
       aria-hidden="true"
     />
@@ -53,18 +55,28 @@ export default function HeroImageSwitcher() {
   const [cycleKey, setCycleKey] = useState(0);
   const activeSlide = HERO_SLIDES[activeIndex];
 
-  const selectSlide = (i: number) => {
-    setActiveIndex(i);
-    setCycleKey((k) => k + 1);
-  };
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
+  const resetTimer = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % HERO_SLIDES.length);
       setCycleKey((k) => k + 1);
     }, CYCLE_MS);
-    return () => clearInterval(timer);
-  }, [cycleKey]);
+  };
+
+  const selectSlide = (i: number) => {
+    setActiveIndex(i);
+    setCycleKey((k) => k + 1);
+    resetTimer();
+  };
+
+  useEffect(() => {
+    resetTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
 
   return (
     <>
@@ -82,13 +94,21 @@ export default function HeroImageSwitcher() {
           style={{
             zIndex: i === activeIndex ? 1 : 0,
             opacity: i === activeIndex ? 1 : 0,
+            willChange: "opacity",
+            contain: "strict",
           }}
         />
       ))}
 
       <HeroEdgeVignette />
 
-      <div className="absolute inset-x-12 top-[35%] z-4">
+      <div className="absolute inset-x-12 top-[35%] z-4 will-change-transform">
+        <p
+          className="mb-2 text-sm font-medium tracking-wide text-white/90"
+          style={{ textShadow: "0 1px 3px rgba(0,0,0,0.8)" }}
+        >
+          McGill Chinese Students&apos; Society
+        </p>
         <h1
           className="text-white"
           style={{
@@ -96,7 +116,7 @@ export default function HeroImageSwitcher() {
             lineHeight: 1.2,
             fontWeight: 700,
             letterSpacing: "-0.02em",
-            textShadow: "0 2px 16px rgba(0,0,0,0.5), 0 0 40px rgba(0,0,0,0.3)",
+            textShadow: "0 1px 3px rgba(0,0,0,0.8)",
           }}
         >
           The largest and most influential
@@ -105,6 +125,24 @@ export default function HeroImageSwitcher() {
             {" "}cultural student organization in Eastern Canada.
           </span>
         </h1>
+        <div className="mt-4 flex items-center gap-3" aria-hidden="true">
+          <img
+            src="/images/optimized/home/heart.png"
+            alt=""
+            className="size-16 -rotate-12 transition-transform duration-200 ease-(--ds-ease-standard) hover:scale-115 hover:-rotate-6 sm:size-20"
+            style={{
+              filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.4))",
+            }}
+          />
+          <img
+            src="/images/optimized/home/lantern.png"
+            alt=""
+            className="size-16 rotate-6 transition-transform duration-200 ease-(--ds-ease-standard) hover:scale-115 hover:rotate-12 sm:size-20"
+            style={{
+              filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.4))",
+            }}
+          />
+        </div>
       </div>
 
       <div className="absolute inset-x-6 bottom-6 z-4 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
