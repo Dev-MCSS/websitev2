@@ -102,7 +102,7 @@ export default function HeroImageSwitcher() {
 
       <HeroEdgeVignette />
 
-      <div className="absolute inset-x-12 top-[35%] z-4 will-change-transform">
+      <div className="absolute inset-x-(--ds-container-margin-inline) top-[35%] z-4 will-change-transform sm:inset-x-12">
         <p
           className="mb-2 text-sm font-medium tracking-wide text-white/90"
           style={{ textShadow: "0 1px 3px rgba(0,0,0,0.8)" }}
@@ -145,7 +145,7 @@ export default function HeroImageSwitcher() {
         </div>
       </div>
 
-      <div className="absolute inset-x-6 bottom-6 z-4 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="absolute inset-x-(--ds-container-margin-inline) bottom-6 z-4 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div
         className="flex shrink-0 items-center gap-3 rounded-md bg-white p-2 shadow-ds-2"
         role="group"

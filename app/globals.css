@@ -33,6 +33,8 @@
 
   --palette-success: #16a34a;
   --palette-warning: #ca8a04;
+  /* Membership hero highlight — Figma MCSSv2 node 157:313 */
+  --palette-membership-highlight: #FFC800;
 
   --palette-surface-default: var(--palette-neutral-0);
   --palette-surface-muted: var(--palette-neutral-50);
@@ -55,15 +57,20 @@
   --ds-radius-xl: 16px;
   --ds-radius-full: 9999px;
 
+  /* Default container/block border-radius — use for navbar, image blocks,
+     cards, and any top-level content surface. Matches --ds-radius-lg (12px). */
+  --ds-container-radius: var(--ds-radius-lg);
+
   --ds-shadow-1: 0 1px 2px rgba(9, 9, 11, 0.06);
   --ds-shadow-2: 0 4px 12px rgba(9, 9, 11, 0.08);
   --ds-shadow-3: 0 12px 40px rgba(9, 9, 11, 0.12);
 
-  /* Layout: 1440 / 16-col, gutter 8px, margin compact 10px · expanded 30px (3×) from sm */
+  /* Layout: 1440 / 16-col, gutter 8px; inline padding tighter below sm, 24px sm+ */
   --ds-container-max-width: 1440px;
-  --ds-container-margin-inline-compact: 10px;
-  --ds-container-margin-inline-expanded: 30px;
+  --ds-container-margin-inline-compact: var(--spacing-scale-4);
+  --ds-container-margin-inline-expanded: var(--spacing-scale-6);
   --ds-container-margin-inline: var(--ds-container-margin-inline-compact);
+  --ds-container-padding-block: 24px;
   --ds-grid-columns: 16;
   --ds-grid-gutter: 8px;
 
@@ -111,6 +118,7 @@
 
   --ds-text-headline-size: 1.875rem;
   --ds-text-headline-leading: 2.25rem;
+  --ds-text-headline-leading-relaxed: var(--spacing-scale-12);
   --ds-text-headline-tracking: -0.02em;
 
   --ds-text-display-size: 2.25rem;
@@ -285,6 +293,28 @@ body {
   font-weight: 600;
 }
 
+.ds-text-headline-relaxed {
+  line-height: var(--ds-text-headline-leading-relaxed);
+}
+
+/* Highlight bar under accent phrase */
+.ds-membership-highlight {
+  position: relative;
+  display: inline-block;
+  color: var(--palette-membership-highlight);
+}
+
+.ds-membership-highlight-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  margin-top: calc(var(--spacing-scale-px) - var(--spacing-scale-1));
+  height: var(--spacing-scale-1);
+  border-radius: var(--spacing-scale-0-5);
+  background: var(--palette-membership-highlight);
+}
+
 .ds-text-display {
   font-size: var(--ds-text-display-size);
   line-height: var(--ds-text-display-leading);
@@ -300,6 +330,7 @@ body {
   max-width: var(--ds-container-max-width);
   margin-inline: auto;
   padding-inline: var(--ds-container-margin-inline);
+  padding-block: var(--ds-container-padding-block);
 }
 
 .ds-grid {
@@ -541,4 +572,65 @@ a.ds-link:focus-visible {
 @keyframes hero-dot {
   from { transform: translateX(0); }
   to { transform: translateX(calc(var(--spacing-10) - var(--spacing-1))); }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Gradient pill – scroll-triggered rotating border                           */
+/* -------------------------------------------------------------------------- */
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes gradient-rotate {
+  to { --gradient-angle: 360deg; }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Grain noise overlay                                                        */
+/* -------------------------------------------------------------------------- */
+.ds-grain {
+  position: relative;
+  isolation: isolate;
+}
+
+.ds-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.45;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+.gradient-pill-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.gradient-pill-border {
+  padding: 4px;
+  border-radius: 9999px;
+  background: white;
+  box-shadow: var(--ds-shadow-2);
+  transition: background 0.6s ease;
+}
+
+.gradient-pill-border.gradient-pill-active {
+  background: conic-gradient(
+    from var(--gradient-angle),
+    #FFD700, #FF8C00, #FF4500, #FF6347, #FFD700
+  );
+  animation: gradient-rotate 2.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-pill-border.gradient-pill-active {
+    animation: none;
+    background: conic-gradient(from 45deg, #FFD700, #FF8C00, #FF4500, #FF6347, #FFD700);
+  }
 }

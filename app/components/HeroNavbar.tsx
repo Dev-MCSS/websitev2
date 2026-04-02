@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { Menu, X } from "lucide-react";
+import GradientPill from "./GradientPill";
 
 const NAV_LINKS = [
   { href: "#events", label: "Events" },
@@ -42,7 +43,7 @@ export default function HeroNavbar() {
 
   return (
     <header
-      className={`fixed left-6 top-4 z-20 transition-all duration-200 ease-out ${
+      className={`fixed inset-x-0 top-4 z-20 flex items-start justify-between px-(--ds-container-margin-inline) transition-all duration-200 ease-out ${
         visible
           ? "translate-y-0 opacity-100"
           : "-translate-y-full opacity-0 pointer-events-none"
@@ -123,6 +124,19 @@ export default function HeroNavbar() {
           </nav>
         </div>
       </div>
+
+      <a
+        href="#membership_card"
+        className="shrink-0"
+        aria-label="Membership card"
+      >
+        <GradientPill>
+          <span className="font-semibold text-foreground whitespace-nowrap">
+            <span className="inline sm:hidden md:inline">Membership Card</span>
+            <span className="hidden sm:inline md:hidden">Membership</span>
+          </span>
+        </GradientPill>
+      </a>
     </header>
   );
 }

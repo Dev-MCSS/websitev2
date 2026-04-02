@@ -28,7 +28,7 @@ function MoodSection({
 }) {
   return (
     <section className="ds-card overflow-hidden">
-      <div className="flex items-start gap-3 border-b border-border bg-surface-muted px-5 py-4 md:px-6">
+      <div className="flex items-start gap-3 border-b border-border bg-surface-muted px-(--ds-container-margin-inline) py-4">
         {Icon ? <Icon {...iconProps} /> : null}
         <div className="min-w-0">
           <h2 className="ds-text-title">{title}</h2>
