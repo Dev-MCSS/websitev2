@@ -57,7 +57,8 @@ export default function ScrollRevealCard({
     if (!el || reducedMotion) {
       if (el) {
         el.style.opacity = "1";
-        el.style.transform = `translateX(${END.translateX}%) rotateY(${END.rotateY}deg) rotateX(${END.rotateX}deg) rotateZ(${END.rotateZ}deg)`;
+        // Match the "end" transform composition used during scroll.
+        el.style.transform = `translateX(${END.translateX}%) translateY(${END.translateY}px) scale(${END.scale}) rotateY(${END.rotateY}deg) rotateX(${END.rotateX}deg) rotateZ(${END.rotateZ}deg)`;
       }
       return;
     }
@@ -66,13 +67,18 @@ export default function ScrollRevealCard({
 
     const update = () => {
       const rect = el.getBoundingClientRect();
-      const viewH = window.innerHeight;
+      // Use the visual viewport for iOS/Android browsers where innerHeight can
+      // change while the browser chrome collapses/expands during scroll.
+      const vvp = window.visualViewport;
+      const viewH = vvp?.height ?? window.innerHeight;
 
       // progress: 0 when element top enters the bottom of viewport,
       //           1 when element center reaches 40% from top of viewport
       const triggerStart = viewH;
       const triggerEnd = viewH * 0.4;
-      const elementCenter = rect.top + rect.height / 2;
+      // Align rect measurements to the visual viewport.
+      const elementCenter =
+        rect.top + rect.height / 2 - (vvp?.offsetTop ?? 0);
       const raw = (triggerStart - elementCenter) / (triggerStart - triggerEnd);
       const t = easeOutCubic(clamp(raw, 0, 1));
 
@@ -93,14 +99,24 @@ export default function ScrollRevealCard({
       rafId = requestAnimationFrame(update);
     };
 
+    const onVisualViewportResize = () => {
+      // Keep the animation stable when the address bar / browser chrome changes.
+      onScroll();
+    };
+
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
+    window.visualViewport?.addEventListener("resize", onVisualViewportResize);
 
     return () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      window.visualViewport?.removeEventListener(
+        "resize",
+        onVisualViewportResize,
+      );
     };
   }, [reducedMotion]);
 
