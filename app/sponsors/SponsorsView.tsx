@@ -69,8 +69,8 @@ function SponsorRow({ item }: { item: SponsorItem }) {
   const addresses = sponsorAddresses(item);
 
   return (
-    <div className="flex items-center gap-4 border-b border-border px-3 py-3 last:border-b-0">
-      <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md bg-(--palette-neutral-50)">
+    <div className="grid items-center gap-x-4 gap-y-3 border-b border-border px-3 py-3 last:border-b-0 grid-cols-[auto_1fr] md:grid-cols-[auto_1fr_1fr] md:gap-y-0">
+      <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md bg-(--palette-neutral-50) row-span-2 md:row-span-1">
         <CloudinaryImage
           publicId={item.image}
           alt={item.name}
@@ -80,11 +80,11 @@ function SponsorRow({ item }: { item: SponsorItem }) {
         />
       </div>
 
-      <div className="min-w-0 flex-1">
-        <h3 className="truncate">{item.name}</h3>
-        <div className="flex items-center gap-1.5 text-muted">
-          <MapPin size={12} strokeWidth={2} className="shrink-0" aria-hidden="true" />
-          <span className="ds-text-caption truncate">
+      <div className="min-w-0">
+        <h3 className="ds-text-body-sm font-semibold">{item.name}</h3>
+        <div className="flex items-start gap-1.5 text-muted">
+          <MapPin size={12} strokeWidth={2} className="mt-0.5 shrink-0" aria-hidden="true" />
+          <span className="ds-text-caption">
             {addresses.map((addr, i) => (
               <span key={addr}>
                 {i > 0 && ", "}
@@ -102,7 +102,7 @@ function SponsorRow({ item }: { item: SponsorItem }) {
         </div>
       </div>
 
-      <span className="shrink-0 text-right font-medium">
+      <span className="ds-text-caption font-medium col-start-2 md:col-start-auto">
         {item.discount}
       </span>
     </div>
@@ -115,24 +115,24 @@ export default function SponsorsView() {
 
   return (
     <>
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <button
           type="button"
           onClick={() => setView("gallery")}
-          aria-label="Gallery view"
           aria-pressed={view === "gallery"}
-          className={`ds-btn min-h-0! p-2! ${view === "gallery" ? "bg-accent! text-accent-fg! border-transparent!" : ""}`}
+          className={`ds-btn min-h-0! gap-2! px-3! py-2! ${view === "gallery" ? "bg-accent! text-accent-fg! border-transparent!" : ""}`}
         >
-          <Grid2x2 size={18} strokeWidth={2} />
+          <Grid2x2 size={18} strokeWidth={2} aria-hidden />
+          <span className="ds-text-body-sm">Gallery View</span>
         </button>
         <button
           type="button"
           onClick={() => setView("list")}
-          aria-label="List view"
           aria-pressed={view === "list"}
-          className={`ds-btn min-h-0! p-2! ${view === "list" ? "bg-accent! text-accent-fg! border-transparent!" : ""}`}
+          className={`ds-btn min-h-0! gap-2! px-3! py-2! ${view === "list" ? "bg-accent! text-accent-fg! border-transparent!" : ""}`}
         >
-          <List size={18} strokeWidth={2} />
+          <List size={18} strokeWidth={2} aria-hidden />
+          <span className="ds-text-body-sm">List View</span>
         </button>
       </div>
 

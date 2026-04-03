@@ -16,12 +16,14 @@ export default function SponsorsPage() {
       <HeroNavbar />
 
       <div className="ds-container" style={{ paddingTop: 84 }}>
-        <div className="flex flex-col gap-3 pb-6">
-          <h1 className="ds-text-display">Sponsors</h1>
-          <p className="ds-text-body max-w-2xl text-muted">
-            {sponsorTotalCount} sponsors offering exclusive discounts for MCSS
-            membership card holders across Montreal.
-          </p>
+        <div className="ds-container-surface-warm-gradient mb-6">
+          <div className="ds-container-text">
+            <h1 className="ds-text-display">Sponsors</h1>
+            <p className="ds-text-body max-w-2xl">
+              {sponsorTotalCount} sponsors offering exclusive discounts for MCSS
+              membership card holders across Montreal.
+            </p>
+          </div>
         </div>
 
         <div className="flex flex-col gap-6">

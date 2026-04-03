@@ -31,6 +31,9 @@
   --palette-danger-muted: #fef2f2;
   --palette-danger-ring: #f87171;
 
+  /* Warm gradient surfaces (e.g. page hero bands) — orange → yellow → red */
+  --palette-warm-orange: #f97316;
+
   --palette-success: #16a34a;
   --palette-warning: #ca8a04;
   /* Membership hero highlight — Figma MCSSv2 node 157:313 */
@@ -333,6 +336,42 @@ body {
   padding-block: var(--ds-container-padding-block);
 }
 
+/* Text blocks inside `.ds-container`: wrap headings, paragraphs, and other
+   typographic content in this inner wrapper (not raw text nodes on the container). */
+.ds-container-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  padding-inline: var(--spacing-4);
+  padding-top: var(--spacing-5);
+}
+
+@media (min-width: 640px) {
+  .ds-container-text {
+    padding-inline: var(--spacing-6);
+    padding-top: var(--spacing-6);
+  }
+}
+
+/* Full-width surface within the container max-width; warm gradient + inverse text. */
+.ds-container-surface-warm-gradient {
+  border-radius: var(--ds-container-radius);
+  padding-bottom: var(--spacing-6);
+  /* Always light copy on saturated gradient (independent of light/dark theme). */
+  color: var(--palette-neutral-0);
+  background: linear-gradient(
+    135deg,
+    var(--palette-warm-orange) 0%,
+    var(--palette-membership-highlight) 50%,
+    var(--palette-danger) 100%
+  );
+  box-shadow: var(--ds-shadow-2);
+}
+
+.ds-container-surface-warm-gradient .ds-text-body {
+  color: color-mix(in srgb, var(--palette-neutral-0) 88%, transparent);
+}
+
 .ds-grid {
   display: grid;
   grid-template-columns: repeat(var(--ds-grid-columns), minmax(0, 1fr));
@@ -346,6 +385,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   gap: var(--spacing-2);
   min-height: 40px;
   padding-inline: var(--spacing-4);
@@ -353,7 +393,7 @@ body {
   font-family: inherit;
   font-size: var(--ds-text-body-sm-size);
   line-height: var(--ds-text-body-sm-leading);
-  font-weight: 500;
+  font-weight: 600;
   border-radius: var(--ds-radius-md);
   border: 1px solid var(--palette-border-strong);
   background: var(--palette-surface-elevated);
@@ -364,7 +404,8 @@ body {
     background-color var(--ds-duration-fast) var(--ds-ease-standard),
     border-color var(--ds-duration-fast) var(--ds-ease-standard),
     box-shadow var(--ds-duration-fast) var(--ds-ease-standard),
-    color var(--ds-duration-fast) var(--ds-ease-standard);
+    color var(--ds-duration-fast) var(--ds-ease-standard),
+    filter var(--ds-duration-fast) var(--ds-ease-standard);
 }
 
 .ds-btn:hover {
@@ -397,6 +438,7 @@ body {
 .ds-btn-primary:hover {
   background: var(--palette-primary-hover);
   border-color: transparent;
+  filter: brightness(1.1);
 }
 
 .ds-btn-primary:focus-visible {
