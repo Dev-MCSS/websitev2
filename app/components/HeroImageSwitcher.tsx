@@ -112,7 +112,7 @@ export default function HeroImageSwitcher() {
         <h1
           className="text-white"
           style={{
-            fontSize: "clamp(1.75rem, 5vw, 3rem)",
+            fontSize: "clamp(2rem, 7vw, 3rem)",
             lineHeight: 1.2,
             fontWeight: 700,
             letterSpacing: "-0.02em",

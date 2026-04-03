@@ -5,9 +5,9 @@ import { Menu, X } from "lucide-react";
 import GradientPill from "./GradientPill";
 
 const NAV_LINKS = [
-  { href: "#events", label: "Events" },
-  { href: "#sponsors", label: "Sponsors" },
-  { href: "#about", label: "About" },
+  { href: "/#events", label: "Events" },
+  { href: "/sponsors", label: "Sponsors" },
+  { href: "/#about", label: "About" },
 ];
 
 export default function HeroNavbar() {
@@ -126,7 +126,7 @@ export default function HeroNavbar() {
       </div>
 
       <a
-        href="#membership_card"
+        href="/#membership_card"
         className="shrink-0"
         aria-label="Membership card"
       >

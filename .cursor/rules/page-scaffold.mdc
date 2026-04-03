@@ -1,0 +1,33 @@
+---
+description: Standard page scaffold — every new page includes HeroNavbar and Footer
+globs: app/**/page.tsx
+alwaysApply: false
+---
+
+# Page scaffold
+
+Every new `page.tsx` must include `HeroNavbar` and `Footer`:
+
+```tsx
+import HeroNavbar from "@/app/components/HeroNavbar";
+import Footer from "@/app/components/Footer";
+
+export default function PageName() {
+  return (
+    <main className="flex min-h-0 flex-1 flex-col">
+      <HeroNavbar />
+
+      {/* 84px top padding to clear the fixed navbar */}
+      <div className="ds-container" style={{ paddingTop: 84 }}>
+        {/* page content */}
+      </div>
+
+      <Footer />
+    </main>
+  );
+}
+```
+
+- `<HeroNavbar />` goes directly inside `<main>`, before any content.
+- `<Footer />` goes at the very end of `<main>`.
+- The first `ds-container` needs `style={{ paddingTop: 84 }}` to clear the fixed navbar.

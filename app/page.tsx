@@ -3,10 +3,11 @@ import {
   sponsorTotalCount,
 } from "@/data/sponsors";
 import HeroNavbar from "./components/HeroNavbar";
-import HomeTeamPhotoSection from "./components/HomeTeamPhotoSection";
+import ExecTeam from "./components/ExecTeam";
 import HeroImageSwitcher from "./components/HeroImageSwitcher";
 import Footer from "./components/Footer";
 import CloudinaryImage from "./components/CloudinaryImage";
+import ScrollRevealCard from "./components/ScrollRevealCard";
 
 export default function Home() {
   const sponsorMoreCount = Math.max(
@@ -22,7 +23,7 @@ export default function Home() {
       </section>
 
       <section id="membership_card" className="ds-container">
-        <div className="rounded-lg bg-(--palette-neutral-950) p-6 lg:p-10">
+        <div className="rounded-lg bg-(--palette-neutral-950) p-4 lg:p-6">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-stretch">
             {/* Left — membership card image */}
             <div
@@ -42,13 +43,7 @@ export default function Home() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="h-auto w-full rounded-md"
               /> */}
-              <div
-                className="w-3/4"
-                style={{
-                  transform: "translateX(-5%) rotateY(-27deg) rotateX(12deg) rotateZ(4deg)",
-                  transformStyle: "preserve-3d",
-                }}
-              >
+              <ScrollRevealCard className="w-3/4">
                 <CloudinaryImage
                   publicId="mcss/card/front_25-26"
                   alt="MCSS Membership Card 25-26"
@@ -57,7 +52,7 @@ export default function Home() {
                   sizes="(min-width: 1024px) 37vw, 75vw"
                   className="h-auto w-full rounded-lg shadow-lg"
                 />
-              </div>
+              </ScrollRevealCard>
             </div>
 
             {/* Right — text + sponsor gallery */}
@@ -77,15 +72,13 @@ export default function Home() {
                 <p className="ds-text-body text-(--palette-neutral-400)">
                   Get {" "}
                   <span className="font-bold text-(--palette-neutral-0)">
-                  discounts up to 20% off
+                  up to 20% off
                   </span>{" "}
-                  at restaurants and drink & dessert shops across Montreal. This
-                  is a joint membership card shared with JSA, HKSN, MTSA, KSA,
-                  and MASSA student societies from McGill.
+                  at restaurants and drink & dessert shops across Montreal with our joint membership card with JSA, HKSN, MTSA, KSA, and MASSA student societies from McGill.
                 </p>
               </div>
 
-              <div className="rounded-lg bg-background/10 p-2">
+              <div className="rounded-lg bg-background p-2">
                 {/* <div className="grid grid-cols-6 gap-2 sm:grid-cols-8">
                   {sponsorPreviewForMembershipCard.map((item) => (
                     <div
@@ -118,10 +111,10 @@ export default function Home() {
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
                     <div className="flex -space-x-2.5">
-                      {sponsorPreviewForMembershipCard.slice(0, 5).map((item) => (
+                      {sponsorPreviewForMembershipCard.slice(0, 5).map((item, i) => (
                         <div
                           key={item.image}
-                          className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full border-2 border-(--palette-neutral-0)"
+                          className={`relative h-9 w-9 shrink-0 overflow-hidden rounded-full border-2 border-(--palette-neutral-0) drop-shadow-[0px_0_3px_rgba(0,0,0,0.25)]${i >= 3 ? " hidden sm:block" : ""}`}
                         >
                           <CloudinaryImage
                             publicId={item.image}
@@ -142,10 +135,11 @@ export default function Home() {
                         </div>
                       ))}
                       <div
-                        className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-(--palette-neutral-0) bg-(--palette-neutral-200) text-[10px] font-bold leading-none text-(--palette-neutral-950)"
-                        aria-label={`${sponsorTotalCount - 5} more sponsors`}
+                        className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-(--palette-neutral-0) bg-(--palette-neutral-200) text-[12px] font-bold leading-none text-(--palette-neutral-950) drop-shadow-[0px_0_3px_rgba(0,0,0,0.25)]"
+                        aria-label={`${sponsorTotalCount - 3} more sponsors`}
                       >
-                        +{sponsorTotalCount - 5}
+                        <span className="sm:hidden">+{sponsorTotalCount - 3}</span>
+                        <span className="hidden sm:inline">+{sponsorTotalCount - 5}</span>
                       </div>
                     </div>
                     {/* <span className="ds-text-caption text-(--palette-neutral-400)">
@@ -154,11 +148,11 @@ export default function Home() {
                   </div>
 
                   <a
-                    href="#sponsors"
+                    href="/sponsors"
                     className="shrink-0 rounded-md px-4 py-2 font-semibold text-(--palette-neutral-950) transition-colors hover:brightness-110"
                     style={{ backgroundColor: "var(--palette-membership-highlight)" }}
                   >
-                    View Sponsor List
+                    View Discounts
                   </a>
                 </div>
               </div>
@@ -177,7 +171,7 @@ export default function Home() {
                       Message us on Instagram and we’ll help you out
                     </li>
                     <li className="relative pl-4 before:absolute before:left-0 before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:bg-(--palette-neutral-500)">
-                      Pick one up at our events and booths on campus.
+                      Pick one up at our events
                     </li>
                   </ul>
                 </div>
@@ -187,7 +181,7 @@ export default function Home() {
         </div>
       </section>
 
-      <HomeTeamPhotoSection />
+      <ExecTeam />
 
       <Footer />
     </main>
