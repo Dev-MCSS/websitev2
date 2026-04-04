@@ -379,6 +379,90 @@ body {
 }
 
 /* -------------------------------------------------------------------------- */
+/* Footer LED ticker (masked marquee)                                          */
+/* -------------------------------------------------------------------------- */
+/* Bar chrome: avoid Tailwind `border-(--var)/opacity` (generates color-mix border
+   that can render inconsistently). Edge definition uses shadow only. */
+.ds-footer-led-surface {
+  overflow: hidden;
+  border-radius: var(--ds-radius-md);
+  box-shadow: var(--ds-shadow-2);
+  background: radial-gradient(
+    125% 180% at 100% 0%,
+    var(--palette-warm-orange) 0%,
+    var(--palette-danger) 52%
+  );
+}
+
+@keyframes ds-footer-led-marquee {
+  to {
+    /* Three equal-width segments; advance one segment per loop for a seamless reset. */
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
+.ds-footer-led-viewport {
+  overflow: hidden;
+  /* Inset from fade mask without affecting marquee loop math (transform is on track). */
+  padding-inline: var(--spacing-scale-4);
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 4%,
+    #000 96%,
+    transparent
+  );
+}
+
+.ds-footer-led-track {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  /* No gap between duplicate segments: spacing after last label matches label gaps via padding-end. */
+  gap: 0;
+  width: max-content;
+  animation: ds-footer-led-marquee 32s linear infinite;
+}
+
+.ds-footer-led-segment {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--spacing-scale-16);
+  /* Trailing space equals inter-label gap so the loop seam matches internal gaps; two identical segments → seamless -50% loop. */
+  padding-inline: 0;
+  padding-inline-end: var(--spacing-scale-16);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-footer-led-viewport {
+    mask-image: none;
+  }
+
+  .ds-footer-led-track {
+    animation: none;
+    width: 100%;
+    max-width: 100%;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin-inline: auto;
+  }
+
+  .ds-footer-led-track > :not(:first-child) {
+    display: none;
+  }
+
+  .ds-footer-led-track > :first-child {
+    flex-shrink: 1;
+    flex-wrap: nowrap;
+    min-width: 0;
+    justify-content: center;
+    overflow: hidden;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
 /* Buttons — focus: accent outline (not input ring pattern)                    */
 /* -------------------------------------------------------------------------- */
 .ds-btn {
@@ -647,6 +731,19 @@ a.ds-link:focus-visible {
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 128px 128px;
+}
+
+/*
+ * 3D tilt stage: keep perspective off `.ds-grain` — that class uses
+ * `isolation: isolate` for the noise overlay; WebKit flattens child 3D when
+ * perspective shares that stacking context. Also avoid `overflow: hidden` on
+ * an ancestor of the transformed card (Safari flattens preserve-3d).
+ */
+.ds-perspective-stage {
+  perspective: 900px;
+  -webkit-perspective: 900px;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
 }
 
 .gradient-pill-wrap {

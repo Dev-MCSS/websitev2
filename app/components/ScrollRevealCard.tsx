@@ -126,6 +126,7 @@ export default function ScrollRevealCard({
       className={className}
       style={{
         transformStyle: "preserve-3d",
+        WebkitTransformStyle: "preserve-3d",
         willChange: "transform, opacity",
         opacity: 0,
       }}

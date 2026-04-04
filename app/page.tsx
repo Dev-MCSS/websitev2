@@ -27,15 +27,16 @@ export default function Home() {
           <div className="flex flex-col gap-8 lg:flex-row lg:items-stretch">
             {/* Left — membership card image */}
             <div
-              className="ds-grain flex items-center justify-center overflow-hidden rounded-lg lg:w-1/2"
+              className="ds-grain relative rounded-lg lg:w-1/2"
               style={{
                 background:
                   "linear-gradient(135deg, var(--palette-neutral-800) 0%, var(--palette-neutral-950) 100%)",
                 aspectRatio: "1.414",
-                perspective: "900px",
               }}
             >
-              {/* <CloudinaryImage
+              {/* Perspective on an inner layer — not on `.ds-grain` (isolation + WebKit 3D flattening). */}
+              <div className="ds-perspective-stage absolute inset-0 flex min-h-0 min-w-0 items-center justify-center">
+                {/* <CloudinaryImage
                 publicId="mcss/card/membership_card"
                 alt="MCSS Membership Card"
                 width={1400}
@@ -43,16 +44,17 @@ export default function Home() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="h-auto w-full rounded-md"
               /> */}
-              <ScrollRevealCard className="w-3/4">
-                <CloudinaryImage
-                  publicId="mcss/card/front_25-26"
-                  alt="MCSS Membership Card 25-26"
-                  width={1400}
-                  height={880}
-                  sizes="(min-width: 1024px) 37vw, 75vw"
-                  className="h-auto w-full rounded-lg shadow-lg"
-                />
-              </ScrollRevealCard>
+                <ScrollRevealCard className="w-3/4">
+                  <CloudinaryImage
+                    publicId="mcss/card/front_25-26"
+                    alt="MCSS Membership Card 25-26"
+                    width={1400}
+                    height={880}
+                    sizes="(min-width: 1024px) 37vw, 75vw"
+                    className="h-auto w-full rounded-lg shadow-lg"
+                  />
+                </ScrollRevealCard>
+              </div>
             </div>
 
             {/* Right — text + sponsor gallery */}
