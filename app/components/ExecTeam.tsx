@@ -5,7 +5,7 @@ import CloudinaryImage from "./CloudinaryImage";
 export default function ExecTeam() {
   return (
     <>
-      <section className="ds-container py-8">
+      <section id="about" className="ds-container scroll-mt-24 py-8">
         <div className="relative overflow-hidden rounded-lg">
           <div
             className="pointer-events-none absolute inset-x-0 top-0 z-10 h-24 bg-linear-to-b from-black/50 to-transparent"
@@ -28,7 +28,7 @@ export default function ExecTeam() {
         </div>
       </section>
 
-      <section className="ds-container pt-0!">
+      <section id="recruitment" className="ds-container scroll-mt-24 pt-0!">
         <div className="flex flex-col items-start gap-4 px-4 pt-5 sm:px-6 sm:pt-6">
           <h2 className="ds-text-title text-foreground">
             Want to join the fam?
@@ -40,7 +40,7 @@ export default function ExecTeam() {
             place for you!
           </p>
           <Link
-            href="/about/#recruitment"
+            href="/#recruitment"
             className="shrink-0 rounded-md px-4 py-2 font-semibold text-(--palette-neutral-0) transition-colors hover:brightness-110 mt-4"
             style={{ backgroundColor: "var(--palette-neutral-950)" }}
           >

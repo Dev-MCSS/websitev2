@@ -19,10 +19,10 @@ const FOOTER_SOCIAL_LINKS = [
 ] as const;
 
 const FOOTER_LINKS = [
-  { href: "#events", label: "Events" },
-  { href: "#sponsors", label: "Sponsors" },
-  { href: "#about", label: "About" },
-  { href: "#membership_card", label: "Membership Card" },
+  { href: "/#events", label: "Events" },
+  { href: "/sponsor", label: "Sponsors" },
+  { href: "/#about", label: "About" },
+  { href: "/#membership_card", label: "Membership Card" },
 ];
 
 const FOOTER_LED_ITEMS = [

@@ -361,8 +361,12 @@ body {
   color: var(--palette-neutral-0);
   background: linear-gradient(
     135deg,
-    var(--palette-warm-orange) 0%,
-    var(--palette-membership-highlight) 50%,
+    color-mix(
+      in srgb,
+      var(--palette-warm-orange) 82%,
+      var(--palette-danger)
+    )
+      0%,
     var(--palette-danger) 100%
   );
   box-shadow: var(--ds-shadow-2);

@@ -17,12 +17,18 @@ export default function Home() {
 
   return (
     <main className="flex min-h-0 flex-1 flex-col">
-      <section className="relative h-screen w-full overflow-hidden">
+      <section
+        id="events"
+        className="relative h-screen w-full overflow-hidden scroll-mt-24"
+      >
         <HeroNavbar />
         <HeroImageSwitcher />
       </section>
 
-      <section id="membership_card" className="ds-container">
+      <section
+        id="membership_card"
+        className="ds-container scroll-mt-24"
+      >
         <div className="rounded-lg bg-(--palette-neutral-950) p-4 lg:p-6">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-stretch">
             {/* Left — membership card image */}
