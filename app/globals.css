@@ -376,6 +376,23 @@ body {
   color: color-mix(in srgb, var(--palette-neutral-0) 88%, transparent);
 }
 
+/* Dark gradient band (e.g. events hero) — inverse text on black → charcoal. */
+.ds-container-surface-dark-gradient {
+  border-radius: var(--ds-container-radius);
+  padding-bottom: var(--spacing-6);
+  color: var(--palette-neutral-0);
+  background: linear-gradient(
+    135deg,
+    var(--palette-neutral-950) 0%,
+    var(--palette-neutral-800) 100%
+  );
+  box-shadow: var(--ds-shadow-2);
+}
+
+.ds-container-surface-dark-gradient .ds-text-body {
+  color: color-mix(in srgb, var(--palette-neutral-0) 88%, transparent);
+}
+
 .ds-grid {
   display: grid;
   grid-template-columns: repeat(var(--ds-grid-columns), minmax(0, 1fr));
