@@ -144,6 +144,8 @@
   --ds-z-modal: 80;
   /* Fixed site chrome — above modals, dropdowns, tooltips, toasts */
   --ds-z-navbar: 90;
+  /* Full-viewport overlays (e.g. image lightbox) — above fixed navbar */
+  --ds-z-fullscreen: 100;
 
 }
 

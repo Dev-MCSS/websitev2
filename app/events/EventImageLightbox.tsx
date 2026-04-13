@@ -233,7 +233,7 @@ export default function EventImageLightbox({
   return (
     <div
       className="fixed inset-0 flex flex-col bg-(--palette-neutral-0)"
-      style={{ zIndex: "var(--ds-z-modal)" }}
+      style={{ zIndex: "var(--ds-z-fullscreen)" }}
       role="dialog"
       aria-modal="true"
       aria-label={item.title}
