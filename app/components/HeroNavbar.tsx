@@ -7,7 +7,7 @@ import GradientPill from "./GradientPill";
 const NAV_LINKS = [
   { href: "/events", label: "Events" },
   { href: "/sponsors", label: "Sponsors" },
-  { href: "/#about", label: "About" },
+  { href: "/about", label: "About" },
 ];
 
 export default function HeroNavbar() {
@@ -43,7 +43,7 @@ export default function HeroNavbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-4 z-20 flex items-start justify-between px-(--ds-container-margin-inline) transition-all duration-200 ease-out ${
+      className={`fixed inset-x-0 top-4 z-(--ds-z-navbar) flex items-start justify-between px-(--ds-container-margin-inline) transition-all duration-200 ease-out ${
         visible
           ? "translate-y-0 opacity-100"
           : "-translate-y-full opacity-0 pointer-events-none"

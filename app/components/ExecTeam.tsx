@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import CloudinaryImage from "./CloudinaryImage";
 
 export default function ExecTeam() {
@@ -39,13 +37,11 @@ export default function ExecTeam() {
             with people that have the drippiest swag 😎, then MCSS is the perfect
             place for you!
           </p>
-          <Link
-            href="/#recruitment"
-            className="shrink-0 rounded-md px-4 py-2 font-semibold text-(--palette-neutral-0) transition-colors hover:brightness-110 mt-4"
-            style={{ backgroundColor: "var(--palette-neutral-950)" }}
-          >
-            Recruitment
-          </Link>
+          <p className="max-w-2xl ds-text-body text-muted mt-4">
+            We have two recruitment periods that open depending on position
+            availabilities: Fall and Winter. Fall 2026 Recruitment will be coming
+            soon.
+          </p>
         </div>
       </section>
     </>

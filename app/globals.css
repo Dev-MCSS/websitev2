@@ -137,11 +137,13 @@
   --size-icon-md: 20px;
   --size-icon-lg: 24px;
 
-  /* Z-index layers for overlays */
+  /* Z-index layers for overlays (ascending) */
   --ds-z-dropdown: 50;
   --ds-z-tooltip: 60;
   --ds-z-toast: 70;
   --ds-z-modal: 80;
+  /* Fixed site chrome — above modals, dropdowns, tooltips, toasts */
+  --ds-z-navbar: 90;
 
 }
 

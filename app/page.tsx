@@ -87,34 +87,6 @@ export default function Home() {
               </div>
 
               <div className="rounded-lg bg-background p-2">
-                {/* <div className="grid grid-cols-6 gap-2 sm:grid-cols-8">
-                  {sponsorPreviewForMembershipCard.map((item) => (
-                    <div
-                      key={item.image}
-                      className="relative aspect-square overflow-hidden rounded-lg bg-white"
-                    >
-                      <CloudinaryImage
-                        publicId={item.image}
-                        alt=""
-                        fill
-                        sizes="(min-width: 1024px) 10vw, 25vw"
-                        className="object-contain object-center p-1.5"
-                        style={{
-                          borderRadius: "var(--ds-container-radius)",
-                          overflow: "hidden",
-                        }}
-                      />
-                    </div>
-                  ))}
-                  {sponsorMoreCount > 0 && (
-                    <div
-                      className="flex aspect-square items-center justify-center rounded-lg bg-(--palette-neutral-700) px-1 text-center ds-text-caption font-bold! leading-tight text-(--palette-neutral-0)"
-                      aria-label={`${sponsorMoreCount} more sponsors not shown in this preview`}
-                    >
-                      +{sponsorMoreCount} more
-                    </div>
-                  )}
-                </div> */}
 
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
