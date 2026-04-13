@@ -207,12 +207,12 @@ export default function EventsGallery() {
           ))}
         </div>
 
-        <div
-          className="columns-2 md:columns-3 lg:columns-4"
-          style={{ columnGap: "var(--spacing-4)" }}
-        >
+        <div className="columns-2 [column-fill:balance] gap-x-2 sm:gap-x-3 md:columns-3 md:gap-x-4 lg:columns-4">
           {filteredItems.map((item) => (
-            <div key={`${item.yearKey}-${item.image}`} className="mb-4 break-inside-avoid">
+            <div
+              key={`${item.yearKey}-${item.image}`}
+              className="mb-2 break-inside-avoid sm:mb-3 md:mb-4"
+            >
               <button
                 type="button"
                 className="group w-full cursor-zoom-in rounded-lg border-0 bg-transparent p-0 text-left transition-transform duration-200 ease-(--ds-ease-standard) motion-reduce:transition-none"
