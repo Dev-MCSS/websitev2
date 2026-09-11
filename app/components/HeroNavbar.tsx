@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useLayoutEffect, useState, useRef } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import GradientPill from "./GradientPill";
 
@@ -14,6 +15,12 @@ export default function HeroNavbar() {
   const [visible, setVisible] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  // Route Activity caching preserves component state. Mobile navigation should
+  // always return closed rather than retain an old, hidden dropdown state.
+  useLayoutEffect(() => {
+    return () => setMenuOpen(false);
+  }, []);
 
   useEffect(() => {
     let lastY = window.scrollY;
@@ -54,13 +61,13 @@ export default function HeroNavbar() {
           className="flex items-center gap-4 rounded-lg pl-4 pr-2 py-2 text-white backdrop-blur"
           style={{ backgroundColor: "rgba(9, 9, 11, 0.9)" }}
         >
-          <a href="/" aria-label="MCSS home" className="shrink-0">
+          <Link href="/" aria-label="MCSS home" className="shrink-0">
             <img
               src="/images/optimized/logo/mcss-logo-white.png"
               alt="MCSS logo"
               className="h-8 w-auto"
             />
-          </a>
+          </Link>
 
           {/* Desktop nav */}
           <nav
@@ -70,12 +77,12 @@ export default function HeroNavbar() {
             <ul className="flex items-center gap-2">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     className="rounded-md px-4 py-2 transition-colors hover:bg-white/10"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -111,13 +118,13 @@ export default function HeroNavbar() {
             <ul className="flex flex-col gap-1">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
-                    onClick={() => setMenuOpen(false)}
+                    onNavigate={() => setMenuOpen(false)}
                     className="block rounded-md px-4 py-2 transition-colors hover:bg-white/10"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -125,7 +132,7 @@ export default function HeroNavbar() {
         </div>
       </div>
 
-      <a
+      <Link
         href="/#membership_card"
         className="shrink-0"
         aria-label="Membership card"
@@ -136,7 +143,7 @@ export default function HeroNavbar() {
             <span className="hidden sm:inline md:hidden">Membership</span>
           </span>
         </GradientPill>
-      </a>
+      </Link>
     </header>
   );
 }

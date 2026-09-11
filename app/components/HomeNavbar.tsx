@@ -1,8 +1,9 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import { useEffect, useId, useRef, useState, type CSSProperties } from 'react';
+import { useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import styles from './home-navbar.module.css';
 
 const destinations = [
@@ -16,6 +17,12 @@ export default function HomeNavbar() {
   const island = useRef<HTMLDivElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
   const navigationId = useId();
+
+  // Next keeps recently visited routes mounted but hidden. A menu is transient UI,
+  // so reset it before this route is cached instead of restoring a stale dropdown.
+  useLayoutEffect(() => {
+    return () => setOpen(false);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -76,10 +83,10 @@ export default function HomeNavbar() {
           <ul className={styles.links}>
             {destinations.map((item, index) => (
               <li key={item.href} style={{ '--link-delay': `${40 + index * 45}ms` } as CSSProperties}>
-                <a href={item.href} onClick={() => setOpen(false)}>
+                <Link href={item.href} onNavigate={() => setOpen(false)}>
                   <span className={styles.linkLabel}>{item.label}</span>
                   <ArrowUpRight className={styles.linkArrow} aria-hidden="true" strokeWidth={1.5} />
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

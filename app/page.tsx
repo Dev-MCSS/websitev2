@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import HomeNavbar from "./components/HomeNavbar";
 import HomeHero from "./components/HomeHero";
 import HomeMembership from "./components/HomeMembership";
+import HomeFooter from "./components/HomeFooter";
 import styles from "./home.module.css";
 
 const dmMono = localFont({
@@ -51,6 +52,7 @@ export default function Home() {
         </section>
         <HomeMembership />
       </main>
+      <HomeFooter />
     </div>
   );
 }

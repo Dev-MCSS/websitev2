@@ -8,7 +8,7 @@
   background: #fff;
   color: var(--home-ink);
   min-height: 100vh;
-  padding-bottom: clamp(80px, 10vw, 144px);
+  padding-bottom: clamp(32px, 4vw, 58px);
 }
 
 .skipLink {
