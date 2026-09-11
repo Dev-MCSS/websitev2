@@ -52,6 +52,20 @@
   letter-spacing: normal;
 }
 
+.historyLink {
+  color: #a64a48;
+  text-decoration-line: none;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: color 160ms ease;
+}
+
+.historyLink:hover,
+.historyLink:focus-visible {
+  color: #c65451;
+  text-decoration-line: underline;
+}
+
 @media (max-width: 700px) {
   .overview { gap: 24px; margin-top: 36px; margin-bottom: 80px; }
   .overview p { font-size: 1rem; line-height: 1.2; }

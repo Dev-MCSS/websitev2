@@ -1,14 +1,14 @@
 'use client';
 
 import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
 import { useEffect, useId, useRef, useState, type CSSProperties } from 'react';
 import styles from './home-navbar.module.css';
 
 const destinations = [
-  { href: '/events', label: 'Events', detail: 'Make a few memories' },
-  { href: '/sponsors', label: 'Sponsors', detail: 'Meet our community partners' },
-  { href: '/about', label: 'About', detail: 'Get to know MCSS' },
-  { href: '/#membership_card', label: 'Membership', detail: 'Find your place in the fam' },
+  { href: '/events', label: 'Events' },
+  { href: '/sponsors', label: 'Sponsors' },
+  { href: '/about', label: 'About' },
 ];
 
 export default function HomeNavbar() {
@@ -77,8 +77,8 @@ export default function HomeNavbar() {
             {destinations.map((item, index) => (
               <li key={item.href} style={{ '--link-delay': `${40 + index * 45}ms` } as CSSProperties}>
                 <a href={item.href} onClick={() => setOpen(false)}>
-                  <span><span className={styles.linkLabel}>{item.label}</span><span className={styles.detail}>{item.detail}</span></span>
-                  <span className={styles.index} aria-hidden="true">0{index + 1} ↗</span>
+                  <span className={styles.linkLabel}>{item.label}</span>
+                  <ArrowUpRight className={styles.linkArrow} aria-hidden="true" strokeWidth={1.5} />
                 </a>
               </li>
             ))}

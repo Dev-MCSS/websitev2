@@ -38,7 +38,7 @@
   display: flex;
   flex-direction: column;
   width: min(820px, calc(100vw - 48px));
-  height: min(436px, calc(100dvh - 16px));
+  height: min(356px, calc(100dvh - 16px));
   border-radius: 0 0 18px 18px;
 }
 
@@ -77,9 +77,9 @@
   display: grid;
   place-items: center;
   justify-self: center;
-  width: 38px;
-  height: 38px;
-  border: 4px solid #d8d6cf;
+  width: 30px;
+  height: 30px;
+  border: 3px solid #d8d6cf;
   border-radius: 50%;
   background: repeating-conic-gradient(#454540 0 18deg, #bebbb1 18deg 44deg);
   box-shadow: 0 0 0 2px #7e7b73, 0 0 0 6px rgb(7 7 7 / 55%);
@@ -99,25 +99,24 @@
 .open .icon span:first-child { top: 6px; transform: rotate(45deg); }
 .open .icon span:last-child { top: 6px; transform: rotate(-45deg); }
 
-.navigation { flex: 1 1 auto; min-height: 0; padding: 17px 26px 24px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity 220ms ease 70ms, transform 300ms cubic-bezier(.22, 1, .36, 1) 70ms, visibility 220ms; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; -ms-overflow-style: none; }
+.navigation { flex: 1 1 auto; min-height: 0; padding: 14px 26px 30px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity 220ms ease 70ms, transform 300ms cubic-bezier(.22, 1, .36, 1) 70ms, visibility 220ms; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; -ms-overflow-style: none; }
 .navigation::-webkit-scrollbar { display: none; width: 0; height: 0; }
 .open .navigation { opacity: 1; visibility: visible; transform: translateY(0); }
-.links { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid #a49b8d; border-right: 0; border-bottom: 0; }
+.links { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; overflow: hidden; border: 1px solid #a49b8d; border-radius: 12px; }
 .links li { min-width: 0; opacity: 0; transform: translateY(-6px); transition: opacity 180ms ease, transform 220ms ease; }
 .open .links li { opacity: 1; transform: translateY(0); transition-delay: var(--link-delay); }
-.links a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 134px; padding: 18px 20px; border-right: 1px solid #a49b8d; border-bottom: 1px solid #a49b8d; color: inherit; background: rgb(255 255 255 / 12%); text-decoration: none; transition: color 180ms ease, background 180ms ease; }
+.links li:not(:last-child) { border-bottom: 1px solid #a49b8d; }
+.links a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 80px; padding: 12px 20px; color: inherit; background: rgb(255 255 255 / 12%); text-decoration: none; transition: color 180ms ease, background 180ms ease; }
 .linkLabel { display: block; font: italic clamp(23px, 3vw, 34px)/1.05 Georgia, serif; }
-.detail { display: block; margin-top: 8px; color: #676158; font: 500 9px/1.4 var(--font-dm-mono), monospace; letter-spacing: .04em; }
-.index { flex-shrink: 0; font: 500 9px/1.5 var(--font-dm-mono), monospace; }
+.linkArrow { flex: 0 0 19px; width: 19px; height: 19px; }
 .links a:hover { color: #f0eadf; background: #302f2b; }
-.links a:hover .detail { color: #cfc7bb; }
 .toggle:hover, .brand:hover { background: rgb(36 36 35 / 7%); }
 .island a:focus-visible, .island button:focus-visible { outline: 2px solid #6b443b; outline-offset: -3px; }
 
 @media (max-width: 700px) {
   .island::before, .island::after { display: none; }
   .island { width: calc(100% - 32px); height: 60px; border-radius: 0 0 9px 9px; }
-  .open { width: calc(100% - 32px); height: min(502px, calc(100dvh - 12px)); border-radius: 0 0 12px 12px; }
+  .open { width: calc(100% - 32px); height: min(334px, calc(100dvh - 12px)); border-radius: 0 0 12px 12px; }
   .bar { grid-template-columns: 80px minmax(0, 1fr) 80px; gap: 6px; height: 60px; flex-basis: 60px; padding: 8px 10px; }
   .brand { padding-inline: 4px; }
   .brand, .toggle { height: 40px; border-radius: 7px; }
@@ -129,8 +128,7 @@
   .toggle { grid-template-columns: minmax(0, 1fr) 19px; gap: 7px; padding-inline: 9px; }
   .menuLabel { font-size: 9px; }
   .navigation { padding: 12px 14px 18px; }
-  .links { grid-template-columns: 1fr; }
-  .links a { min-height: 94px; padding: 14px 16px; }
+  .links a { min-height: 80px; padding: 12px 16px; }
   .linkLabel { font-size: 25px; }
 }
 
