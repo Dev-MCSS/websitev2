@@ -128,35 +128,40 @@ export default function HomeHero() {
     <section className={styles.hero} aria-labelledby="home-title">
       <h1 id="home-title" className={styles.srOnly}>McGill Chinese Students’ Society — MCSS fam</h1>
       <div className={styles.composition} style={motionStyle}>
-        <div className={styles.wordmark} aria-hidden="true" />
-        <Image className={styles.stamp} src="/images/home-redesign/stamp.svg" alt="" aria-hidden="true" width={131} height={131} />
-        <Image className={styles.tile} src="/images/home-redesign/tile.svg" alt="" aria-hidden="true" width={338} height={321} />
-        <figure
-          id={frontSlot === 'b' ? 'home-photo' : undefined}
-          className={`${styles.frame} ${frontSlot === 'a' ? `${styles.rear} ${outgoing !== null ? styles.entering : ''}` : `${styles.front} ${outgoing !== null ? styles.leaving : ''}`}`}
-          role={frontSlot === 'a' ? 'button' : undefined}
-          tabIndex={frontSlot === 'a' ? 0 : undefined}
-          aria-label={frontSlot === 'a' ? `Show next event photograph: ${homePhotos[slotB].title}` : undefined}
-          onClick={frontSlot === 'a' ? activateNextCard : undefined}
-          onKeyDown={frontSlot === 'a' ? handleRearCardKeyDown : undefined}
-        >
-          {photo(slotB, frontSlot === 'a')}
-          <span className={styles.depthOverlay} aria-hidden="true" />
-        </figure>
-        <Image className={styles.paper} src="/images/home-redesign/paper.svg" alt="" aria-hidden="true" width={637} height={637} />
-        <figure
-          id={frontSlot === 'a' ? 'home-photo' : undefined}
-          className={`${styles.frame} ${frontSlot === 'a' ? `${styles.front} ${outgoing !== null ? styles.leaving : ''}` : `${styles.rear} ${outgoing !== null ? styles.entering : ''}`}`}
-          role={frontSlot !== 'a' ? 'button' : undefined}
-          tabIndex={frontSlot !== 'a' ? 0 : undefined}
-          aria-label={frontSlot !== 'a' ? `Show next event photograph: ${homePhotos[slotA].title}` : undefined}
-          onClick={frontSlot !== 'a' ? activateNextCard : undefined}
-          onKeyDown={frontSlot !== 'a' ? handleRearCardKeyDown : undefined}
-        >
-          {photo(slotA, frontSlot !== 'a', frontSlot === 'a' && outgoing !== null ? backSwapPhase : null)}
-          <span className={styles.depthOverlay} aria-hidden="true" />
-        </figure>
-        <Image className={styles.binder} src="/images/home-redesign/binder-clip.svg" alt="" aria-hidden="true" width={141} height={163} />
+        <div className={styles.wordmarkSection}>
+          <div className={styles.wordmark} aria-hidden="true" />
+        </div>
+        <div className={styles.photoStackSection}>
+          <Image className={styles.stamp} src="/images/home-redesign/stamp.svg" alt="" aria-hidden="true" width={131} height={131} />
+          <Image className={styles.tile} src="/images/home-redesign/tile.svg" alt="" aria-hidden="true" width={338} height={321} />
+          <figure
+            id={frontSlot === 'b' ? 'home-photo' : undefined}
+            className={`${styles.frame} ${frontSlot === 'a' ? `${styles.rear} ${outgoing !== null ? styles.entering : ''}` : `${styles.front} ${outgoing !== null ? styles.leaving : ''}`}`}
+            role={frontSlot === 'a' ? 'button' : undefined}
+            tabIndex={frontSlot === 'a' ? 0 : undefined}
+            aria-label={frontSlot === 'a' ? `Show next event photograph: ${homePhotos[slotB].title}` : undefined}
+            onClick={frontSlot === 'a' ? activateNextCard : undefined}
+            onKeyDown={frontSlot === 'a' ? handleRearCardKeyDown : undefined}
+          >
+            {photo(slotB, frontSlot === 'a')}
+            <span className={styles.depthOverlay} aria-hidden="true" />
+          </figure>
+          <Image className={styles.paper} src="/images/home-redesign/paper.svg" alt="" aria-hidden="true" width={637} height={637} />
+          <Image className={styles.heart} src="/images/home-redesign/heart.svg" alt="" aria-hidden="true" width={108} height={103} />
+          <figure
+            id={frontSlot === 'a' ? 'home-photo' : undefined}
+            className={`${styles.frame} ${frontSlot === 'a' ? `${styles.front} ${outgoing !== null ? styles.leaving : ''}` : `${styles.rear} ${outgoing !== null ? styles.entering : ''}`}`}
+            role={frontSlot !== 'a' ? 'button' : undefined}
+            tabIndex={frontSlot !== 'a' ? 0 : undefined}
+            aria-label={frontSlot !== 'a' ? `Show next event photograph: ${homePhotos[slotA].title}` : undefined}
+            onClick={frontSlot !== 'a' ? activateNextCard : undefined}
+            onKeyDown={frontSlot !== 'a' ? handleRearCardKeyDown : undefined}
+          >
+            {photo(slotA, frontSlot !== 'a', frontSlot === 'a' && outgoing !== null ? backSwapPhase : null)}
+            <span className={styles.depthOverlay} aria-hidden="true" />
+          </figure>
+          <Image className={styles.binder} src="/images/home-redesign/binder-clip.svg" alt="" aria-hidden="true" width={141} height={163} />
+        </div>
       </div>
     </section>
   );

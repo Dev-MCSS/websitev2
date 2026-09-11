@@ -53,7 +53,7 @@
   padding: 10px 32px 8px;
 }
 
-.brand { display: flex; align-items: center; justify-content: flex-start; width: 100%; height: 48px; padding-inline: 8px; border-radius: 7px; color: inherit; text-decoration: none; }
+.brand { display: flex; align-items: center; justify-content: center; width: 100%; height: 48px; padding-inline: 8px; border-radius: 7px; color: inherit; text-decoration: none; }
 .brand img { width: 84px; height: 44px; object-fit: contain; filter: contrast(1.08); }
 
 .tapeWindow {
@@ -90,9 +90,9 @@
 .reel span { width: 10px; height: 10px; border-radius: 50%; background: #20201e; }
 .tapeLabel { z-index: 1; display: grid; place-items: center; justify-self: stretch; height: 30px; overflow: hidden; border: 1px solid #c8aa6c; border-radius: 2px; color: #eee8da; font: 500 9px/1 var(--font-dm-mono), monospace; letter-spacing: .15em; text-align: center; white-space: nowrap; }
 
-.toggle { display: flex; align-items: center; justify-content: flex-start; gap: 10px; width: 100%; height: 48px; padding: 0 8px; border: 0; border-radius: 7px; color: inherit; background: transparent; cursor: pointer; }
-.menuLabel { font: 500 12px/1 var(--font-dm-mono), monospace; letter-spacing: .05em; text-transform: uppercase; }
-.icon { position: relative; width: 19px; height: 14px; }
+.toggle { display: grid; grid-template-columns: minmax(0, 1fr) 19px; align-items: center; gap: 10px; width: 100%; height: 48px; padding: 0 12px; border: 0; border-radius: 7px; color: inherit; background: transparent; cursor: pointer; }
+.menuLabel { justify-self: start; font: 500 12px/1 var(--font-dm-mono), monospace; letter-spacing: .05em; text-transform: uppercase; }
+.icon { position: relative; justify-self: end; width: 19px; height: 14px; }
 .icon span { position: absolute; left: 0; width: 19px; height: 1.5px; background: currentColor; transition: transform 220ms ease, top 220ms ease; }
 .icon span:first-child { top: 3px; }
 .icon span:last-child { top: 10px; }
@@ -126,7 +126,7 @@
   .reel { width: 26px; height: 26px; border-width: 3px; box-shadow: 0 0 0 1px #7e7b73, 0 0 0 4px rgb(7 7 7 / 55%); }
   .reel span { width: 7px; height: 7px; }
   .tapeLabel { height: 26px; font-size: 7px; letter-spacing: .08em; }
-  .toggle { gap: 7px; padding: 0 6px 0 9px; }
+  .toggle { grid-template-columns: minmax(0, 1fr) 19px; gap: 7px; padding-inline: 9px; }
   .menuLabel { font-size: 9px; }
   .navigation { padding: 12px 14px 18px; }
   .links { grid-template-columns: 1fr; }
@@ -141,7 +141,7 @@
   .reel { width: 22px; height: 22px; border-width: 2px; box-shadow: 0 0 0 1px #7e7b73, 0 0 0 3px rgb(7 7 7 / 55%); }
   .reel span { width: 6px; height: 6px; }
   .tapeLabel { height: 24px; font-size: 6px; }
-  .toggle { gap: 6px; }
+  .toggle { grid-template-columns: minmax(0, 1fr) 16px; gap: 6px; }
   .menuLabel { font-size: 8px; }
   .icon, .icon span { width: 16px; }
 }
