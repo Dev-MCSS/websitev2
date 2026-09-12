@@ -2,21 +2,26 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ArrowUpRight } from 'lucide-react';
 import { useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import styles from './home-navbar.module.css';
 
 const destinations = [
-  { href: '/events', label: 'Events' },
-  { href: '/sponsors', label: 'Sponsors' },
-  { href: '/about', label: 'About' },
+  { href: '/events', label: 'Events', note: 'What\u2019s on' },
+  { href: '/sponsors', label: 'Sponsors', note: 'Meet our partners' },
+  { href: '/about', label: 'About', note: 'Our people & story' },
 ];
 
 export default function HomeNavbar() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const island = useRef<HTMLDivElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
   const navigationId = useId();
+  const pageLabel = pathname === '/'
+    ? 'home'
+    : pathname.split('/').filter(Boolean).at(-1)?.replaceAll('-', ' ') ?? 'home';
 
   // Next keeps recently visited routes mounted but hidden. A menu is transient UI,
   // so reset it before this route is cached instead of restoring a stale dropdown.
@@ -63,7 +68,7 @@ export default function HomeNavbar() {
           </a>
           <div className={styles.tapeWindow} aria-hidden="true">
             <span className={styles.reel}><span /></span>
-            <span className={styles.tapeLabel}>MCSS · SIDE A</span>
+            <span className={styles.tapeLabel}>{pageLabel}</span>
             <span className={styles.reel}><span /></span>
           </div>
           <button
@@ -82,9 +87,15 @@ export default function HomeNavbar() {
         <nav id={navigationId} aria-label="Main navigation" className={styles.navigation} inert={!open} aria-hidden={!open}>
           <ul className={styles.links}>
             {destinations.map((item, index) => (
-              <li key={item.href} style={{ '--link-delay': `${40 + index * 45}ms` } as CSSProperties}>
+              <li
+                key={item.href}
+                style={{ '--link-delay': `${40 + index * 45}ms` } as CSSProperties}
+              >
                 <Link href={item.href} onNavigate={() => setOpen(false)}>
-                  <span className={styles.linkLabel}>{item.label}</span>
+                  <span className={styles.linkCopy}>
+                    <span className={styles.linkLabel}>{item.label}</span>
+                    <span className={styles.linkNote}>{item.note}</span>
+                  </span>
                   <ArrowUpRight className={styles.linkArrow} aria-hidden="true" strokeWidth={1.5} />
                 </Link>
               </li>

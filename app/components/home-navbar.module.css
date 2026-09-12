@@ -38,7 +38,7 @@
   display: flex;
   flex-direction: column;
   width: min(820px, calc(100vw - 48px));
-  height: min(356px, calc(100dvh - 16px));
+  height: min(410px, calc(100dvh - 16px));
   border-radius: 0 0 18px 18px;
 }
 
@@ -99,24 +99,26 @@
 .open .icon span:first-child { top: 6px; transform: rotate(45deg); }
 .open .icon span:last-child { top: 6px; transform: rotate(-45deg); }
 
-.navigation { flex: 1 1 auto; min-height: 0; padding: 14px 26px 30px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity 220ms ease 70ms, transform 300ms cubic-bezier(.22, 1, .36, 1) 70ms, visibility 220ms; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; -ms-overflow-style: none; }
+.navigation { flex: 1 1 auto; min-height: 0; padding: 14px 26px 24px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity 220ms ease 70ms, transform 300ms cubic-bezier(.22, 1, .36, 1) 70ms, visibility 220ms; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; -ms-overflow-style: none; }
 .navigation::-webkit-scrollbar { display: none; width: 0; height: 0; }
 .open .navigation { opacity: 1; visibility: visible; transform: translateY(0); }
-.links { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; overflow: hidden; border: 1px solid #a49b8d; border-radius: 12px; }
+.links { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 8px; }
 .links li { min-width: 0; opacity: 0; transform: translateY(-6px); transition: opacity 180ms ease, transform 220ms ease; }
 .open .links li { opacity: 1; transform: translateY(0); transition-delay: var(--link-delay); }
-.links li:not(:last-child) { border-bottom: 1px solid #a49b8d; }
-.links a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 80px; padding: 12px 20px; color: inherit; background: rgb(255 255 255 / 12%); text-decoration: none; transition: color 180ms ease, background 180ms ease; }
-.linkLabel { display: block; font: italic clamp(23px, 3vw, 34px)/1.05 Georgia, serif; }
-.linkArrow { flex: 0 0 19px; width: 19px; height: 19px; }
-.links a:hover { color: #f0eadf; background: #302f2b; }
+.links a { display: grid; grid-template-columns: minmax(0, 1fr) 22px; grid-template-areas: "copy arrow"; align-items: center; gap: 12px; min-height: 96px; padding: 12px 22px; overflow: hidden; border: 1px solid #b6ab9b; border-radius: 6px 6px 3px 3px; color: #292824; background: linear-gradient(135deg, #fffdf5, #e5dccd); box-shadow: inset 2px 2px #fff, inset -3px -4px rgb(89 76 61 / 16%), 0 5px 0 #c4b6a3; text-decoration: none; transition: color 220ms ease; }
+.linkCopy { grid-area: copy; display: flex; flex-direction: column; gap: 7px; min-width: 0; transition: color 220ms ease; }
+.linkLabel { display: block; font: italic clamp(27px, 3.2vw, 38px)/.9 Georgia, serif; }
+.linkNote { color: #766b62; font: 500 8px/1 var(--font-dm-mono), monospace; letter-spacing: .14em; text-transform: uppercase; transition: color 220ms ease; }
+.linkArrow { grid-area: arrow; justify-self: end; width: 20px; height: 20px; color: #292824; transition: color 220ms ease; }
+.links a:hover { color: #a13a47; }
+.links a:hover .linkNote, .links a:hover .linkArrow { color: #8f3542; }
 .toggle:hover, .brand:hover { background: rgb(36 36 35 / 7%); }
 .island a:focus-visible, .island button:focus-visible { outline: 2px solid #6b443b; outline-offset: -3px; }
 
 @media (max-width: 700px) {
   .island::before, .island::after { display: none; }
   .island { width: calc(100% - 32px); height: 60px; border-radius: 0 0 9px 9px; }
-  .open { width: calc(100% - 32px); height: min(334px, calc(100dvh - 12px)); border-radius: 0 0 12px 12px; }
+  .open { width: calc(100% - 32px); height: min(382px, calc(100dvh - 12px)); border-radius: 0 0 12px 12px; }
   .bar { grid-template-columns: 80px minmax(0, 1fr) 80px; gap: 6px; height: 60px; flex-basis: 60px; padding: 8px 10px; }
   .brand { padding-inline: 4px; }
   .brand, .toggle { height: 40px; border-radius: 7px; }
@@ -127,9 +129,12 @@
   .tapeLabel { height: 26px; font-size: 7px; letter-spacing: .08em; }
   .toggle { grid-template-columns: minmax(0, 1fr) 19px; gap: 7px; padding-inline: 9px; }
   .menuLabel { font-size: 9px; }
-  .navigation { padding: 12px 14px 18px; }
-  .links a { min-height: 80px; padding: 12px 16px; }
+  .navigation { padding: 12px 14px 16px; }
+  .links { padding: 0; }
+  .links a { grid-template-columns: minmax(0, 1fr) 18px; min-height: 84px; gap: 8px; padding: 10px 16px; }
   .linkLabel { font-size: 25px; }
+  .linkNote { font-size: 6px; letter-spacing: .1em; }
+  .linkArrow { width: 17px; height: 17px; }
 }
 
 @media (max-width: 420px) {
@@ -142,6 +147,7 @@
   .toggle { grid-template-columns: minmax(0, 1fr) 16px; gap: 6px; }
   .menuLabel { font-size: 8px; }
   .icon, .icon span { width: 16px; }
+  .links a { grid-template-columns: minmax(0, 1fr) 16px; gap: 6px; }
 }
 
 @media (prefers-reduced-motion: reduce) { .island, .island *, .island *::before, .island *::after { transition: none !important; } }

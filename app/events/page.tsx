@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import HeroNavbar from "../components/HeroNavbar";
+import HomeNavbar from "../components/HomeNavbar";
 import Footer from "../components/Footer";
 import EventsGallery from "./EventsGallery";
 
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function EventsPage() {
   return (
     <main className="flex min-h-0 flex-1 flex-col">
-      <HeroNavbar />
+      <HomeNavbar />
 
       <div className="ds-container" style={{ paddingTop: 84 }}>
         <div className="ds-container-surface-dark-gradient mb-6">

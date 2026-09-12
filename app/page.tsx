@@ -1,4 +1,3 @@
-import localFont from "next/font/local";
 import HomeNavbar from "./components/HomeNavbar";
 import HomeHero from "./components/HomeHero";
 import HomeMembership from "./components/HomeMembership";
@@ -6,17 +5,9 @@ import HomeFooter from "./components/HomeFooter";
 import PrimaryButton from "./components/PrimaryButton";
 import styles from "./home.module.css";
 
-const dmMono = localFont({
-  src: "../public/fonts/dm-mono-medium.ttf",
-  weight: "500",
-  style: "normal",
-  variable: "--font-dm-mono",
-  display: "swap",
-});
-
 export default function Home() {
   return (
-    <div id="top" className={`${styles.home} ${dmMono.variable}`}>
+    <div id="top" className={styles.home}>
       <a className={styles.skipLink} href="#main-content">Skip to content</a>
       <HomeNavbar />
       <main id="main-content" tabIndex={-1}>

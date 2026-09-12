@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import HeroNavbar from "../components/HeroNavbar";
+import HomeNavbar from "../components/HomeNavbar";
 import Footer from "../components/Footer";
 import CloudinaryImage from "../components/CloudinaryImage";
 
@@ -16,7 +16,7 @@ const MCGILL_MAP_EMBED_SRC =
 export default function AboutPage() {
   return (
     <main className="flex min-h-0 min-w-0 flex-1 flex-col">
-      <HeroNavbar />
+      <HomeNavbar />
 
       <div className="ds-container min-w-0" style={{ paddingTop: 84 }}>
         <div className="ds-container-surface-dark-gradient mb-6">

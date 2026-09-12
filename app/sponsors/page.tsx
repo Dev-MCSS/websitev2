@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { sponsorTotalCount } from "@/data/sponsors";
 import CloudinaryImage from "../components/CloudinaryImage";
-import HeroNavbar from "../components/HeroNavbar";
+import HomeNavbar from "../components/HomeNavbar";
 import Footer from "../components/Footer";
 import SponsorsView from "./SponsorsView";
 
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function SponsorsPage() {
   return (
     <main className="flex min-h-0 flex-1 flex-col">
-      <HeroNavbar />
+      <HomeNavbar />
 
       <div className="ds-container" style={{ paddingTop: 84 }}>
         <div className="ds-container-surface-warm-gradient mb-6">

@@ -35,6 +35,14 @@ const metropolis = localFont({
   display: "swap",
 });
 
+const dmMono = localFont({
+  src: "../public/fonts/dm-mono-medium.ttf",
+  weight: "500",
+  style: "normal",
+  variable: "--font-dm-mono",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "MCSS - McGill Chinese Students' Society",
   description: "MCSS, McGill Chinese Students' Society is the largest and most influential cultural student organization in Eastern Canada.",
@@ -48,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${metropolis.variable} h-full antialiased`}
+      className={`${metropolis.variable} ${dmMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         {children}
