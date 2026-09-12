@@ -228,7 +228,7 @@ export const sponsors: Record<string, SponsorCategory> = {
 };
 
 /** Logos in the membership card grid (first N across all categories; avoids loading every asset). */
-export const MEMBERSHIP_CARD_SPONSOR_PREVIEW_COUNT = 15;
+export const MEMBERSHIP_CARD_SPONSOR_PREVIEW_COUNT = 18;
 
 const allSponsorItemsOrdered: SponsorItem[] = Object.values(sponsors).flatMap(
   (c) => c.items,

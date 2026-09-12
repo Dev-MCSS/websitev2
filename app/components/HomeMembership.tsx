@@ -1,13 +1,11 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { sponsorPreviewForMembershipCard, sponsorTotalCount } from "@/data/sponsors";
+import { sponsorPreviewForMembershipCard } from "@/data/sponsors";
 import CloudinaryImage from "./CloudinaryImage";
 import MembershipCardReveal from "./MembershipCardReveal";
+import PrimaryButton from "./PrimaryButton";
 import styles from "./home-membership.module.css";
 
 export default function HomeMembership() {
-  const preview = sponsorPreviewForMembershipCard.slice(0, 5);
-  const remaining = Math.max(0, sponsorTotalCount - preview.length);
+  const preview = sponsorPreviewForMembershipCard.slice(0, 18);
 
   return (
     <section id="membership_card" aria-labelledby="membership-heading" className={styles.section}>
@@ -31,31 +29,26 @@ export default function HomeMembership() {
           Montreal with our joint McGill Asian society membership card.
         </p>
         <div className={styles.sponsors}>
-          <ul className={styles.avatars} aria-label="Membership sponsors" role="list">
+          <ul className={styles.stampField} aria-label="Membership sponsors" role="list">
             {preview.map((sponsor) => (
-              <li className={styles.avatar} key={sponsor.image}>
+              <li className={styles.stamp} key={sponsor.image}>
                 <CloudinaryImage
                   publicId={sponsor.image}
                   alt={sponsor.name}
-                  width={88}
-                  height={88}
-                  sizes="44px"
+                  width={112}
+                  height={112}
+                  sizes="72px"
                   className={styles.logo}
                 />
               </li>
             ))}
-            {remaining > 0 && (
-              <li className={`${styles.avatar} ${styles.more}`} aria-label={`${remaining} more sponsors`}>
-                <span aria-hidden="true">+{remaining}</span>
-              </li>
-            )}
           </ul>
-          <Link href="/sponsors" className={styles.discover}>
-            Discover more<span className={styles.srOnly}> membership sponsors</span>
-            <ArrowRight size={18} strokeWidth={1.5} aria-hidden="true" />
-          </Link>
+          <div className={styles.discoverPlacement}>
+            <PrimaryButton href="/sponsors">Sponsors</PrimaryButton>
+          </div>
         </div>
       </div>
+
     </section>
   );
 }

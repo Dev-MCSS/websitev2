@@ -3,6 +3,7 @@ import HomeNavbar from "./components/HomeNavbar";
 import HomeHero from "./components/HomeHero";
 import HomeMembership from "./components/HomeMembership";
 import HomeFooter from "./components/HomeFooter";
+import PrimaryButton from "./components/PrimaryButton";
 import styles from "./home.module.css";
 
 const dmMono = localFont({
@@ -49,6 +50,7 @@ export default function Home() {
             </a>
             .
           </p>
+          <PrimaryButton href="/about" className={styles.overviewCta}>About</PrimaryButton>
         </section>
         <HomeMembership />
       </main>
