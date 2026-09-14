@@ -53,14 +53,14 @@ export default function HomeNavbar() {
         }}
       >
         <div className={styles.bar}>
-          <a
-            href="#top"
+          <Link
+            href="/"
             className={styles.brand}
             aria-label="MCSS home"
-            onClick={() => setOpen(false)}
+            onNavigate={() => setOpen(false)}
           >
             <Image src="/images/optimized/logo/mcss-logo.webp" alt="" width={72} height={40} />
-          </a>
+          </Link>
           <div className={styles.tapeWindow} aria-hidden="true">
             <span className={styles.reel}><span /></span>
             <span className={styles.tapeLabel}>

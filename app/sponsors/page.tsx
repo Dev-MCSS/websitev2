@@ -1,53 +1,60 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowDown, CreditCard } from "lucide-react";
 import { sponsorTotalCount } from "@/data/sponsors";
 import CloudinaryImage from "../components/CloudinaryImage";
-import HomeNavbar from "../components/HomeNavbar";
-import Footer from "../components/Footer";
+import InnerPageShell from "../components/InnerPageShell";
+import shell from "../components/inner-page.module.css";
 import SponsorsView from "./SponsorsView";
+import styles from "./sponsors.module.css";
 
 export const metadata: Metadata = {
   title: "Sponsors — MCSS",
-  description:
-    "Browse all MCSS membership card sponsors offering exclusive discounts across Montreal.",
+  description: "Find every MCSS membership card discount across Montreal.",
 };
 
 export default function SponsorsPage() {
   return (
-    <main className="flex min-h-0 flex-1 flex-col">
-      <HomeNavbar />
-
-      <div className="ds-container" style={{ paddingTop: 84 }}>
-        <div className="ds-container-surface-warm-gradient mb-6">
-          <div className="flex flex-col gap-4 px-4 pt-5 sm:px-6 sm:pt-6 lg:flex-row lg:items-start lg:gap-4">
-            <div className="flex flex-1 flex-col gap-4 lg:min-w-[20rem] lg:basis-[52%]">
-              <h1 className="ds-text-display font-semibold">Sponsors</h1>
-              <p className="ds-text-body max-w-2xl font-semibold!">
-                Explore {sponsorTotalCount} sponsors offering exclusive discounts
-                for MCSS 2025-2026 school year membership card holders across
-                Montreal.
-              </p>
-            </div>
-            <div className="flex w-full shrink-0 justify-end lg:basis-[48%] lg:self-start">
-              <div className="w-full overflow-hidden rounded-lg lg:max-h-[40vh] lg:w-auto lg:shrink-0">
-                <CloudinaryImage
-                  publicId="mcss/card/membership_card"
-                  alt="MCSS membership card"
-                  width={1400}
-                  height={880}
-                  sizes="(min-width: 1024px) min(42vw, 560px), 100vw"
-                  className="h-auto w-full object-contain object-center lg:max-h-[40vh] lg:w-auto lg:max-w-[min(100%,42vw)] lg:object-right"
-                />
-              </div>
-            </div>
+    <InnerPageShell tone="amber">
+      <section className={shell.hero} aria-labelledby="sponsors-title">
+        <div className={shell.heroCopy} data-reveal>
+          <p className={shell.kicker}>One card · {sponsorTotalCount} local perks</p>
+          <h1 id="sponsors-title">Your membership card has <em>plans.</em></h1>
+          <p className={shell.lede}>
+            Eat, sip, and explore Montréal for less. Show your 2025–2026 joint
+            Asian society membership card at any participating business below.
+          </p>
+          <div className={shell.heroActions}>
+            <a className={shell.inkButton} href="#sponsor-directory">Find a deal <ArrowDown size={17} aria-hidden /></a>
+            <Link className={shell.paperButton} href="/#membership_card">Get the card <CreditCard size={17} aria-hidden /></Link>
           </div>
         </div>
 
-        <div className="flex flex-col gap-6">
-          <SponsorsView />
+        <div className={`${styles.cardStage} ${shell.paperPanel}`} data-photo-stack aria-label="MCSS membership card">
+          <span className={styles.grid} aria-hidden="true" />
+          <div className={styles.cardWrap}>
+            <CloudinaryImage publicId="mcss/card/front_25-26" alt="MCSS joint membership card for 2025–2026" width={1400} height={880} priority sizes="(min-width: 861px) 40vw, 82vw" />
+          </div>
+          <p className={styles.cardNote}>Keep it close. Montréal gets cheaper.</p>
         </div>
-      </div>
+      </section>
 
-      <Footer />
-    </main>
+      <section id="sponsor-directory" className={`${shell.section} ${styles.directory}`} aria-labelledby="directory-title">
+        <div className={shell.sectionHeading} data-reveal>
+          <p className={shell.kicker}>The pocket-sized guide</p>
+          <h2 id="directory-title">Pick your next stop</h2>
+          <p>Search by name, discount, or street. Tap an address to open it in Maps.</p>
+        </div>
+        <SponsorsView />
+      </section>
+
+      <aside className={shell.cta} data-reveal aria-labelledby="sponsor-cta-title">
+        <div>
+          <h2 id="sponsor-cta-title">Good food. Better company. A nicer total.</h2>
+          <p>Your MCSS membership supports community programming while unlocking discounts all year.</p>
+        </div>
+        <Link className={shell.paperButton} href="/#membership_card">Explore membership</Link>
+      </aside>
+    </InnerPageShell>
   );
 }

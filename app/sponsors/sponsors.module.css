@@ -1,0 +1,37 @@
+.cardStage { position: relative; display: grid; place-items: center; min-height: 500px; overflow: hidden; padding: clamp(30px, 6vw, 64px); }
+.grid { position: absolute; inset: 0; background-image: linear-gradient(rgb(116 99 76 / 19%) 1px, transparent 1px), linear-gradient(90deg, rgb(116 99 76 / 19%) 1px, transparent 1px); background-size: 18px 18px; opacity: .58; }
+.cardWrap { position: relative; z-index: 1; width: min(100%, 520px); overflow: hidden; border-radius: 10px; box-shadow: 0 25px 52px rgb(70 54 35 / 28%); transform: rotate(3deg); transition: transform 500ms cubic-bezier(.22, 1, .36, 1), box-shadow 500ms ease; }
+.cardWrap:hover { transform: rotate(0) translateY(-8px); box-shadow: 0 34px 68px rgb(70 54 35 / 32%); }
+.cardWrap img { display: block; width: 100%; height: auto; }
+.cardNote { position: absolute; right: 22px; bottom: 18px; z-index: 1; margin: 0; color: #70675d; font: italic 14px/1 Georgia, serif; transform: rotate(-2deg); }
+.directory { scroll-margin-top: 90px; }
+.controls { display: grid; grid-template-columns: minmax(260px, 1fr) auto auto; align-items: center; gap: 12px; margin-bottom: 42px; padding: 12px; border: 1px solid #c8bdad; border-radius: 14px; background: #f3eee4; box-shadow: inset 0 1px #fff, 0 12px 30px rgb(62 49 36 / 8%); }
+.search { display: flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 14px; border: 1px solid #d1c6b7; border-radius: 9px; color: #766f67; background: #fffdf8; }
+.search input { min-width: 0; width: 100%; border: 0; outline: 0; color: #242423; background: transparent; font: inherit; }
+.search input::placeholder { color: #857f77; }
+.categories { display: flex; gap: 5px; }
+.categories button { min-height: 42px; padding: 9px 13px; border: 0; border-radius: 8px; color: #615b54; background: transparent; cursor: pointer; font: 500 11px/1.2 var(--font-dm-mono), monospace; }
+.categories button:hover { color: #242423; background: #e8dfd2; }
+.categories .active { color: #fff; background: #242423; }
+.categories .active:hover { color: #fff; background: #242423; }
+.results { min-width: 70px; margin: 0; color: #7b746b; font: 500 10px/1.2 var(--font-dm-mono), monospace; text-align: right; text-transform: uppercase; }
+.ticketGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.ticket { position: relative; display: grid; grid-template-rows: 190px 1fr; min-width: 0; overflow: hidden; border: 1px solid #cfc4b5; border-radius: 12px; background: #f7f2e9; box-shadow: 0 6px 0 #d2c5b4; transition: transform 380ms cubic-bezier(.22, 1, .36, 1), box-shadow 380ms ease; }
+.ticket::before, .ticket::after { position: absolute; z-index: 2; top: 177px; width: 24px; height: 24px; border: 1px solid #cfc4b5; border-radius: 50%; background: #fff; content: ""; }
+.ticket::before { left: -13px; }.ticket::after { right: -13px; }
+.ticket:hover { transform: translateY(-7px); box-shadow: 0 13px 0 #d2c5b4; }
+.logoWell { position: relative; margin: 10px 10px 0; overflow: hidden; border-radius: 7px; background: #fff; }
+.logo { object-fit: contain; padding: 26px; transition: transform 650ms cubic-bezier(.22, 1, .36, 1); }
+.ticket:hover .logo { transform: scale(1.06); }
+.ticketBody { display: flex; flex-direction: column; gap: 18px; min-height: 230px; padding: 27px 20px 20px; border-top: 1px dashed #b9ad9d; }
+.category { margin: 0 0 7px; color: #817970; font: 500 9px/1 var(--font-dm-mono), monospace; letter-spacing: .1em; text-transform: uppercase; }
+.ticket h3 { margin: 0; font: 400 1.45rem/1.05 Georgia, serif; letter-spacing: -.025em; }
+.discount { display: flex; align-items: flex-start; gap: 8px; margin: 0; color: #b65335; font-size: .98rem; font-weight: 600; line-height: 1.3; }
+.discount svg { flex: 0 0 auto; }
+.addresses { display: flex; align-items: flex-start; gap: 7px; margin-top: auto; color: #766f67; }
+.addresses svg { flex: 0 0 auto; margin-top: 2px; }.addresses p { margin: 0; font-size: .77rem; line-height: 1.5; }.addresses a { color: inherit; text-decoration-color: #b9ac9a; text-underline-offset: 3px; }.addresses a:hover { color: #242423; }
+.empty { padding: 70px 24px; border: 1px dashed #b9ad9d; border-radius: 12px; text-align: center; }.empty p { margin-top: 0; font: 400 2rem/1 Georgia, serif; }.empty button { border: 0; border-bottom: 1px solid currentColor; background: none; cursor: pointer; }
+.srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+@media (max-width: 960px) { .controls { grid-template-columns: 1fr auto; } .categories { grid-column: 1; grid-row: 2; }.results { grid-column: 2; grid-row: 2; } .ticketGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .cardStage { min-height: 380px; } .cardNote { display: none; } .controls { grid-template-columns: 1fr; } .search, .categories, .results { grid-column: 1; grid-row: auto; } .categories { display: grid; grid-template-columns: repeat(3, 1fr); } .results { text-align: left; padding-left: 4px; } .ticketGrid { grid-template-columns: 1fr; gap: 22px; } .ticket { grid-template-columns: 130px minmax(0, 1fr); grid-template-rows: 1fr; } .logoWell { margin: 10px 0 10px 10px; } .ticketBody { min-height: 230px; padding: 20px; border-top: 0; border-left: 1px dashed #b9ad9d; } .ticket::before, .ticket::after { top: auto; left: 117px; } .ticket::before { top: -13px; }.ticket::after { right: auto; bottom: -13px; } }
+@media (prefers-reduced-motion: reduce) { .cardWrap, .ticket, .logo { transition: none; } }

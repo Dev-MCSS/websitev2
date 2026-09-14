@@ -32,7 +32,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--section-copy-gap);
-  width: min(582px, calc(100% - 48px));
+  width: min(540px, calc(100% - 48px));
   margin: 48px auto 142px;
 }
 

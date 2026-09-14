@@ -241,7 +241,7 @@ html.dark {
 /* -------------------------------------------------------------------------- */
 html {
   scroll-behavior: smooth;
-  background: #000;
+  background: #fff;
   overscroll-behavior-y: none;
 }
 
@@ -253,7 +253,7 @@ html {
 
 body {
   position: relative;
-  background: var(--palette-surface-default);
+  background: #fff;
   color: var(--palette-fg-default);
   font-family: var(--font-metropolis), ui-sans-serif, system-ui, sans-serif;
 }

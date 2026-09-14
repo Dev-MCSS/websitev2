@@ -1,94 +1,99 @@
 import type { Metadata } from "next";
-import HomeNavbar from "../components/HomeNavbar";
-import Footer from "../components/Footer";
+import Link from "next/link";
+import { ArrowDown, ArrowRight, MapPin } from "lucide-react";
 import CloudinaryImage from "../components/CloudinaryImage";
+import InnerPageShell from "../components/InnerPageShell";
+import shell from "../components/inner-page.module.css";
+import styles from "./about.module.css";
 
 export const metadata: Metadata = {
   title: "About — MCSS",
-  description:
-    "McGill Chinese Students' Society (MCSS) — Eastern Canada's largest cultural student organization, serving McGill since 1944.",
+  description: "Meet the McGill Chinese Students’ Society — bringing culture, community, and friendship to McGill since 1944.",
 };
 
-/** Share → Embed map (McGill University, Montreal). */
-const MCGILL_MAP_EMBED_SRC =
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.102574089894!2d-73.57972132374357!3d45.50473487910113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91a541c6eaf01%3A0x3c6d176cb9152745!2sMcGill%20University!5e0!3m2!1sen!2sca!4v1709222400000!5m2!1sen!2sca";
+const MCGILL_MAP_EMBED_SRC = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.102574089894!2d-73.57972132374357!3d45.50473487910113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91a541c6eaf01%3A0x3c6d176cb9152745!2sMcGill%20University!5e0!3m2!1sen!2sca!4v1709222400000!5m2!1sen!2sca";
 
 export default function AboutPage() {
   return (
-    <main className="flex min-h-0 min-w-0 flex-1 flex-col">
-      <HomeNavbar />
-
-      <div className="ds-container min-w-0" style={{ paddingTop: 84 }}>
-        <div className="ds-container-surface-dark-gradient mb-6">
-          <div className="grid grid-cols-1 gap-4 px-4 pt-5 sm:px-6 sm:pt-6 lg:grid-cols-2 lg:items-start lg:gap-4">
-            <div className="min-w-0 flex flex-col gap-4">
-              <h1 className="ds-text-display font-semibold">About us</h1>
-              <div className="flex min-w-0 max-w-2xl flex-col gap-4">
-                <p className="ds-text-body font-semibold">
-                  McGill Chinese Students&apos; Society (MCSS) is the largest and
-                  most influential cultural student organization in Eastern
-                  Canada. We strive to enrich student life at McGill by creating
-                  meaningful experiences that celebrate Chinese heritage, foster
-                  personal and academic growth, and build lasting friendships.
-                </p>
-              </div>
-            </div>
-            <div className="min-w-0 w-full">
-              <div className="w-full overflow-hidden rounded-lg lg:max-h-[40vh]">
-                <CloudinaryImage
-                  publicId="mcss/team/group"
-                  alt="MCSS members group photo"
-                  width={1600}
-                  height={900}
-                  sizes="(min-width: 1024px) min(50vw, 720px), 100vw"
-                  className="h-auto w-full lg:max-h-[40vh] lg:object-cover lg:object-right"
-                />
-              </div>
-            </div>
+    <InnerPageShell tone="ink">
+      <section className={shell.hero} aria-labelledby="about-title">
+        <div className={shell.heroCopy} data-reveal>
+          <p className={shell.kicker}>At McGill since 1944</p>
+          <h1 id="about-title">Eighty years of finding <em>your people.</em></h1>
+          <p className={shell.lede}>
+            MCSS creates a welcoming place to celebrate Chinese heritage, try
+            something new, and build friendships that last beyond campus.
+          </p>
+          <div className={shell.heroActions}>
+            <a className={shell.inkButton} href="#our-story">Read our story <ArrowDown size={17} aria-hidden /></a>
+            <Link className={shell.paperButton} href="/events">See us in action <ArrowRight size={17} aria-hidden /></Link>
           </div>
         </div>
 
-        <section
-          aria-labelledby="about-community-heading"
-          className="mb-8 overflow-hidden rounded-lg border border-(--palette-neutral-200) bg-background pb-6"
-        >
-          <div className="grid min-w-0 grid-cols-1 gap-4 px-4 pt-5 sm:px-6 sm:pt-6 lg:grid-cols-2 lg:items-start lg:gap-4">
-            <div className="min-w-0 flex max-w-2xl flex-col gap-4">
-              <h2
-                id="about-community-heading"
-                className="ds-text-title font-semibold text-foreground"
-              >
-                Our community
-              </h2>
-              <p className="ds-text-body text-muted">
-                Founded in 1944, MCSS serves a vibrant community of over 1,500
-                active members. As a non-profit organization officially
-                recognized under the Students&apos; Society of McGill University
-                (SSMU), all proceeds from our events are reinvested to support
-                charitable causes and enhance future programming for our members.
-              </p>
-              <p className="ds-text-body text-muted">
-                Our community is rooted on McGill&apos;s downtown campus in
-                Montreal, Quebec.
-              </p>
-            </div>
-            <div className="min-w-0 w-full">
-              <div className="overflow-hidden rounded-lg shadow-ds-1">
-                <iframe
-                  title="Map of McGill University, Montreal"
-                  src={MCGILL_MAP_EMBED_SRC}
-                  className="aspect-16/10 min-h-[280px] w-full border-0 sm:min-h-[360px]"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen
-                />
-              </div>
-            </div>
+        <div className={`${styles.dossier} ${shell.paperPanel}`} data-photo-stack>
+          <div className={styles.tab}>MCSS · Montréal</div>
+          <div className={styles.groupPhoto}>
+            <CloudinaryImage publicId="mcss/team/group" alt="The MCSS executive team together" fill priority sizes="(min-width: 861px) 40vw, 85vw" />
           </div>
-        </section>
-      </div>
+          <div className={styles.dossierMeta}>
+            <span>Chinese Students’ Society</span><span>McGill University</span>
+          </div>
+        </div>
+      </section>
 
-      <Footer />
-    </main>
+      <section id="our-story" className={`${shell.section} ${styles.story}`} aria-labelledby="story-title">
+        <div className={shell.sectionHeading} data-reveal>
+          <p className={shell.kicker}>Rooted here, growing forward</p>
+          <h2 id="story-title">A community with history</h2>
+        </div>
+        <div className={styles.timeline}>
+          <article className={styles.origin} data-reveal>
+            <p className={styles.year}>1944</p>
+            <h3>It starts with belonging.</h3>
+            <p>MCSS is founded at McGill, creating a student-led space for cultural connection and mutual support.</p>
+            <a href="https://200.mcgill.ca/history/the-mcgill-chinese-students-society-and-the-nisei-club/" target="_blank" rel="noreferrer">Explore the McGill archive <ArrowRight size={16} aria-hidden /></a>
+          </article>
+          <article className={styles.now} data-reveal>
+            <p className={styles.year}>Today</p>
+            <h3>More than 1,500 active members.</h3>
+            <p>Now one of Eastern Canada&apos;s largest cultural student organizations, MCSS welcomes students from every background.</p>
+          </article>
+          <article className={styles.always} data-reveal>
+            <p className={styles.year}>Always</p>
+            <h3>Built by students, for students.</h3>
+            <p>As an SSMU-recognized non-profit, proceeds support charitable causes and future member programming.</p>
+          </article>
+        </div>
+      </section>
+
+      <section className={`${shell.section} ${styles.values}`} aria-labelledby="values-title">
+        <div className={shell.sectionHeading} data-reveal>
+          <p className={shell.kicker}>What brings us together</p>
+          <h2 id="values-title">Culture is something you do</h2>
+        </div>
+        <div className={styles.valueGrid}>
+          <article className={styles.valueLarge} data-reveal><span>Heritage</span><h3>Celebrate heritage</h3><p>Traditions feel most alive when they are shared, remixed, taught, and enjoyed together.</p></article>
+          <article className={styles.valueTall} data-reveal><span>Belonging</span><h3>Make room</h3><p>Whether you grew up close to Chinese culture or are meeting it for the first time, there is a seat for you.</p></article>
+          <article className={styles.valueSmall} data-reveal><span>Growth</span><h3>Grow together</h3><p>Academic, professional, and personal growth all get easier with a community beside you.</p></article>
+        </div>
+      </section>
+
+      <section className={`${shell.section} ${styles.location}`} aria-labelledby="location-title">
+        <div className={styles.locationCopy} data-reveal>
+          <p className={shell.kicker}>Our home base</p>
+          <h2 id="location-title">Find us downtown.</h2>
+          <p>Our community is rooted on McGill&apos;s downtown campus in the heart of Montréal, Québec.</p>
+          <a href="https://maps.google.com/?q=McGill+University+Montreal" target="_blank" rel="noreferrer" className={shell.paperButton}>Open in Maps <MapPin size={17} aria-hidden /></a>
+        </div>
+        <div className={styles.map} data-reveal>
+          <iframe title="Map of McGill University, Montréal" src={MCGILL_MAP_EMBED_SRC} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
+        </div>
+      </section>
+
+      <aside className={shell.cta} data-reveal aria-labelledby="about-cta-title">
+        <div><h2 id="about-cta-title">There’s more room in the family.</h2><p>The easiest way to understand MCSS is to join us at the next event.</p></div>
+        <Link className={shell.paperButton} href="/events">Browse events</Link>
+      </aside>
+    </InnerPageShell>
   );
 }

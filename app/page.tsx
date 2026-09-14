@@ -3,6 +3,7 @@ import HomeHero from "./components/HomeHero";
 import HomeMembership from "./components/HomeMembership";
 import HomeFooter from "./components/HomeFooter";
 import HomeExecCamera from "./components/HomeExecCamera";
+import HomeFaq from "./components/HomeFaq";
 import PrimaryButton from "./components/PrimaryButton";
 import styles from "./home.module.css";
 
@@ -46,6 +47,7 @@ export default function Home() {
         </section>
         <HomeMembership />
         <HomeExecCamera />
+        <HomeFaq />
       </main>
       <HomeFooter />
     </div>

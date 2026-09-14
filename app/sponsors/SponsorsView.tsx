@@ -1,167 +1,72 @@
 "use client";
 
-import { useState } from "react";
-import { Grid2x2, List, MapPin } from "lucide-react";
-import {
-  sponsors,
-  sponsorAddresses,
-  type SponsorItem,
-} from "@/data/sponsors";
+import { useMemo, useState } from "react";
+import { MapPin, Search, Ticket } from "lucide-react";
+import { sponsors, sponsorAddresses, type SponsorItem } from "@/data/sponsors";
 import CloudinaryImage from "../components/CloudinaryImage";
+import styles from "./sponsors.module.css";
 
-type ViewMode = "gallery" | "list";
-
-function mapsHref(name: string, addr: string) {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name + " " + addr)}`;
+function mapsHref(name: string, address: string) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${name} ${address}`)}`;
 }
-
-function SponsorCard({ item }: { item: SponsorItem }) {
+function SponsorTicket({ item, category }: { item: SponsorItem; category: string }) {
   const addresses = sponsorAddresses(item);
 
   return (
-    <div className="ds-card flex flex-col overflow-hidden">
-      <div className="relative flex aspect-square items-center justify-center bg-(--palette-neutral-50) p-4">
-        <CloudinaryImage
-          publicId={item.image}
-          alt={item.name}
-          fill
-          sizes="(min-width: 1280px) 20vw, (min-width: 768px) 33vw, 50vw"
-          className="object-contain object-center p-6"
-        />
+    <article className={styles.ticket} data-reveal>
+      <div className={styles.logoWell}>
+        <CloudinaryImage publicId={item.image} alt={`${item.name} logo`} fill sizes="(min-width: 1100px) 18vw, (min-width: 650px) 28vw, 88vw" className={styles.logo} />
       </div>
-
-      <div className="flex flex-1 flex-col gap-3 p-4">
-        <h3 className="font-semibold">{item.name}</h3>
-
-        <div className="flex items-start gap-2">
-          <span className="font-medium">{item.discount}</span>
+      <div className={styles.ticketBody}>
+        <div>
+          <p className={styles.category}>{category}</p>
+          <h3>{item.name}</h3>
         </div>
-
-        <div className="flex items-start gap-2 text-muted">
-          <MapPin
-            size={16}
-            strokeWidth={2}
-            className="mt-0.5 shrink-0"
-            aria-hidden="true"
-          />
-          <div className="ds-text-body-sm">
-            {addresses.map((addr, i) => (
-              <span key={addr}>
-                {i > 0 && ", "}
-                <a
-                  href={mapsHref(item.name, addr)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline decoration-muted/40 underline-offset-2 transition-colors hover:text-foreground"
-                >
-                  {addr}
-                </a>
-              </span>
-            ))}
-          </div>
+        <p className={styles.discount}><Ticket size={18} aria-hidden />{item.discount}</p>
+        <div className={styles.addresses}>
+          <MapPin size={16} aria-hidden />
+          <p>{addresses.map((address, index) => <span key={address}>{index > 0 ? " · " : null}<a href={mapsHref(item.name, address)} target="_blank" rel="noreferrer">{address}</a></span>)}</p>
         </div>
       </div>
-    </div>
-  );
-}
-
-function SponsorRow({ item }: { item: SponsorItem }) {
-  const addresses = sponsorAddresses(item);
-
-  return (
-    <div className="grid items-center gap-x-4 gap-y-3 border-b border-border px-3 py-3 last:border-b-0 grid-cols-[auto_1fr] md:grid-cols-[auto_1fr_1fr] md:gap-y-0">
-      <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md bg-(--palette-neutral-50) row-span-2 md:row-span-1">
-        <CloudinaryImage
-          publicId={item.image}
-          alt={item.name}
-          fill
-          sizes="40px"
-          className="object-contain object-center p-1.5"
-        />
-      </div>
-
-      <div className="min-w-0">
-        <h3 className="ds-text-body-sm font-semibold">{item.name}</h3>
-        <div className="flex items-start gap-1.5 text-muted">
-          <MapPin size={12} strokeWidth={2} className="mt-0.5 shrink-0" aria-hidden="true" />
-          <span className="ds-text-caption">
-            {addresses.map((addr, i) => (
-              <span key={addr}>
-                {i > 0 && ", "}
-                <a
-                  href={mapsHref(item.name, addr)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline decoration-muted/40 underline-offset-2 transition-colors hover:text-foreground"
-                >
-                  {addr}
-                </a>
-              </span>
-            ))}
-          </span>
-        </div>
-      </div>
-
-      <span className="ds-text-caption font-medium col-start-2 md:col-start-auto">
-        {item.discount}
-      </span>
-    </div>
+    </article>
   );
 }
 
 export default function SponsorsView() {
-  const [view, setView] = useState<ViewMode>("gallery");
   const categories = Object.entries(sponsors);
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [query, setQuery] = useState("");
+
+  const items = useMemo(
+    () => categories.flatMap(([key, category]) => category.items.map((item) => ({ ...item, categoryKey: key, category: category.span }))),
+    [categories],
+  );
+
+  const filtered = items.filter((item) => {
+    const matchesCategory = activeCategory === "all" || item.categoryKey === activeCategory;
+    const searchText = `${item.name} ${item.discount} ${sponsorAddresses(item).join(" ")}`.toLowerCase();
+    return matchesCategory && searchText.includes(query.trim().toLowerCase());
+  });
 
   return (
     <>
-      <div className="flex flex-wrap items-center gap-2">
-        <button
-          type="button"
-          onClick={() => setView("gallery")}
-          aria-pressed={view === "gallery"}
-          className={`ds-btn min-h-0! gap-2! px-3! py-2! ${view === "gallery" ? "bg-accent! text-accent-fg! border-transparent!" : ""}`}
-        >
-          <Grid2x2 size={18} strokeWidth={2} aria-hidden />
-          <span className="ds-text-body-sm">Gallery View</span>
-        </button>
-        <button
-          type="button"
-          onClick={() => setView("list")}
-          aria-pressed={view === "list"}
-          className={`ds-btn min-h-0! gap-2! px-3! py-2! ${view === "list" ? "bg-accent! text-accent-fg! border-transparent!" : ""}`}
-        >
-          <List size={18} strokeWidth={2} aria-hidden />
-          <span className="ds-text-body-sm">List View</span>
-        </button>
+      <div className={styles.controls} data-reveal>
+        <label className={styles.search}>
+          <Search size={18} aria-hidden />
+          <span className={styles.srOnly}>Search sponsors</span>
+          <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search a name, deal, or street" type="search" />
+        </label>
+        <div className={styles.categories} aria-label="Filter sponsors by category">
+          <button type="button" aria-pressed={activeCategory === "all"} className={activeCategory === "all" ? styles.active : ""} onClick={() => setActiveCategory("all")}>All</button>
+          {categories.map(([key, category]) => <button key={key} type="button" aria-pressed={activeCategory === key} className={activeCategory === key ? styles.active : ""} onClick={() => setActiveCategory(key)}>{category.span}</button>)}
+        </div>
+        <p className={styles.results} aria-live="polite">{filtered.length} {filtered.length === 1 ? "place" : "places"}</p>
       </div>
 
-      <div className="flex flex-col gap-12 pb-8">
-        {categories.map(([key, category]) => (
-          <section key={key} aria-labelledby={`cat-${key}`}>
-            <h2
-              id={`cat-${key}`}
-              className="ds-text-title mb-6 border-b border-border pb-3"
-            >
-              {category.span}
-            </h2>
-
-            {view === "gallery" ? (
-              <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
-                {category.items.map((item) => (
-                  <SponsorCard key={item.image} item={item} />
-                ))}
-              </div>
-            ) : (
-              <div className="ds-card overflow-hidden">
-                {category.items.map((item) => (
-                  <SponsorRow key={item.image} item={item} />
-                ))}
-              </div>
-            )}
-          </section>
-        ))}
+      <div className={styles.ticketGrid}>
+        {filtered.map((item) => <SponsorTicket key={item.image} item={item} category={item.category} />)}
       </div>
+      {filtered.length === 0 ? <div className={styles.empty}><p>No matches yet.</p><button type="button" onClick={() => { setQuery(""); setActiveCategory("all"); }}>Reset the search</button></div> : null}
     </>
   );
 }
