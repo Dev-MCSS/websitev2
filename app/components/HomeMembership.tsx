@@ -23,7 +23,7 @@ export default function HomeMembership() {
       </div>
 
       <div className={styles.description}>
-        <h2 id="membership-heading" className={styles.label}>membership card</h2>
+        <h2 id="membership-heading" className={styles.label}>Membership Card</h2>
         <p className={styles.copy}>
           Get up to 20% off at restaurants and drink &amp; dessert shops across
           Montreal with our joint McGill Asian society membership card.

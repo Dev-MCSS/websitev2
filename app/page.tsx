@@ -14,7 +14,7 @@ export default function Home() {
       <main id="main-content" tabIndex={-1}>
         <HomeHero />
         <section className={styles.overview} aria-labelledby="overview-heading">
-          <h2 id="overview-heading">overview</h2>
+          <h2 id="overview-heading">Overview</h2>
           <p>
             McGill Chinese Students’ Society (MCSS) is the most largest and influential
             cultural student organization in Eastern Canada.

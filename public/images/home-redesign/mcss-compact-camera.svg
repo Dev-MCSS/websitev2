@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="760" viewBox="0 0 1000 760" fill="none">
+  <title>MCSS silver compact camera with dangling keychain</title>
+  <desc>Editable vector camera shell with a transparent screen opening for placing a photograph behind it.</desc>
+  <defs>
+    <linearGradient id="body" x1="100" y1="220" x2="880" y2="660" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7F6F1"/>
+      <stop offset=".18" stop-color="#C9C8C1"/>
+      <stop offset=".48" stop-color="#F0EFE9"/>
+      <stop offset=".78" stop-color="#A9A8A2"/>
+      <stop offset="1" stop-color="#E1E0D9"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset=".5" stop-color="#A8A7A1"/>
+      <stop offset="1" stop-color="#676762"/>
+    </linearGradient>
+    <linearGradient id="button" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F8F7F1"/>
+      <stop offset=".45" stop-color="#A5A49E"/>
+      <stop offset="1" stop-color="#E4E3DC"/>
+    </linearGradient>
+    <radialGradient id="dial" cx=".35" cy=".3" r=".8">
+      <stop stop-color="#FCFBF5"/>
+      <stop offset=".45" stop-color="#B5B4AD"/>
+      <stop offset=".75" stop-color="#74736E"/>
+      <stop offset="1" stop-color="#DAD9D2"/>
+    </radialGradient>
+    <filter id="shadow" x="40" y="170" width="930" height="570" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#27251F" flood-opacity=".28"/>
+    </filter>
+    <filter id="smallShadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#26241F" flood-opacity=".32"/>
+    </filter>
+  </defs>
+
+  <!-- Keychain cord -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M861 235C902 191 913 139 883 101C856 67 811 63 774 80" stroke="#B3B1AA" stroke-width="9"/>
+    <path d="M861 235C902 191 913 139 883 101C856 67 811 63 774 80" stroke="#F1EFE8" stroke-width="4"/>
+    <circle cx="857" cy="230" r="19" stroke="#77756F" stroke-width="9"/>
+    <circle cx="857" cy="230" r="19" stroke="#D9D7D0" stroke-width="3"/>
+    <path d="M850 213L827 181" stroke="#77756F" stroke-width="7"/>
+    <ellipse cx="819" cy="170" rx="13" ry="8" transform="rotate(38 819 170)" stroke="#77756F" stroke-width="6"/>
+    <ellipse cx="798" cy="153" rx="13" ry="8" transform="rotate(38 798 153)" stroke="#77756F" stroke-width="6"/>
+    <ellipse cx="776" cy="137" rx="13" ry="8" transform="rotate(38 776 137)" stroke="#77756F" stroke-width="6"/>
+    <path d="M765 129C713 98 664 89 608 91" stroke="#B7B4AD" stroke-width="6"/>
+    <circle cx="736" cy="114" r="13" fill="#E6D6E4" stroke="#AAA6A0" stroke-width="3"/>
+    <circle cx="704" cy="103" r="15" fill="#EDECE6" stroke="#AAA6A0" stroke-width="3"/>
+    <circle cx="669" cy="95" r="14" fill="#A9C4B1" stroke="#7F9787" stroke-width="3"/>
+    <path d="M634 77C619 84 610 98 616 113C630 116 645 107 650 92C646 84 642 80 634 77Z" fill="#668E78" stroke="#50705F" stroke-width="3"/>
+  </g>
+
+  <!-- Main shell; the inner subpath leaves a transparent photo aperture -->
+  <g filter="url(#shadow)">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M124 220H873C896 220 914 238 914 261V623C914 646 896 664 873 664H124C101 664 83 646 83 623V261C83 238 101 220 124 220ZM156 290V583H692V290H156Z" fill="url(#body)" stroke="#666660" stroke-width="5"/>
+  </g>
+
+  <!-- Screen bezel -->
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M145 271H703C713 271 721 279 721 289V584C721 594 713 602 703 602H145C135 602 127 594 127 584V289C127 279 135 271 145 271ZM156 290V583H692V290H156Z" fill="#171919" stroke="#686762" stroke-width="4"/>
+  <path d="M163 296H685" stroke="#4B4D4B" stroke-width="3" opacity=".7"/>
+
+  <!-- Top rail -->
+  <path d="M116 237H884" stroke="#FFFFFF" stroke-width="4" opacity=".7"/>
+  <text x="137" y="255" fill="#333431" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="4">MCSS</text>
+  <circle cx="402" cy="248" r="3" fill="#555651"/>
+  <text x="414" y="253" fill="#555651" font-family="Arial, sans-serif" font-size="10" letter-spacing="2">POWER</text>
+  <rect x="505" y="238" width="69" height="18" rx="6" fill="url(#button)" stroke="#777771" stroke-width="2"/>
+  <rect x="587" y="238" width="69" height="18" rx="6" fill="url(#button)" stroke="#777771" stroke-width="2"/>
+  <circle cx="687" cy="247" r="7" stroke="#65655F" stroke-width="2"/>
+
+  <!-- Right control column -->
+  <rect x="744" y="279" width="122" height="44" rx="9" fill="url(#button)" stroke="#6D6C67" stroke-width="4"/>
+  <circle cx="771" cy="301" r="15" fill="#5D5D59"/>
+  <rect x="815" y="287" width="36" height="27" rx="5" fill="#F4F3ED" stroke="#7B7A74" stroke-width="3"/>
+  <circle cx="804" cy="386" r="54" fill="#B8B7B0" opacity=".58"/>
+  <circle cx="763" cy="471" r="18" fill="url(#button)" stroke="#6F6E69" stroke-width="3" filter="url(#smallShadow)"/>
+  <text x="790" y="478" fill="#3E3E3A" font-family="Arial, sans-serif" font-size="18">MENU</text>
+
+  <g filter="url(#smallShadow)">
+    <circle cx="805" cy="545" r="56" fill="url(#dial)" stroke="#6F6E69" stroke-width="4"/>
+    <circle cx="805" cy="545" r="20" fill="#85847E" stroke="#66655F" stroke-width="3"/>
+    <path d="M805 497L796 511H814L805 497Z" fill="#444440"/>
+    <path d="M853 545L839 536V554L853 545Z" fill="#444440"/>
+    <path d="M805 593L814 579H796L805 593Z" fill="#444440"/>
+    <path d="M757 545L771 554V536L757 545Z" fill="#444440"/>
+  </g>
+  <text x="786" y="526" fill="#4A4A46" font-family="Arial, sans-serif" font-size="12" font-weight="700">DISP</text>
+  <circle cx="763" cy="625" r="18" fill="url(#button)" stroke="#6F6E69" stroke-width="3" filter="url(#smallShadow)"/>
+  <text x="790" y="632" fill="#3E3E3A" font-family="Arial, sans-serif" font-size="18">HOME</text>
+
+  <!-- Bottom and side hardware details -->
+  <path d="M103 639C286 650 706 650 894 637" stroke="#8C8B85" stroke-width="3" opacity=".75"/>
+  <g fill="#73726D">
+    <circle cx="899" cy="340" r="3"/><circle cx="899" cy="356" r="3"/><circle cx="899" cy="372" r="3"/>
+    <circle cx="899" cy="388" r="3"/><circle cx="899" cy="404" r="3"/><circle cx="899" cy="420" r="3"/>
+  </g>
+</svg>

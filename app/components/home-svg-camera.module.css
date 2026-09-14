@@ -1,0 +1,34 @@
+.section {
+  width: min(760px, calc(100% - 48px));
+  margin: clamp(38px, 6vw, 72px) auto 48px;
+}
+
+.camera {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1000 / 760;
+  margin: 0;
+}
+
+.photo {
+  position: absolute;
+  top: 38.16%;
+  left: 15.6%;
+  width: 53.6%;
+  height: 38.55%;
+  border-radius: .8%;
+  object-fit: cover;
+}
+
+.shell {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 700px) {
+  .section { width: calc(100% - 32px); margin-top: 30px; margin-bottom: 36px; }
+}

@@ -1,192 +1,40 @@
 .section {
-  position: relative;
   width: min(760px, calc(100% - 48px));
   margin: clamp(70px, 9vw, 110px) auto 40px;
 }
 
 .camera {
   position: relative;
-  padding: clamp(22px, 3.5vw, 30px);
-  border: 2px solid #3c3a36;
-  border-radius: 23px;
-  color: #272522;
-  background:
-    linear-gradient(108deg, transparent 0 26%, rgb(255 255 255 / 7%) 40%, transparent 52%),
-    repeating-linear-gradient(0deg, rgb(42 38 32 / 4%) 0 1px, transparent 1px 4px),
-    linear-gradient(145deg, #57534d, #292826 47%, #3d3a35);
-  box-shadow: inset 1px 1px rgb(255 255 255 / 22%), inset -2px -3px rgb(0 0 0 / 35%), 0 15px 25px rgb(45 39 31 / 18%);
-}
-
-.screwLeft, .screwRight {
-  position: absolute;
-  top: 13px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #f1f1ed 0 8%, #8c8b86 12% 28%, #262624 33% 56%, #9b9890 61%);
-  box-shadow: 0 1px 2px rgb(0 0 0 / 55%);
-}
-.screwLeft { left: 16px; }
-.screwRight { right: 16px; }
-
-.shutter {
-  position: absolute;
-  top: -13px;
-  right: 102px;
-  width: 82px;
-  height: 21px;
-  border: 2px solid #302e2a;
-  border-radius: 9px 9px 4px 4px;
-  background:
-    repeating-linear-gradient(90deg, transparent 0 5px, rgb(0 0 0 / 22%) 5px 6px),
-    linear-gradient(#706c65, #34322f 62%, #242321);
-  box-shadow: inset 0 2px rgb(255 255 255 / 24%), 0 4px 0 #1d1c1b, 0 6px 8px rgb(0 0 0 / 34%);
-}
-
-.shutter::before {
-  position: absolute;
-  right: 9px;
-  bottom: -7px;
-  left: 9px;
-  height: 6px;
-  border-radius: 0 0 5px 5px;
-  background: #1d1c1a;
-  content: '';
-}
-
-.shutter::after {
-  position: absolute;
-  top: 5px;
-  right: 7px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #aaa69e 0 15%, #302e2b 22% 100%);
-  content: '';
-}
-
-.flash {
-  position: absolute;
-  top: 8px;
-  left: 54px;
-  width: 34px;
-  height: 13px;
-  border: 1px solid #20201e;
-  border-radius: 3px;
-  background: linear-gradient(#e7e1d5, #99938a);
-  box-shadow: inset 0 1px #fff;
-}
-
-.viewfinder {
-  position: relative;
-  overflow: hidden;
-  border: 8px solid #191918;
-  border-radius: 11px;
-  background: #0e0e0d;
-  box-shadow: inset 0 0 0 2px #65615a, 0 2px 0 rgb(255 255 255 / 17%);
-}
-
-.teamPhoto { display: block; width: 100%; aspect-ratio: 16 / 8.5; object-fit: cover; }
-
-.screenHeader {
-  position: absolute;
-  z-index: 1;
+  width: 100%;
+  aspect-ratio: 718 / 576;
   margin: 0;
-  font: 500 clamp(8px, 1.3vw, 10px)/1 var(--font-dm-mono), monospace;
-  letter-spacing: .12em;
+  transform: translateX(3%);
 }
-.screenHeader {
-  top: 10px;
-  right: 12px;
-  left: 12px;
-  display: flex;
-  justify-content: space-between;
-  color: #fff;
-  text-shadow: 0 1px 3px #000;
-}
-.recording { color: #ff5965; }
-.recording::before { content: '● '; }
-.controls {
-  position: relative;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  width: max-content;
-  min-height: 64px;
-  margin: 18px 0 0 auto;
-  padding: 7px 9px;
-  border: 1px solid #171716;
-  border-radius: 24px;
-  color: #d6d1c9;
-  background: linear-gradient(145deg, #514e49, #272624);
-  box-shadow: inset 0 1px rgb(255 255 255 / 19%), 0 5px 0 #1b1a19, 0 8px 12px rgb(0 0 0 / 25%);
-}
-.mode, .display {
-  display: grid;
-  width: 43px;
-  height: 34px;
-  place-items: center;
-  border: 1px solid #161615;
-  border-radius: 8px;
-  background: linear-gradient(#595651, #252422);
-  box-shadow: inset 0 1px rgb(255 255 255 / 18%);
-  box-shadow: inset 0 2px rgb(255 255 255 / 19%), inset 0 -2px rgb(0 0 0 / 28%), 0 2px 2px rgb(0 0 0 / 35%);
-  font: 600 8px/1 var(--font-dm-mono), monospace;
-}
-.display { font-size: 7px; letter-spacing: -.02em; }
-.controlDial {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  border: 2px solid #171716;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, #6a6660 0 21%, transparent 22%),
-    conic-gradient(from 45deg, #242321 0 23%, #5e5a54 24% 26%, #242321 27% 48%, #5e5a54 49% 51%, #242321 52% 73%, #5e5a54 74% 76%, #242321 77% 98%, #5e5a54 99%);
-  box-shadow: inset 0 2px rgb(255 255 255 / 22%), inset 0 0 0 5px #34322f, 0 2px 3px rgb(0 0 0 / 42%);
-}
-.controlDial::after {
+
+.teamPhoto {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 15px;
-  height: 15px;
-  border: 1px solid #1b1a18;
-  border-radius: 50%;
-  background: radial-gradient(circle at 38% 32%, #aaa59c, #56524c 65%);
-  box-shadow: inset 0 1px rgb(255 255 255 / 22%), 0 1px 2px rgb(0 0 0 / 45%);
-  content: '';
-  transform: translate(-50%, -50%);
+  top: 36.2847%;
+  left: 1.4624%;
+  width: 70.6128%;
+  height: 58.3333%;
+  object-fit: cover;
+  object-position: center;
 }
-.controlDial i {
+
+.cameraShell {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  inset: 0;
   z-index: 1;
-  width: 8px;
-  height: 10px;
-}
-.controlDial i::before {
   display: block;
-  width: 0;
-  height: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 8px solid #d8d2c8;
-  filter: drop-shadow(0 1px 0 #000);
-  content: '';
+  width: 100%;
+  height: 100%;
 }
-.directionUp { transform: translate(-50%, -50%) translateY(-16px) rotate(-90deg); }
-.directionRight { transform: translate(-50%, -50%) translateX(16px); }
-.directionDown { transform: translate(-50%, -50%) translateY(16px) rotate(90deg); }
-.directionLeft { transform: translate(-50%, -50%) translateX(-16px) rotate(180deg); }
 
 .infoPanel {
   width: min(582px, 100%);
-  margin: 155px auto 0;
+  margin: clamp(34px, 5vw, 54px) auto 0;
 }
+
 .infoPanel h2 {
   margin: 0 0 var(--section-copy-gap, 25px);
   color: var(--home-muted, #76716b);
@@ -197,59 +45,24 @@
   line-height: 1;
   letter-spacing: normal;
 }
-.infoPanel > p:last-child { margin: 0; font-size: 1rem; font-weight: 400; line-height: 1.2; letter-spacing: normal; }
 
-.memoryCard {
-  position: absolute;
-  z-index: 2;
-  right: auto;
-  bottom: -96px;
-  left: clamp(68px, calc(14vw - 24px), 124px);
-  width: 108px;
-  height: 142px;
+.infoPanel > p:last-child {
   margin: 0;
-  padding: 24px 14px 12px;
-  clip-path: polygon(0 0, 72% 0, 100% 21%, 100% 100%, 0 100%);
-  color: #fff4e9;
-  background:
-    linear-gradient(110deg, rgb(255 255 255 / 19%), transparent 32%),
-    linear-gradient(150deg, #f75a69, #c91835 70%);
-  box-shadow: inset 2px 2px rgb(255 255 255 / 25%), inset -4px -4px rgb(95 0 20 / 17%);
-  transform: rotate(-8deg);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: normal;
 }
-.memoryCard::after {
-  position: absolute;
-  inset: 8px;
-  border: 1px solid rgb(255 244 233 / 48%);
-  clip-path: polygon(0 0, 70% 0, 100% 20%, 100% 100%, 0 100%);
-  content: '';
-}
-.memoryLabel, .memoryType, .memoryCapacity { position: relative; z-index: 1; display: block; }
-.memoryLabel { font: 700 17px/1 var(--font-metropolis), sans-serif; letter-spacing: .05em; }
-.memoryType { margin-top: 5px; font: 600 7px/1 var(--font-dm-mono), monospace; letter-spacing: .12em; }
-.memoryCapacity { margin-top: 12px; font: 700 34px/.9 var(--font-dm-mono), monospace; }
-.memoryContacts {
-  position: absolute;
-  z-index: 1;
-  right: 13px;
-  bottom: 13px;
-  left: 13px;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 3px;
-}
-.memoryContacts i { height: 18px; border-radius: 2px 2px 4px 4px; background: linear-gradient(90deg, #d89c3b, #f5d178 55%, #a96a1d); }
 
 @media (max-width: 700px) {
-  .section { width: calc(100% - 32px); margin-top: 64px; margin-bottom: 32px; }
-  .camera { padding: 16px; border-radius: 18px; }
-  .viewfinder { border-width: 6px; }
-  .teamPhoto { aspect-ratio: 4 / 3; }
-  .screwLeft { left: 11px; }
-  .screwRight { right: 11px; }
-  .shutter { right: 56px; width: 64px; }
-  .flash { left: 42px; }
-  .controls { margin-top: 15px; margin-right: 0; margin-bottom: 0; min-height: 58px; transform: scale(.9); transform-origin: right bottom; }
-  .infoPanel { width: calc(100% - 16px); margin-top: 126px; }
-  .memoryCard { right: auto; bottom: -80px; left: 52px; transform: rotate(-8deg) scale(.78); transform-origin: bottom left; }
+  .section {
+    width: calc(100% - 32px);
+    margin-top: 64px;
+    margin-bottom: 32px;
+  }
+
+  .infoPanel {
+    width: calc(100% - 16px);
+    margin-top: 28px;
+  }
 }

@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { ArrowUpRight } from 'lucide-react';
 import { useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import styles from './home-navbar.module.css';
@@ -14,14 +13,10 @@ const destinations = [
 ];
 
 export default function HomeNavbar() {
-  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const island = useRef<HTMLDivElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
   const navigationId = useId();
-  const pageLabel = pathname === '/'
-    ? 'home'
-    : pathname.split('/').filter(Boolean).at(-1)?.replaceAll('-', ' ') ?? 'home';
 
   // Next keeps recently visited routes mounted but hidden. A menu is transient UI,
   // so reset it before this route is cached instead of restoring a stale dropdown.
@@ -68,7 +63,9 @@ export default function HomeNavbar() {
           </a>
           <div className={styles.tapeWindow} aria-hidden="true">
             <span className={styles.reel}><span /></span>
-            <span className={styles.tapeLabel}>{pageLabel}</span>
+            <span className={styles.tapeLabel}>
+              {Array.from({ length: 7 }, (_, index) => <i key={index} />)}
+            </span>
             <span className={styles.reel}><span /></span>
           </div>
           <button
