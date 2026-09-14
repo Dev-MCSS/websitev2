@@ -59,6 +59,7 @@
 }
 
 .recruitmentButton {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -83,6 +84,14 @@
   text-decoration: none;
   transform: translateY(0);
   transition: transform 220ms cubic-bezier(.22, 1, .36, 1), box-shadow 220ms ease;
+}
+
+/* Keeps the shadow below the raised visual inside the link hit target. */
+.recruitmentButton::after {
+  content: '';
+  position: absolute;
+  inset: 100% 0 auto;
+  height: 8px;
 }
 
 .recruitmentButton:hover {

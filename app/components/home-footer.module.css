@@ -1,6 +1,6 @@
 .footer {
   width: min(820px, calc(100vw - 48px));
-  margin: clamp(60px, 7.5vw, 105px) auto 0;
+  margin: clamp(48px, 5vw, 72px) auto 0;
   color: var(--home-ink, #242423);
 }
 
@@ -41,13 +41,14 @@
   list-style: none;
 }
 .rack li {
+  position: relative;
   flex: 0 1 58px;
   min-width: 0;
   max-width: 58px;
   aspect-ratio: .72;
   transform-origin: 50% 100%;
 }
-.rack li > span, .rack a {
+.rack li > span {
   position: relative;
   display: grid;
   width: 100%;
@@ -79,9 +80,32 @@
   mask: url('/images/home-redesign/stamp.svg') center / contain no-repeat;
   transform: translateX(-50%) rotate(11deg);
 }
-.rack a { color: #25231f; text-decoration: none; transition: transform 340ms cubic-bezier(.22, 1, .36, 1), color 180ms ease; }
-.rack a:hover { z-index: 2; color: #b01424; transform: translateY(-10px); box-shadow: inset 2px 2px #fff, inset -3px -4px rgb(89 76 61 / 16%), 0 16px 0 #c4b6a3; }
-.rack a svg { width: clamp(18px, 3vw, 28px); height: clamp(18px, 3vw, 28px); stroke-width: 1.8; }
+/* The anchor extends through the visual shadow, making the complete tile clickable. */
+.rack a {
+  position: absolute;
+  inset: 0 0 -16px;
+  display: grid;
+  box-sizing: border-box;
+  padding-bottom: 16px;
+  place-items: center;
+  color: #25231f;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+.rack a::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 16px;
+  border: 1px solid #b6ab9b;
+  border-radius: 6px 6px 3px 3px;
+  background: linear-gradient(135deg, #fffdf5, #e5dccd);
+  box-shadow: inset 2px 2px #fff, inset -3px -4px rgb(89 76 61 / 16%), 0 16px 0 #c4b6a3;
+  transition: transform 340ms cubic-bezier(.22, 1, .36, 1);
+}
+.rack a:hover { z-index: 2; color: #b01424; }
+.rack a:hover::before { transform: translateY(-10px); }
+.rack a svg { position: relative; z-index: 1; width: clamp(18px, 3vw, 28px); height: clamp(18px, 3vw, 28px); stroke-width: 1.8; transition: transform 340ms cubic-bezier(.22, 1, .36, 1); }
+.rack a:hover svg { transform: translateY(-10px); }
 
 .base {
   position: relative;
@@ -118,4 +142,6 @@
   .base p, .base p:last-child { text-align: left; }
 }
 
-@media (prefers-reduced-motion: reduce) { .rack a { transition: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .rack a, .rack a::before, .rack a svg { transition: none; }
+}

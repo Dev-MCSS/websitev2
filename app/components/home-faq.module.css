@@ -2,7 +2,7 @@
   display: grid;
   gap: 24px;
   width: min(540px, calc(100% - 48px));
-  margin: clamp(72px, 8vw, 96px) auto 0;
+  margin: clamp(104px, 10vw, 132px) auto 0;
   color: var(--home-ink, #242423);
 }
 
