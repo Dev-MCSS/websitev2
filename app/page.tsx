@@ -35,7 +35,7 @@ export default function Home() {
             Established in{' '}
             <a
               className={styles.historyLink}
-              href="https://200.mcgill.ca/history/the-mcgill-chinese-students-society-and-the-nisei-club/"
+              href="https://200.mcgill.ca/history/the-mcgill-chinese-students-society-and-the-nisei-club/?utm_source=referrer"
               target="_blank"
               rel="noreferrer"
             >

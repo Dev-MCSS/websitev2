@@ -160,7 +160,7 @@ export default function HomeHero() {
             {photo(slotA, frontSlot !== 'a', frontSlot === 'a' && outgoing !== null ? backSwapPhase : null)}
             <span className={styles.depthOverlay} aria-hidden="true" />
           </figure>
-          <Image className={styles.binder} src="/images/home-redesign/binder-clip.svg" alt="" aria-hidden="true" width={141} height={163} />
+          <Image className={styles.binder} src="/images/home-redesign/binder-clip.png" alt="" aria-hidden="true" width={141} height={163} />
         </div>
       </div>
     </section>
