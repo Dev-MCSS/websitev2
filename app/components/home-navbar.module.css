@@ -122,10 +122,11 @@
 .linkNote { color: #aaa49a; font: 500 7px/1 var(--font-dm-mono), monospace; letter-spacing: .12em; text-transform: uppercase; transition: color 220ms ease; }
 .linkArrow { position: relative; z-index: 1; grid-area: arrow; justify-self: end; width: 28px; height: 28px; padding: 7px; border: 1px solid #6c6860; border-radius: 50%; color: #f1eee6; background: #252624; transition: color 220ms ease, border-color 220ms ease, background 220ms ease; }
 .links a:hover .linkArrow, .links a:focus-visible .linkArrow { color: #fff; border-color: #a39e96; background: #50504d; }
+.links a:focus-visible .linkArrow { border-color: var(--focus-color); }
 .cardStrip { position: absolute; right: 0; bottom: 0; left: 0; width: 100%; height: clamp(30px, 4vw, 40px); color: #3d3c39; pointer-events: none; transition: color 420ms ease; }
 .links a:hover .cardStrip, .links a:focus-visible .cardStrip { color: #bd6371; }
 .toggle:hover, .brand:hover { background: rgb(36 36 35 / 7%); }
-.island a:focus-visible, .island button:focus-visible { outline: 2px solid #6b443b; outline-offset: -3px; }
+.island a:focus-visible, .island button:focus-visible { outline: 2px solid var(--focus-color); outline-offset: -3px; }
 
 @media (max-width: 700px) {
   .island::before, .island::after { display: none; }

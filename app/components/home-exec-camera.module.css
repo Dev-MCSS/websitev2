@@ -116,7 +116,7 @@
 }
 
 .recruitmentButton:focus-visible {
-  outline: 2px solid var(--home-ink, #242423);
+  outline: 2px solid var(--focus-color);
   outline-offset: 4px;
 }
 

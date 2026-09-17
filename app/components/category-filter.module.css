@@ -27,7 +27,7 @@
     0 1.5px 2px rgb(45 40 35 / 10%),
     0 4px 4px rgb(65 59 53 / 14%);
   cursor: pointer;
-  font: 500 11px/1.2 var(--font-dm-mono), monospace;
+  font: 500 11px/1.2 var(--font-metropolis), ui-sans-serif, sans-serif;
   letter-spacing: .03em;
   white-space: nowrap;
   transition: transform 220ms cubic-bezier(.22, 1, .36, 1), box-shadow 220ms ease;

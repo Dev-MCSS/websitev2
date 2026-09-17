@@ -18,6 +18,8 @@
   --palette-neutral-900: #18181b;
   --palette-neutral-950: #09090b;
 
+  --focus-color: #c65451; /* lighter brand red; visible on light and dark surfaces */
+
   --palette-accent: var(--palette-neutral-700);
   --palette-accent-hover: var(--palette-neutral-900);
   --palette-accent-muted: var(--palette-neutral-200);
@@ -239,6 +241,11 @@ html.dark {
 /* -------------------------------------------------------------------------- */
 /* Base                                                                        */
 /* -------------------------------------------------------------------------- */
+:where(a, button, input, select, textarea, summary, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 4px;
+}
+
 html {
   scroll-behavior: smooth;
   background: #fff;
@@ -489,7 +496,7 @@ body {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Buttons — focus: accent outline (not input ring pattern)                    */
+/* Buttons — shared focus outline                                              */
 /* -------------------------------------------------------------------------- */
 .ds-btn {
   display: inline-flex;
@@ -528,7 +535,7 @@ body {
 }
 
 .ds-btn:focus-visible {
-  outline: 2px solid var(--palette-accent);
+  outline: 2px solid var(--focus-color);
   outline-offset: 2px;
 }
 
@@ -552,11 +559,11 @@ body {
 }
 
 .ds-btn-primary:focus-visible {
-  outline-color: var(--palette-accent);
+  outline-color: var(--focus-color);
 }
 
 /* -------------------------------------------------------------------------- */
-/* Inputs — primary border + ring on focus (single focused treatment)           */
+/* Inputs — shared focus border and outline                                     */
 /* -------------------------------------------------------------------------- */
 .ds-input {
   display: block;
@@ -587,8 +594,9 @@ body {
 
 .ds-input:focus {
   outline: none;
-  border-color: var(--palette-primary-border);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--palette-primary-ring) 35%, transparent);
+  border-color: var(--focus-color);
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
 }
 
 .ds-input:disabled {
@@ -602,8 +610,7 @@ body {
 }
 
 .ds-input[aria-invalid="true"]:focus {
-  border-color: var(--palette-danger);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--palette-danger-ring) 35%, transparent);
+  border-color: var(--focus-color);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -696,7 +703,7 @@ html.dark .ds-tooltip {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Links — accent focus outline                                                */
+/* Links — shared focus outline                                                */
 /* -------------------------------------------------------------------------- */
 a.ds-link {
   color: var(--palette-accent);
@@ -713,7 +720,7 @@ a.ds-link:focus {
 }
 
 a.ds-link:focus-visible {
-  outline: 2px solid var(--palette-accent);
+  outline: 2px solid var(--focus-color);
   outline-offset: 2px;
   border-radius: 2px;
 }

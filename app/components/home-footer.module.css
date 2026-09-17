@@ -127,7 +127,7 @@
 .base a:hover { color: #f06468; }
 .base p { margin: 0; text-align: center; }
 .base p:last-child { text-align: right; }
-.rack a:focus-visible, .base a:focus-visible { outline: 2px solid #8c5147; outline-offset: 4px; }
+.rack a:focus-visible, .base a:focus-visible { outline: 2px solid var(--focus-color); outline-offset: 4px; }
 
 @media (max-width: 700px) {
   .footer { width: calc(100% - 32px); margin-top: 56px; }
