@@ -22,7 +22,7 @@
 .sponsorMap { width: min(683px, 100%); margin: 0 auto 68px; }
 .sponsorMapFrame { position: relative; height: 390px; overflow: hidden; border: 1px solid #cfc4b5; border-radius: 12px; background: #f7f2e9; }
 /* My Maps does not allow page CSS to remove its internal header, so crop the embed. */
-.sponsorMapFrame iframe { position: absolute; top: -70px; left: 0; display: block; width: 100%; height: calc(100% + 70px); border: 0; }
+.sponsorMapFrame iframe { position: absolute; top: -62px; left: 0; display: block; width: 100%; height: calc(100% + 62px); border: 0; }
 .sponsorMapActions { display: flex; justify-content: center; }
 .ticketGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .ticket { position: relative; display: grid; grid-template-rows: 190px 1fr; min-width: 0; overflow: hidden; border: 1px solid #cfc4b5; border-radius: 12px; background: #f7f2e9; box-shadow: 0 6px 0 #d2c5b4; mask-image: radial-gradient(circle at 0 190px, transparent 12px, #000 13px), radial-gradient(circle at 100% 190px, transparent 12px, #000 13px); mask-composite: intersect; }
