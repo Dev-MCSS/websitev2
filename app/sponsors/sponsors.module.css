@@ -19,11 +19,16 @@
 .directoryHeading p + p { margin-top: 16px; }
 .instagramLink { color: #a64a48; text-decoration-line: none; text-decoration-thickness: 2px; text-underline-offset: 3px; transition: color 160ms ease; }
 .instagramLink:hover, .instagramLink:focus-visible { color: #c65451; text-decoration-line: underline; }
-.sponsorMap { width: min(683px, 100%); margin: 0 auto 68px; }
-.sponsorMapFrame { position: relative; height: 390px; overflow: hidden; border: 1px solid #cfc4b5; border-radius: 12px; background: #f7f2e9; }
+.sponsorMap { width: min(683px, 100%); margin: 0 auto 68px; overflow: hidden; border: 1px solid #cfc4b5; border-radius: 12px; background: #f7f2e9; }
+.sponsorMapFrame { position: relative; height: 390px; overflow: hidden; background: #f7f2e9; }
 /* My Maps does not allow page CSS to remove its internal header, so crop the embed. */
 .sponsorMapFrame iframe { position: absolute; top: -70px; left: 0; display: block; width: 100%; height: calc(100% + 70px); border: 0; }
-.sponsorMapActions { display: flex; justify-content: center; }
+.sponsorMapActions { display: block; }
+.sponsorMapAction { position: relative; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; width: 100%; min-height: 74px; padding: 14px 24px; border-top: 1px solid #cfc4b5; color: var(--home-ink, #242423); background: linear-gradient(100deg, transparent 0 42%, rgb(255 255 255 / 24%) 48%, transparent 55%), repeating-linear-gradient(0deg, rgb(35 33 29 / 2%) 0 1px, transparent 1px 4px), #e9e3d8; box-shadow: inset 0 -5px rgb(78 73 66 / 8%); font-size: 1rem; font-weight: 500; line-height: 1.3; text-decoration: none; transition: background-color 160ms ease, color 160ms ease; }
+.sponsorMapAction span { grid-column: 2; }
+.sponsorMapAction svg { grid-column: 3; justify-self: start; margin-left: 22px; }
+.sponsorMapAction:hover { color: #a64a48; background-color: #ded5c6; }
+.sponsorMapAction:focus-visible { z-index: 1; outline: 2px solid var(--home-ink, #242423); outline-offset: -3px; }
 .ticketGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .ticket { position: relative; display: grid; grid-template-rows: 190px 1fr; min-width: 0; overflow: hidden; border: 1px solid #cfc4b5; border-radius: 12px; background: #f7f2e9; box-shadow: 0 6px 0 #d2c5b4; mask-image: radial-gradient(circle at 0 190px, transparent 12px, #000 13px), radial-gradient(circle at 100% 190px, transparent 12px, #000 13px); mask-composite: intersect; }
 /* The logo well is inset 11px from the ticket edge. Keep both punches centered on the ticket edge. */
@@ -41,6 +46,7 @@
   .directoryHeading { width: calc(100% - 16px); margin-top: 40px; margin-bottom: 50.4px; }
   .sponsorMap { width: calc(100% - 16px); }
   .sponsorMapFrame { height: 320px; }
+  .sponsorMapAction { min-height: 68px; padding-inline: 16px; }
   .ticketGrid { grid-template-columns: 1fr; gap: 22px; }
 }
 @media (prefers-reduced-motion: reduce) { .logo { transition: none; } }

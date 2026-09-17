@@ -1,5 +1,4 @@
 import { ArrowRight } from "lucide-react";
-import buttonStyles from "../components/home-exec-camera.module.css";
 import styles from "./sponsors.module.css";
 
 const MAP_TITLE = "2026-2027 East Asian Club Membership Discounts";
@@ -20,7 +19,7 @@ export default function SponsorMap({ mapId }: { mapId: string }) {
       </div>
       <div className={styles.sponsorMapActions}>
         <a
-          className={buttonStyles.recruitmentButton}
+          className={styles.sponsorMapAction}
           href={`https://www.google.com/maps/d/viewer?mid=${id}`}
           target="_blank"
           rel="noopener noreferrer"
