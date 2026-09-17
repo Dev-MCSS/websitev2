@@ -1,6 +1,6 @@
 .directoryHeading {
   width: min(540px, 100%);
-  margin: 64px auto 48px;
+  margin: 64px auto 50.4px;
   color: var(--home-ink, #242423);
 }
 .directoryHeading h2 {
@@ -33,7 +33,7 @@
 .addresses svg { flex: 0 0 auto; margin-top: 2px; }.addresses p { margin: 0; font-size: .77rem; line-height: 1.5; }.addresses a { color: inherit; text-decoration-color: #b9ac9a; text-underline-offset: 3px; }.addresses a:hover { color: #242423; }
 @media (max-width: 960px) { .ticketGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 620px) {
-  .directoryHeading { width: calc(100% - 16px); margin-top: 40px; margin-bottom: 40px; }
+  .directoryHeading { width: calc(100% - 16px); margin-top: 40px; margin-bottom: 50.4px; }
   .ticketGrid { grid-template-columns: 1fr; gap: 22px; }
 }
 @media (prefers-reduced-motion: reduce) { .logo { transition: none; } }

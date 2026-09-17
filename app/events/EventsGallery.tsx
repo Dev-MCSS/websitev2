@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { events } from "@/data/events";
+import CategoryFilter from "../components/CategoryFilter";
 import CloudinaryImage from "../components/CloudinaryImage";
 import EventImageLightbox from "./EventImageLightbox";
 import { buildLightboxHighResSrc, pickLightboxBreakpointWidth } from "./lightboxImage";
@@ -18,6 +19,10 @@ type LightboxItem = {
 const gallerySizes = "(max-width: 600px) calc(100vw - 48px), (max-width: 900px) 46vw, 30vw";
 const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 const categories = Object.entries(events);
+const filterOptions = [
+  { value: "all", label: "All years" },
+  ...categories.map(([yearKey, category]) => ({ value: yearKey, label: category.span })),
+];
 const items = categories.flatMap(([yearKey, category]) =>
   category.items.map((item) => ({ ...item, yearKey })),
 );
@@ -51,14 +56,7 @@ export default function EventsGallery() {
 
   return (
     <>
-      <div className={styles.toolbar}>
-        <div className={styles.filterGroup} role="group" aria-label="Filter photographs by school year">
-          <button type="button" className={`${styles.filter} ${selectedYear === "all" ? styles.filterActive : ""}`} aria-pressed={selectedYear === "all"} onClick={() => setSelectedYear("all")}>All years</button>
-          {categories.map(([yearKey, category]) => (
-            <button key={yearKey} type="button" className={`${styles.filter} ${selectedYear === yearKey ? styles.filterActive : ""}`} aria-pressed={selectedYear === yearKey} onClick={() => setSelectedYear(yearKey)}>{category.span}</button>
-          ))}
-        </div>
-      </div>
+      <CategoryFilter options={filterOptions} selected={selectedYear} onSelect={setSelectedYear} ariaLabel="Filter photographs by school year" />
 
       <div className={styles.gallery}>
         {filteredItems.map((item) => (

@@ -18,7 +18,7 @@ export default function SponsorsPage() {
         <div className={styles.directoryHeading} data-reveal>
           <h2 id="directory-title">Membership discounts</h2>
           <p>The 2026-2027 East Asian Clubs Membership Card is here!</p>
-          <p>Brought to you by HKSN, JSA, KSA, MASSA, MCSS, and MTSA, we’re bringing you discounts for the best food and drink spots in Montreal.</p>
+          <p>Brought to you by HKSN, JSA, KSA, MASSA, MCSS, and MTSA, we’re bringing you discounts at restaurants and local businesses across Montreal.</p>
           <p>Pick up a card for $5 at one of our events, activities night, or DM us on <a className={styles.instagramLink} href="https://www.instagram.com/mcssfam/" target="_blank" rel="noreferrer">instagram</a> to arrange a pick up.</p>
         </div>
         <SponsorsView />
