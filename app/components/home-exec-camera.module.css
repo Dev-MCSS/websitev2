@@ -11,15 +11,14 @@
   transform: translateX(3.9%);
 }
 
-.teamPhoto {
+.recruitmentVideo {
   position: absolute;
   top: 27.46%;
   left: 1.11%;
   width: 71.33%;
   height: 66.97%;
-  border-radius: 0;
-  object-fit: cover;
-  object-position: 50% 50%;
+  overflow: hidden;
+  background: #080808;
 }
 
 .cameraShell {
@@ -57,15 +56,6 @@
 
 .infoPanel p + p {
   margin-top: 1.2em;
-}
-
-.recruitmentVideo {
-  width: 100%;
-  margin: 1.2em 0;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border-radius: 10px;
-  background: #f2eee7;
 }
 
 .recruitmentVideo video {
