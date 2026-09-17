@@ -1,5 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import { MapPin, Ticket } from "lucide-react";
 import { sponsors, sponsorAddresses, type SponsorItem } from "@/data/sponsors";
+import CategoryFilter from "../components/CategoryFilter";
 import CloudinaryImage from "../components/CloudinaryImage";
 import styles from "./sponsors.module.css";
 
@@ -27,16 +31,22 @@ function SponsorTicket({ item }: { item: SponsorItem }) {
 }
 
 export default function SponsorsView() {
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const items = selectedCategory === "all"
+    ? Object.values(sponsors).flatMap((category) => category.items)
+    : sponsors[selectedCategory]?.items ?? [];
+
   return (
-    <div className={styles.sponsorSections}>
-      {Object.values(sponsors).map((category) => (
-        <section key={category.span} aria-label={category.span}>
-          <h2 className={styles.categoryHeading}>{category.span}</h2>
-          <div className={styles.ticketGrid}>
-            {category.items.map((item) => <SponsorTicket key={item.image} item={item} />)}
-          </div>
-        </section>
-      ))}
-    </div>
+    <>
+      <CategoryFilter
+        options={[{ value: "all", label: "All" }, { value: "Restaurants", label: "Restaurants" }, { value: "Others", label: "Other" }]}
+        selected={selectedCategory}
+        onSelect={setSelectedCategory}
+        ariaLabel="Filter sponsors by category"
+      />
+      <div className={styles.ticketGrid}>
+        {items.map((item) => <SponsorTicket key={item.image} item={item} />)}
+      </div>
+    </>
   );
 }
