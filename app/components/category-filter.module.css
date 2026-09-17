@@ -14,7 +14,7 @@
 .filter {
   position: relative;
   min-height: 42px;
-  padding: 10px 16px;
+  padding: 10px 22.4px;
   border: 1px solid rgb(224 217 204 / 82%);
   border-radius: 9px;
   color: #292826;
@@ -47,6 +47,6 @@
 @media (max-width: 600px) {
   .toolbar { padding: 6px; }
   .filterGroup { gap: 5px; }
-  .filter { min-height: 38px; padding: 8px 9px; font-size: 9px; }
+  .filter { min-height: 38px; padding: 8px 12.6px; font-size: 9px; }
 }
 @media (prefers-reduced-motion: reduce) { .filter { transition: none; } }
