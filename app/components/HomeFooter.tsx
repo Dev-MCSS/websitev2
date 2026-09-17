@@ -24,7 +24,6 @@ const tileSlots = [null, socials[0], socials[1], socials[2], null, null, null, n
 const links = [
   { href: '/events', label: 'Events' },
   { href: '/sponsors', label: 'Sponsors' },
-  { href: '/about', label: 'About' },
   { href: '/#membership_card', label: 'Membership' },
 ] as const;
 

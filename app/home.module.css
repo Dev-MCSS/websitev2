@@ -5,7 +5,7 @@
   --home-paper: #e8e8e4;
   --home-border: #d8d1c6;
   --section-copy-gap: 25px;
-  --section-cta-gap: calc(var(--section-copy-gap) * 1.5);
+  --section-cta-gap: 48px;
   color-scheme: light;
   background: #fff;
   color: var(--home-ink);
@@ -34,10 +34,6 @@
   gap: var(--section-copy-gap);
   width: min(540px, calc(100% - 48px));
   margin: 48px auto 142px;
-}
-
-.overviewCta {
-  margin-top: calc(var(--section-cta-gap) - var(--section-copy-gap));
 }
 
 .overview h2 {

@@ -65,7 +65,7 @@ export default function UiPlaygroundPage() {
             <article className={styles.typeSpec}><span>Heading / Metropolis Semibold</span><h3>What’s happening next</h3><small>36 / 1.0 / −0.04em</small></article>
             <article className={styles.typeSpec}><span>Body / Metropolis Regular</span><p>Experiences that celebrate Chinese heritage, create lasting friendships, and make Montréal feel a little more like home.</p><small>18 / 1.45 / −0.02em</small></article>
             <article className={styles.typeSpec}><span>Utility / DM Mono Medium</span><b>FALL 2026 · MONTREAL</b><small>13 / 1.0 / 0.08em</small></article>
-            <article className={`${styles.typeSpec} ${styles.navType}`}><span>Navigation / Georgia Italic</span><em>Events&nbsp;&nbsp; Sponsors&nbsp;&nbsp; About</em><small>Georgia Italic / 34 / 1.05</small></article>
+            <article className={`${styles.typeSpec} ${styles.navType}`}><span>Navigation / Georgia Italic</span><em>Events&nbsp;&nbsp; Sponsors&nbsp;&nbsp; Membership</em><small>Georgia Italic / 34 / 1.05</small></article>
           </div>
         </section>
 

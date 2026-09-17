@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ArrowDown, CalendarDays } from "lucide-react";
 import CloudinaryImage from "../components/CloudinaryImage";
 import InnerPageShell from "../components/InnerPageShell";
+import MetallicHeroTitle from "../components/MetallicHeroTitle";
 import shell from "../components/inner-page.module.css";
 import EventsGallery from "./EventsGallery";
 import styles from "./events.module.css";
@@ -16,11 +17,9 @@ export default function EventsPage() {
   return (
     <InnerPageShell tone="rose">
       <section className={shell.hero} aria-labelledby="events-title">
+        <MetallicHeroTitle id="events-title">Events</MetallicHeroTitle>
         <div className={shell.heroCopy} data-reveal>
           <p className={shell.kicker}>Made at McGill · remembered together</p>
-          <h1 id="events-title">
-            Come for the event. Leave with <em>the story.</em>
-          </h1>
           <p className={shell.lede}>
             Culture nights, friendly competition, big celebrations, and the
             wonderfully unplanned moments in between. This is the MCSS archive.

@@ -5,20 +5,21 @@
 
 .camera {
   position: relative;
-  width: 100%;
-  aspect-ratio: 718 / 576;
-  margin: 0;
-  transform: translateX(3%);
+  width: 95.3%;
+  aspect-ratio: 718 / 511;
+  margin: 0 auto;
+  transform: translateX(3.9%);
 }
 
 .teamPhoto {
   position: absolute;
-  top: 36.2847%;
-  left: 1.4624%;
-  width: 70.6128%;
-  height: 58.3333%;
+  top: 27.46%;
+  left: 1.11%;
+  width: 71.33%;
+  height: 66.97%;
+  border-radius: 0;
   object-fit: cover;
-  object-position: center;
+  object-position: 50% 50%;
 }
 
 .cameraShell {

@@ -5,8 +5,8 @@ import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type CS
 import { homePhotos } from '../../data/home-photos';
 import styles from './home-hero.module.css';
 
-const TURN_MS = 900;
-const SWAP_FADE_MS = 350;
+const TURN_MS = 720;
+const SWAP_FADE_MS = 280;
 const SWAP_HALF_MS = SWAP_FADE_MS / 2;
 const reducedQuery = '(prefers-reduced-motion: reduce)';
 const subscribeMotion = (notify: () => void) => {
@@ -83,7 +83,7 @@ export default function HomeHero() {
         else setSlotB(following);
         setBackSwapPhase('in');
       }, SWAP_HALF_MS);
-    }, Math.max(0, motion.duration - (SWAP_FADE_MS + 150)));
+    }, Math.max(0, motion.duration - (SWAP_FADE_MS + 120)));
     turnTimer.current = setTimeout(() => {
       setActive(next);
       setFrontSlot(incomingSlot);

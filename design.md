@@ -93,7 +93,7 @@ These are desktop reference measurements, not universal fixed page dimensions.
   SVG wordmark, and h2 section labels styled to match Figma.
 - Below membership text, show real sponsor avatars from the existing sponsor data
   and a custom “Discover more” link styled as a button, pointing to /sponsors.
-- Proposed menu destinations: existing Events, Sponsors, About, and membership anchor.
+- Proposed menu destinations: existing Events, Sponsors, and membership anchor.
   Keep the first pass in the Figma light palette; theme switching is outside this scope.
 
 ## Implementation sequence
@@ -140,7 +140,7 @@ These are desktop reference measurements, not universal fixed page dimensions.
 - Browser checks passed at 320, 390, 768, 1024, and 1440px: no horizontal overflow,
   Escape/focus restoration, scroll-driven logo visibility, five loaded photos,
   real sponsor avatars, and light-only rendering under a dark system preference.
-- Homepage, Events, About, and Sponsors routes return HTTP 200. TypeScript passes.
+- Homepage, Events, and Sponsors routes return HTTP 200. TypeScript passes.
 - Production build (`npm run build -- --webpack`) and TypeScript pass. All changed
   homepage TypeScript files pass ESLint. Full-repository lint reports six existing
   errors in Footer, HeroNavbar, ScrollRevealCard, theme-toggle, and EventImageLightbox,

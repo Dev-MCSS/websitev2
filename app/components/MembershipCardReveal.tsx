@@ -5,7 +5,6 @@ import styles from "./home-membership.module.css";
 
 export default function MembershipCardReveal({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
-
   const resetTilt = () => {
     const element = ref.current;
     element?.style.setProperty("--tilt-x", "0deg");

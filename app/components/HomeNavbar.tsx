@@ -9,11 +9,11 @@ import styles from './home-navbar.module.css';
 const destinations = [
   { href: '/events', label: 'Events', note: 'What\u2019s on' },
   { href: '/sponsors', label: 'Sponsors', note: 'Meet our partners' },
-  { href: '/about', label: 'About', note: 'Our people & story' },
 ];
 
 export default function HomeNavbar() {
   const [open, setOpen] = useState(false);
+  const [locked, setLocked] = useState(false);
   const island = useRef<HTMLDivElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
   const navigationId = useId();
@@ -27,10 +27,14 @@ export default function HomeNavbar() {
   useEffect(() => {
     if (!open) return;
     const dismissOutside = (event: PointerEvent) => {
-      if (event.target instanceof Node && !island.current?.contains(event.target)) setOpen(false);
+      if (event.target instanceof Node && !island.current?.contains(event.target)) {
+        setLocked(false);
+        setOpen(false);
+      }
     };
     const dismissEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
+        setLocked(false);
         setOpen(false);
         toggle.current?.focus();
       }
@@ -48,8 +52,14 @@ export default function HomeNavbar() {
       <div
         ref={island}
         className={`${styles.island} ${open ? styles.open : ''}`}
+        onPointerLeave={(event) => {
+          if (event.pointerType === 'mouse' && !locked) setOpen(false);
+        }}
         onBlur={(event) => {
-          if (event.relatedTarget instanceof Node && !event.currentTarget.contains(event.relatedTarget)) setOpen(false);
+          if (event.relatedTarget instanceof Node && !event.currentTarget.contains(event.relatedTarget)) {
+            setLocked(false);
+            setOpen(false);
+          }
         }}
       >
         <div className={styles.bar}>
@@ -57,7 +67,10 @@ export default function HomeNavbar() {
             href="/"
             className={styles.brand}
             aria-label="MCSS home"
-            onNavigate={() => setOpen(false)}
+            onNavigate={() => {
+              setLocked(false);
+              setOpen(false);
+            }}
           >
             <Image src="/images/optimized/logo/mcss-logo.webp" alt="" width={72} height={40} />
           </Link>
@@ -75,7 +88,16 @@ export default function HomeNavbar() {
             aria-expanded={open}
             aria-controls={navigationId}
             aria-label={open ? 'Close navigation' : 'Open navigation'}
-            onClick={() => setOpen((previous) => !previous)}
+            onPointerEnter={(event) => {
+              if (event.pointerType === 'mouse') setOpen(true);
+            }}
+            onClick={() => {
+              setLocked((previous) => {
+                const next = !previous;
+                setOpen(next);
+                return next;
+              });
+            }}
           >
             <span className={styles.menuLabel}>{open ? 'Close' : 'Menu'}</span>
             <span className={styles.icon} aria-hidden="true"><span /><span /></span>
@@ -88,12 +110,18 @@ export default function HomeNavbar() {
                 key={item.href}
                 style={{ '--link-delay': `${40 + index * 45}ms` } as CSSProperties}
               >
-                <Link href={item.href} onNavigate={() => setOpen(false)}>
+                <Link href={item.href} onNavigate={() => {
+                  setLocked(false);
+                  setOpen(false);
+                }}>
                   <span className={styles.linkCopy}>
                     <span className={styles.linkLabel}>{item.label}</span>
                     <span className={styles.linkNote}>{item.note}</span>
                   </span>
                   <ArrowUpRight className={styles.linkArrow} aria-hidden="true" strokeWidth={1.5} />
+                  <svg className={styles.cardStrip} viewBox="0 0 945 122" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                    <path d="M0 100H365C380 100 389 96 398 85L420 55C429 43 439 39 454 39H704C719 39 730 44 739 56L759 84C768 96 777 100 792 100H945V122H0V100Z" fill="currentColor" />
+                  </svg>
                 </Link>
               </li>
             ))}

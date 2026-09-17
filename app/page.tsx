@@ -43,7 +43,7 @@ export default function Home() {
             </a>
             .
           </p>
-          <PrimaryButton href="/about" className={styles.overviewCta}>About</PrimaryButton>
+          <PrimaryButton href="/events" className={styles.overviewCta}>Events</PrimaryButton>
         </section>
         <HomeMembership />
         <HomeExecCamera />

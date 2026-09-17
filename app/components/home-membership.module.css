@@ -33,7 +33,7 @@
   overflow: hidden;
   transform: perspective(1100px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
   transform-style: preserve-3d;
-  border-radius: 9px;
+  border-radius: 36px;
   box-shadow: 0 16px 32px rgb(70 54 35 / 25%);
   transition: transform 150ms ease-out, box-shadow 300ms ease;
   will-change: transform;
@@ -109,6 +109,57 @@
   letter-spacing: normal;
 }
 
+.sponsorPreview {
+  display: flex;
+  align-items: center;
+  margin: 20px 0 0;
+  padding: 6px 0 6px 5px;
+  list-style: none;
+}
+
+.sponsorPreview li {
+  position: relative;
+  display: grid;
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  margin-left: -9px;
+  overflow: hidden;
+  place-items: center;
+  border: 3px solid #e9e3d8;
+  border-radius: 50%;
+  background: #e9e3d8;
+  transform: scale(1);
+  transition: transform 220ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.sponsorPreview li:hover {
+  z-index: 10;
+  transform: scale(1.1);
+}
+
+.sponsorPreview li:first-child { margin-left: 0; }
+.sponsorPreview li:nth-child(1) { z-index: 6; }
+.sponsorPreview li:nth-child(2) { z-index: 5; }
+.sponsorPreview li:nth-child(3) { z-index: 4; }
+.sponsorPreview li:nth-child(4) { z-index: 3; }
+.sponsorPreview li:nth-child(5) { z-index: 2; }
+
+.sponsorPreview img {
+  width: 100%;
+  height: 100%;
+  padding: 3px;
+  object-fit: contain;
+}
+
+.sponsorPreview .sponsorCount {
+  z-index: 1;
+  color: #242423;
+  background: #ddd3c4;
+  font-size: 16px;
+  font-weight: 700;
+}
+
 .discoverPlacement {
   margin-top: 32px;
 }
@@ -116,14 +167,16 @@
 @media (max-width: 600px) {
   .section { width: calc(100% - 48px); }
   .surround { border-radius: 14px; }
-  .cardFrame, .card { border-radius: 6px; }
+  .cardFrame, .card { border-radius: 16px; }
   .description { margin-top: 40px; }
   .label { font-size: 24px; }
   .copy { font-size: 1rem; line-height: 1.2; }
+  .sponsorPreview { margin-top: 18px; }
+  .sponsorPreview li { flex-basis: 50px; width: 50px; height: 50px; }
   .discoverPlacement { margin-top: 28px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cardFrame, .cardFrame::before, .cardFrame::after { transition: none; }
+  .cardFrame, .cardFrame::before, .cardFrame::after, .sponsorPreview li { transition: none; }
   .cardFrame { transform: none; }
 }

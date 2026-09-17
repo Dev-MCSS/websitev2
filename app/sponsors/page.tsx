@@ -4,6 +4,7 @@ import { ArrowDown, CreditCard } from "lucide-react";
 import { sponsorTotalCount } from "@/data/sponsors";
 import CloudinaryImage from "../components/CloudinaryImage";
 import InnerPageShell from "../components/InnerPageShell";
+import MetallicHeroTitle from "../components/MetallicHeroTitle";
 import shell from "../components/inner-page.module.css";
 import SponsorsView from "./SponsorsView";
 import styles from "./sponsors.module.css";
@@ -17,9 +18,9 @@ export default function SponsorsPage() {
   return (
     <InnerPageShell tone="amber">
       <section className={shell.hero} aria-labelledby="sponsors-title">
+        <MetallicHeroTitle id="sponsors-title">Sponsors</MetallicHeroTitle>
         <div className={shell.heroCopy} data-reveal>
           <p className={shell.kicker}>One card · {sponsorTotalCount} local perks</p>
-          <h1 id="sponsors-title">Your membership card has <em>plans.</em></h1>
           <p className={shell.lede}>
             Eat, sip, and explore Montréal for less. Show your 2025–2026 joint
             Asian society membership card at any participating business below.

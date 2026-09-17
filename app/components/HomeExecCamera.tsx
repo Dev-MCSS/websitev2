@@ -20,7 +20,7 @@ export default function HomeExecCamera() {
           alt=""
           aria-hidden="true"
           width={718}
-          height={576}
+          height={511}
           className={styles.cameraShell}
         />
       </figure>

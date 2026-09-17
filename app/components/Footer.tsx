@@ -21,7 +21,6 @@ const FOOTER_SOCIAL_LINKS = [
 const FOOTER_LINKS = [
   { href: "/events", label: "Events" },
   { href: "/sponsor", label: "Sponsors" },
-  { href: "/about", label: "About" },
   { href: "/#membership_card", label: "Membership Card" },
 ];
 

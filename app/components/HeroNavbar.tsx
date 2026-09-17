@@ -8,7 +8,6 @@ import GradientPill from "./GradientPill";
 const NAV_LINKS = [
   { href: "/events", label: "Events" },
   { href: "/sponsors", label: "Sponsors" },
-  { href: "/about", label: "About" },
 ];
 
 export default function HeroNavbar() {

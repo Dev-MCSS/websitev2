@@ -59,10 +59,10 @@
 .caption { padding: .83333cqw .55556cqw 0; font: italic 2cqw/1.14583333 Georgia, serif; text-align: right; }
 .depthOverlay { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: rgb(18 16 14 / 10%); opacity: .1; }
 .front .depthOverlay { opacity: 0; }
-.leaving { z-index: 6; animation: tuck var(--turn-duration, 900ms) var(--turn-ease, cubic-bezier(.22, 1, .36, 1)) both; pointer-events: none; }
-.rear.entering { z-index: 5; animation: reveal var(--turn-duration, 900ms) var(--turn-ease, cubic-bezier(.22, 1, .36, 1)) both; }
-.leaving .depthOverlay { animation: depth-in var(--turn-duration, 900ms) var(--turn-ease, cubic-bezier(.22, 1, .36, 1)) both; }
-.rear.entering .depthOverlay { animation: depth-out var(--turn-duration, 900ms) var(--turn-ease, cubic-bezier(.22, 1, .36, 1)) both; }
+.leaving { z-index: 6; animation: tuck var(--turn-duration, 720ms) var(--turn-ease, cubic-bezier(.22, 1, .36, 1)) both; pointer-events: none; }
+.rear.entering { z-index: 5; animation: reveal var(--turn-duration, 720ms) var(--turn-ease, cubic-bezier(.22, 1, .36, 1)) both; }
+.leaving .depthOverlay { animation: depth-in var(--turn-duration, 720ms) var(--turn-ease, cubic-bezier(.22, 1, .36, 1)) both; }
+.rear.entering .depthOverlay { animation: depth-out var(--turn-duration, 720ms) var(--turn-ease, cubic-bezier(.22, 1, .36, 1)) both; }
 @keyframes tuck {
   0% { transform: translate(0, 0) rotate(0); z-index: 6; }
   42% { transform: translate(var(--outgoing-lift-x, -10cqw), var(--outgoing-lift-y, -3cqw)) rotate(var(--outgoing-lift-rotate, -5deg)); z-index: 6; }
@@ -75,12 +75,10 @@
   76% { transform: translate(-1.2cqw, -.6cqw) rotate(-3deg); }
   100% { transform: translate(0, 0) rotate(0); }
 }
-.photoFadeOut { animation: photo-fade-out 150ms ease-out both; }
-.photoFadeIn { animation: photo-fade-in 150ms ease-in both; }
-.photoFadeOut { animation-duration: 175ms; }
-.photoFadeIn { animation-duration: 175ms; }
-.captionBlurOut { animation: caption-blur-out 175ms ease-out both; }
-.captionBlurIn { animation: caption-blur-in 175ms ease-in both; }
+.photoFadeOut { animation: photo-fade-out 140ms ease-out both; }
+.photoFadeIn { animation: photo-fade-in 140ms ease-in both; }
+.captionBlurOut { animation: caption-blur-out 140ms ease-out both; }
+.captionBlurIn { animation: caption-blur-in 140ms ease-in both; }
 @keyframes photo-fade-out { to { opacity: 0; } }
 @keyframes photo-fade-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes caption-blur-out { to { filter: blur(7px); opacity: .15; } }
