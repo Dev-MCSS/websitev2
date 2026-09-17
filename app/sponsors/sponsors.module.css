@@ -19,10 +19,11 @@
 .directoryHeading p + p { margin-top: 16px; }
 .instagramLink { color: #a64a48; text-decoration-line: none; text-decoration-thickness: 2px; text-underline-offset: 3px; transition: color 160ms ease; }
 .instagramLink:hover, .instagramLink:focus-visible { color: #c65451; text-decoration-line: underline; }
-.sponsorMap { width: min(540px, 100%); margin: 0 auto 34px; }
-.sponsorMap iframe { display: block; width: 100%; height: 350px; border: 1px solid #cfc4b5; border-radius: 12px; background: #f7f2e9; box-shadow: 0 6px 0 #d2c5b4; }
-.sponsorMapLink { display: inline-block; margin-top: 14px; color: #a64a48; font-size: .875rem; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-.sponsorMapLink:hover, .sponsorMapLink:focus-visible { color: #c65451; }
+.sponsorMap { width: min(683px, 100%); margin: 0 auto 34px; }
+.sponsorMapFrame { position: relative; height: 390px; overflow: hidden; border: 1px solid #cfc4b5; border-radius: 12px; background: #f7f2e9; }
+/* Google My Maps draws its own header inside the embed. Crop it while keeping the map interactive. */
+.sponsorMapFrame iframe { position: absolute; top: -70px; left: 0; display: block; width: 100%; height: calc(100% + 70px); border: 0; }
+.sponsorMapActions { display: flex; justify-content: center; }
 .ticketGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .ticket { position: relative; display: grid; grid-template-rows: 190px 1fr; min-width: 0; overflow: hidden; border: 1px solid #cfc4b5; border-radius: 12px; background: #f7f2e9; box-shadow: 0 6px 0 #d2c5b4; mask-image: radial-gradient(circle at 0 190px, transparent 12px, #000 13px), radial-gradient(circle at 100% 190px, transparent 12px, #000 13px); mask-composite: intersect; }
 /* The logo well is inset 11px from the ticket edge. Keep both punches centered on the ticket edge. */
@@ -39,7 +40,7 @@
 @media (max-width: 620px) {
   .directoryHeading { width: calc(100% - 16px); margin-top: 40px; margin-bottom: 50.4px; }
   .sponsorMap { width: calc(100% - 16px); }
-  .sponsorMap iframe { height: 300px; }
+  .sponsorMapFrame { height: 320px; }
   .ticketGrid { grid-template-columns: 1fr; gap: 22px; }
 }
 @media (prefers-reduced-motion: reduce) { .logo { transition: none; } }
