@@ -19,7 +19,7 @@
 .directoryHeading p + p { margin-top: 16px; }
 .instagramLink { color: #a64a48; text-decoration-line: none; text-decoration-thickness: 2px; text-underline-offset: 3px; transition: color 160ms ease; }
 .instagramLink:hover, .instagramLink:focus-visible { color: #c65451; text-decoration-line: underline; }
-.sponsorMap { width: min(683px, 100%); margin: 0 auto 34px; }
+.sponsorMap { width: min(683px, 100%); margin: 0 auto 68px; }
 .sponsorMapFrame { position: relative; height: 390px; overflow: hidden; border: 1px solid #cfc4b5; border-radius: 12px; background: #f7f2e9; }
 /* Google My Maps draws its own header inside the embed. Crop it while keeping the map interactive. */
 .sponsorMapFrame iframe { position: absolute; top: -70px; left: 0; display: block; width: 100%; height: calc(100% + 70px); border: 0; }
