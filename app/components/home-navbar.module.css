@@ -95,11 +95,6 @@
 .tapeLabel::before, .tapeLabel::after { content: ''; position: absolute; top: -18%; bottom: -18%; width: 27%; background: radial-gradient(ellipse at center, rgb(45 21 24 / 68%) 0 35%, transparent 76%); filter: blur(10px); }
 .tapeLabel::before { left: -7%; }
 .tapeLabel::after { right: -7%; }
-.tapeLabel i { z-index: 1; width: 2px; border-radius: 2px; background: #f0ebe3; }
-.tapeLabel i:nth-child(1), .tapeLabel i:nth-child(7) { height: 6px; }
-.tapeLabel i:nth-child(2), .tapeLabel i:nth-child(6) { height: 9px; }
-.tapeLabel i:nth-child(3), .tapeLabel i:nth-child(5) { height: 12px; }
-.tapeLabel i:nth-child(4) { height: 15px; }
 
 .toggle { display: grid; grid-template-columns: minmax(0, 1fr) 19px; align-items: center; gap: 10px; width: 100%; height: 48px; padding: 0 12px; border: 0; border-radius: 7px; color: inherit; background: transparent; cursor: pointer; }
 .menuLabel { justify-self: start; font: 500 12px/1 var(--font-dm-mono), monospace; letter-spacing: .05em; text-transform: uppercase; }
@@ -160,7 +155,6 @@
   .reel span { width: 16px; height: 16px; }
   .reel span::after { inset: 5.5px; }
   .tapeLabel { height: 24px; gap: 4px; }
-  .tapeLabel i { width: 1px; }
   .toggle { grid-template-columns: minmax(0, 1fr) 16px; gap: 6px; }
   .menuLabel { font-size: 8px; }
   .icon, .icon span { width: 16px; }

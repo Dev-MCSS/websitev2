@@ -76,9 +76,7 @@ export default function HomeNavbar() {
           </Link>
           <div className={styles.tapeWindow} aria-hidden="true">
             <span className={styles.reel}><span /></span>
-            <span className={styles.tapeLabel}>
-              {Array.from({ length: 7 }, (_, index) => <i key={index} />)}
-            </span>
+            <span className={styles.tapeLabel} />
             <span className={styles.reel}><span /></span>
           </div>
           <button
