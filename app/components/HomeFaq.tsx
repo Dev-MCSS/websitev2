@@ -21,7 +21,7 @@ const faqs = [
   {
     question: "Is MCSS a non-profit organization?",
     answer:
-      "MCSS is a non-profit organization officially recognized under the Students' Society of McGill University (SSMU), all proceeds from our events are reinvested to support charitable causes and enhance future programming for our members",
+      "MCSS is a non-profit organization officially recognized under the Students' Society of McGill University (SSMU). Proceeds from our events are reinvested to support charitable causes and future programming for our members.",
     options: undefined,
   },
 ] as const;

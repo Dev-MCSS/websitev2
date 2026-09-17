@@ -5,7 +5,7 @@ import PrimaryButton from "./PrimaryButton";
 import styles from "./home-membership.module.css";
 
 export default function HomeMembership() {
-  const sponsorPreview = sponsorPreviewForMembershipCard.slice(0, 5);
+  const sponsorPreview = sponsorPreviewForMembershipCard;
   const remainingSponsors = sponsorTotalCount - sponsorPreview.length;
 
   return (

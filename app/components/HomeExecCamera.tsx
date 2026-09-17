@@ -37,7 +37,7 @@ export default function HomeExecCamera() {
         <p>Fall 2026 recruitment is now open:</p>
         <a
           className={styles.recruitmentButton}
-          href="https://forms.gle/iEyxY9UDWwKjEtSn6?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAac5O8AVDCnO5n8368-nIWPZ0au_1SiLwDwGCxJa8RmseFWohBheA5bHwmyxHg_aem_5pOGAYXMAgrEkWo9U-kmfg"
+          href="https://forms.gle/iEyxY9UDWwKjEtSn6"
           target="_blank"
           rel="noreferrer"
         >

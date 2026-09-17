@@ -43,15 +43,17 @@ export default function EventImageLightbox({
   item,
   onClose,
 }: EventImageLightboxProps) {
-  const open = item !== null;
+  if (!item) return null;
+  return <LightboxContent key={item.publicId} item={item} onClose={onClose} />;
+}
+
+function LightboxContent({ item, onClose }: { item: LightboxItem; onClose: () => void }) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const [viewport, setViewport] = useState({ w: 0, h: 0 });
   const [natural, setNatural] = useState<{ w: number; h: number } | null>(null);
   const [highResLoaded, setHighResLoaded] = useState(false);
   const [scale, setScale] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
-  const panRef = useRef(pan);
-  panRef.current = pan;
 
   const dragRef = useRef({
     active: false,
@@ -64,8 +66,8 @@ export default function EventImageLightbox({
   });
 
   const naturalForFit = natural ?? {
-    w: item?.previewWidth ?? FALLBACK_NATURAL.w,
-    h: item?.previewHeight ?? FALLBACK_NATURAL.h,
+    w: item.previewWidth || FALLBACK_NATURAL.w,
+    h: item.previewHeight || FALLBACK_NATURAL.h,
   };
 
   const fit = useMemo(() => {
@@ -78,7 +80,6 @@ export default function EventImageLightbox({
   }, [viewport.w, viewport.h, naturalForFit.w, naturalForFit.h]);
 
   useLayoutEffect(() => {
-    if (!open) return;
     const el = viewportRef.current;
     if (!el) return;
     const ro = new ResizeObserver(() => {
@@ -89,21 +90,7 @@ export default function EventImageLightbox({
     const r = el.getBoundingClientRect();
     setViewport({ w: r.width, h: r.height });
     return () => ro.disconnect();
-  }, [open]);
-
-  useEffect(() => {
-    if (!open) {
-      setNatural(null);
-      setHighResLoaded(false);
-      setScale(1);
-      setPan({ x: 0, y: 0 });
-      return;
-    }
-    setNatural(null);
-    setHighResLoaded(false);
-    setScale(1);
-    setPan({ x: 0, y: 0 });
-  }, [open, item?.publicId]);
+  }, []);
 
   const clampPan = useCallback(
     (nextScale: number, px: number, py: number) => {
@@ -131,11 +118,8 @@ export default function EventImageLightbox({
     [clampPan],
   );
 
-  const fitW = fit?.w ?? 0;
-  const fitH = fit?.h ?? 0;
   const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
   const effectiveRequestWidth = useMemo(() => {
-    if (!item) return 1600;
     if (viewport.w <= 0 && viewport.h <= 0) return item.requestWidth;
     const viewportWidth = viewport.w > 0 ? viewport.w : window.innerWidth;
     const viewportHeight = viewport.h > 0 ? viewport.h : window.innerHeight;
@@ -150,41 +134,31 @@ export default function EventImageLightbox({
   const highResSrc = useMemo(() => {
     return buildLightboxHighResSrc(
       cloudName,
-      item?.publicId ?? null,
+      item.publicId,
       effectiveRequestWidth,
     );
-  }, [cloudName, item?.publicId, effectiveRequestWidth]);
+  }, [cloudName, item.publicId, effectiveRequestWidth]);
 
   const blurredPreviewSrc = useMemo(() => {
-    return buildLightboxBlurSrc(cloudName, item?.publicId ?? null);
-  }, [cloudName, item?.publicId]);
+    return buildLightboxBlurSrc(cloudName, item.publicId);
+  }, [cloudName, item.publicId]);
+  const visiblePan = clampPan(scale, pan.x, pan.y);
 
   useEffect(() => {
-    if (!open || scale <= 1 || fitW <= 0 || fitH <= 0) return;
-    setPan((p) => {
-      const next = clampPan(scale, p.x, p.y);
-      if (next.x === p.x && next.y === p.y) return p;
-      return next;
-    });
-  }, [open, scale, fitW, fitH, viewport.w, viewport.h, clampPan]);
-
-  useEffect(() => {
-    if (!open) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = prev;
     };
-  }, [open]);
+  }, []);
 
   useEffect(() => {
-    if (!open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open, onClose]);
+  }, [onClose]);
 
   const onPointerDown = (e: React.PointerEvent) => {
     const t = e.currentTarget;
@@ -194,8 +168,8 @@ export default function EventImageLightbox({
       pointerId: e.pointerId,
       startX: e.clientX,
       startY: e.clientY,
-      originPanX: panRef.current.x,
-      originPanY: panRef.current.y,
+      originPanX: visiblePan.x,
+      originPanY: visiblePan.y,
       moved: false,
     };
   };
@@ -227,8 +201,6 @@ export default function EventImageLightbox({
       setPan(clampPan(next, 0, 0));
     }
   };
-
-  if (!open || !item) return null;
 
   return (
     <div
@@ -294,7 +266,7 @@ export default function EventImageLightbox({
               {fit ? (
                 <div
                   style={{
-                    transform: `translate(${pan.x}px, ${pan.y}px) scale(${scale})`,
+                    transform: `translate(${visiblePan.x}px, ${visiblePan.y}px) scale(${scale})`,
                     transformOrigin: "center center",
                     position: "relative",
                     width: fit.w,
