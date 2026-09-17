@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import CloudinaryImage from "./CloudinaryImage";
+import RecruitmentVideo from "./RecruitmentVideo";
 import styles from "./home-exec-camera.module.css";
 
 export default function HomeExecCamera() {
@@ -32,6 +33,7 @@ export default function HomeExecCamera() {
           help plan exciting events and make friends with the drippiest swag,
           then MCSS is the perfect place for you!
         </p>
+        <RecruitmentVideo />
         <p>Fall 2026 recruitment is now open:</p>
         <a
           className={styles.recruitmentButton}

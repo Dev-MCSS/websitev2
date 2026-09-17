@@ -1,6 +1,6 @@
 import { sponsorPreviewForMembershipCard, sponsorTotalCount } from "@/data/sponsors";
 import CloudinaryImage from "./CloudinaryImage";
-import MembershipCardReveal from "./MembershipCardReveal";
+import MembershipCardVisual from "./MembershipCardVisual";
 import PrimaryButton from "./PrimaryButton";
 import styles from "./home-membership.module.css";
 
@@ -10,18 +10,7 @@ export default function HomeMembership() {
 
   return (
     <section id="membership_card" aria-labelledby="membership-heading" className={styles.section}>
-      <div className={styles.surround}>
-        <MembershipCardReveal>
-          <CloudinaryImage
-            publicId="mcss/card/front_26-27"
-            alt="MCSS joint membership card for 2026–2027"
-            width={1400}
-            height={880}
-            sizes="(min-width: 731px) 587px, calc(100vw - 96px)"
-            className={styles.card}
-          />
-        </MembershipCardReveal>
-      </div>
+      <MembershipCardVisual />
 
       <div className={styles.description}>
         <h2 id="membership-heading" className={styles.label}>Membership Card</h2>

@@ -7,8 +7,10 @@
 
 .surround {
   display: flex;
+  width: min(683px, 100%);
   align-items: center;
   justify-content: center;
+  margin-inline: auto;
   padding: clamp(20px, 7vw, 48px);
   border-radius: 20px;
   border: 1px solid #cfc3b0;

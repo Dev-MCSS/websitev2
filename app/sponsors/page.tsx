@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowDown, CreditCard } from "lucide-react";
-import { sponsorTotalCount } from "@/data/sponsors";
-import CloudinaryImage from "../components/CloudinaryImage";
 import InnerPageShell from "../components/InnerPageShell";
-import MetallicHeroTitle from "../components/MetallicHeroTitle";
-import shell from "../components/inner-page.module.css";
+import InnerPageSection from "../components/InnerPageSection";
+import MembershipCardVisual from "../components/MembershipCardVisual";
 import SponsorsView from "./SponsorsView";
 import styles from "./sponsors.module.css";
 
@@ -16,46 +12,17 @@ export const metadata: Metadata = {
 
 export default function SponsorsPage() {
   return (
-    <InnerPageShell tone="amber">
-      <section className={shell.hero} aria-labelledby="sponsors-title">
-        <MetallicHeroTitle id="sponsors-title">Sponsors</MetallicHeroTitle>
-        <div className={shell.heroCopy} data-reveal>
-          <p className={shell.kicker}>One card · {sponsorTotalCount} local perks</p>
-          <p className={shell.lede}>
-            Eat, sip, and explore Montréal for less. Show your 2025–2026 joint
-            Asian society membership card at any participating business below.
-          </p>
-          <div className={shell.heroActions}>
-            <a className={shell.inkButton} href="#sponsor-directory">Find a deal <ArrowDown size={17} aria-hidden /></a>
-            <Link className={shell.paperButton} href="/#membership_card">Get the card <CreditCard size={17} aria-hidden /></Link>
-          </div>
-        </div>
-
-        <div className={`${styles.cardStage} ${shell.paperPanel}`} data-photo-stack aria-label="MCSS membership card">
-          <span className={styles.grid} aria-hidden="true" />
-          <div className={styles.cardWrap}>
-            <CloudinaryImage publicId="mcss/card/front_25-26" alt="MCSS joint membership card for 2025–2026" width={1400} height={880} priority sizes="(min-width: 861px) 40vw, 82vw" />
-          </div>
-          <p className={styles.cardNote}>Keep it close. Montréal gets cheaper.</p>
-        </div>
-      </section>
-
-      <section id="sponsor-directory" className={`${shell.section} ${styles.directory}`} aria-labelledby="directory-title">
-        <div className={shell.sectionHeading} data-reveal>
-          <p className={shell.kicker}>The pocket-sized guide</p>
-          <h2 id="directory-title">Pick your next stop</h2>
-          <p>Search by name, discount, or street. Tap an address to open it in Maps.</p>
+    <InnerPageShell tone="home">
+      <InnerPageSection title="Sponsors" titleId="sponsors-title">
+        <MembershipCardVisual />
+        <div className={styles.directoryHeading} data-reveal>
+          <h2 id="directory-title">Membership discounts</h2>
+          <p>The 2026-2027 East Asian Clubs Membership Card is here!</p>
+          <p>Brought to you by HKSN, JSA, KSA, MASSA, MCSS, and MTSA, we’re bringing you discounts for the best food and drink spots in Montreal.</p>
+          <p>Pick up a card for $5 at one of our events, activities night, or DM us on <a className={styles.instagramLink} href="https://www.instagram.com/mcssfam/" target="_blank" rel="noreferrer">instagram</a> to arrange a pick up.</p>
         </div>
         <SponsorsView />
-      </section>
-
-      <aside className={shell.cta} data-reveal aria-labelledby="sponsor-cta-title">
-        <div>
-          <h2 id="sponsor-cta-title">Good food. Better company. A nicer total.</h2>
-          <p>Your MCSS membership supports community programming while unlocking discounts all year.</p>
-        </div>
-        <Link className={shell.paperButton} href="/#membership_card">Explore membership</Link>
-      </aside>
+      </InnerPageSection>
     </InnerPageShell>
   );
 }

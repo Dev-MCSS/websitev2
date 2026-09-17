@@ -14,7 +14,7 @@ if (typeof window !== "undefined") {
 
 type InnerPageShellProps = {
   children: ReactNode;
-  tone?: "rose" | "amber" | "ink";
+  tone?: "rose" | "amber" | "ink" | "home";
 };
 
 export default function InnerPageShell({

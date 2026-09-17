@@ -1,0 +1,16 @@
+.section {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: clamp(160px, 17vw, 220px) 0 120px;
+}
+
+.section h1 { margin-bottom: clamp(30px, 4vw, 48px); }
+
+@media (min-width: 901px) {
+  .section { padding-top: calc(clamp(160px, 17vw, 220px) - 32px); }
+}
+
+@media (max-width: 600px) {
+  .section { width: calc(100% - 32px); padding-top: 150px; padding-bottom: 76px; }
+  .section h1 { margin-bottom: 16px; }
+}

@@ -1,150 +1,53 @@
-# MCSS homepage design reference
+# MCSS design reference
 
-Status: implemented on `feat/homepage-redesign`; validation details below.
+The current home page is the visual source of truth for new pages. Use this document as a guide, then check the linked components and CSS before changing a pattern. The earlier Figma measurements and implementation notes have been superseded by the live home page.
 
-## Source and scope
+## Where to look
 
-- Visual source: https://www.figma.com/design/OWFKao21dXEy3JX5B7zPWt/MCSSv2?node-id=314-1179
-- Implementation branch: `feat/homepage-redesign`.
-- First pass: expandable pill navigation, MCSS fam artwork and photo collage,
-  clean overview text, and the membership visual and description.
-- Footer and additional homepage sections are deferred.
-- Navigation motion source: http://localhost:3002/#top; source inspected at
-  `/Users/vassi/Documents/Projects/Explorations/mcssv3/app/page.tsx` and
-  `app/globals.css`. Direct HTTP access failed in this session; motion values below
-  are source-verified, not browser-verified.
-- Preserve other routes and existing uncommitted development fixes.
+| Pattern | Current implementation |
+| --- | --- |
+| Page colors, overview typography, section spacing | `app/home.module.css` |
+| Membership card visual and interaction | `app/components/MembershipCardVisual.tsx`, `MembershipCardReveal.tsx`, `home-membership.module.css` |
+| Membership label, text, and sponsor preview | `app/components/HomeMembership.tsx`, `home-membership.module.css` |
+| FAQ label and quiet paper surfaces | `app/components/HomeFaq.tsx`, `home-faq.module.css` |
+| Site navigation | `app/components/HomeNavbar.tsx`, `home-navbar.module.css` |
+| Decorative hero and photo treatment | `app/components/HomeHero.tsx`, `home-hero.module.css` |
+| Inner page title position | `app/components/InnerPageSection.tsx`, `MetallicHeroTitle.tsx` |
+| Font registration and sitewide defaults | `app/layout.tsx`, `app/globals.css` |
 
-## Verified typography
+## Visual direction
 
-- Body: Metropolis Regular, existing local font, desktop 24px, line-height 1.3,
-  letter-spacing -1.32px in the reference.
-- Section labels: DM Mono Medium, 16px, line-height 1, letter-spacing 0.64px.
-  Self-hosted at `public/fonts/dm-mono-medium.ttf`, with its OFL license alongside it.
-- Photo captions: Georgia Italic, 28.8px in the reference.
-- Photo index: Courier New Regular, 10px, 15px line-height, 0.4px tracking.
-- MCSS fam: export the complete Figma artwork as SVG, including its lettering;
-  do not recreate its silhouette with live text. Figma identifies Georgia Bold
-  within the artwork.
-- Mobile typography must remain readable independently of collage scaling.
+- Keep the page background white and the editorial layout spacious. Use decoration around images and controls; keep reading areas simple.
+- Main ink is `#242423`. Muted section labels use `#76716b`. The home page's warm neutrals include `#eee7dc`, `#e8e8e4`, and the membership surround's `#f3eddf`. Use the red accent sparingly for links, offers, and primary actions.
+- Text should sit in a narrow reading column, about 540px wide, while galleries and grids can use the wider page container. The membership card visual is about 683px wide.
+- Favor purposeful, generous space between visual sections. Inside a reading block, the label-to-copy gap is 25px. The home overview uses the same 25px gap between paragraphs.
 
-## Verified visual values
+## Type hierarchy
 
-- Page background: #ffffff.
-- Body/caption text: #242423. Reference label text: #828282; implementation uses
-  #76716b for improved small-text contrast on white. Shared beige surface: #eee7dc.
-- MCSS fam lettering: #989595.
-- Photo frame: #e8e8e4.
-- Membership gradient: #f4dfb5 to #e88997, top to bottom.
-- Reference body column: 582px wide; paragraph gap: 25px.
-- Front photo frame: approximately 835.195px wide, 12px top/side padding,
-  16px bottom padding; image height 446.398px at reference scale.
-- Rear photo frame: 8.08-degree rotation. Front frame remains unrotated.
-- Front frame shadow: 2px 8px 2px rgba(0,0,0,0.25).
-- Membership surround: 683 by 421px, 20px radius; reference inner placeholder
-  is 564 by 309px with 9px radius. Use the current membership image instead.
-- Navbar drawing: 290 by 39px, #e2e2e2, 8px radius. The requested pill shape
-  and MCSSv3 interaction take precedence where they differ from this sketch.
+1. **Page title:** Use `InnerPageSection` and its shared `MetallicHeroTitle` on inner pages. This preserves the Events and Sponsors title position and metallic Bogart treatment. At viewport widths above 900px, the shared section uses 32px less top space than its base layout. Each page gets one `h1`.
+2. **Section label:** Follow Home's Overview, Membership Card, and FAQ headings: Georgia italic, 24px, weight 400, line-height 1, muted `#76716b`. A section label can still be an `h2`; its semantic level does not require a larger visual size.
+3. **Reading copy:** Use the registered Metropolis font, weight 400, `1rem`, line-height 1.2, normal letter spacing, dark ink. Keep paragraphs concise and left aligned in the reading column.
+4. **Item titles and supporting text:** Use Metropolis for business names, discounts, addresses, and other functional content. Item titles may be medium weight. Reserve Georgia italic for short editorial labels and image captions.
+5. **Mono:** DM Mono is available for small utility labels and navigation details. Avoid using it as the main body font.
 
-These are desktop reference measurements, not universal fixed page dimensions.
+These are the current CSS values, not scaled measurements from screenshots. Browser zoom and display density change their apparent pixel size.
 
-## Assets and composition
+## Components and surfaces
 
-- Use the five existing MCSSv3 photos: Casino Night, Mooncake Workshop, Love O’Clock,
-  Tang Yuan Workshop, and Casino Night details. Reuse its exact local images and
-  Cloudinary public IDs. Keep captions synchronized with the actual photo.
-- Current rendered membership asset: Cloudinary `mcss/card/front_25-26`.
-  A separate local `membership_card.webp` also exists; do not silently substitute it.
-- Export exact Figma artwork for MCSS fam, binder clip, torn paper, patterned tile,
-  and red stamp. Preserve alpha, masks, proportions, rotations, and layer order.
-- Commit durable exported assets; temporary Figma asset links expire.
-- Use a bounded, proportionally scaled composition for artwork; use normal document
-  flow for overview and membership so text can grow without collisions.
-- Decorative layers must not intercept clicks and should be hidden from assistive
-  technology. Provide meaningful image alternatives and a semantic page heading.
+- Reuse `MembershipCardVisual` wherever the interactive card image appears. It owns the grid paper surround and uses `MembershipCardReveal` for pointer tilt and the card's light effect.
+- Use `HomeMembership` when the full home page section is wanted. It also includes descriptive copy, sponsor avatars, and a button. Use only `MembershipCardVisual` when a page needs the image alone.
+- Keep card and image surfaces tactile but restrained: warm paper, thin borders, soft shadows, and subtle hover movement. The surrounding page stays white.
+- Keep sponsor cards as a three column desktop grid, two columns at medium width, and one column on small screens. Put the logo above the details at every width. The offer and address must remain readable and the address must remain a usable Maps link.
+- Avoid adding duplicate introductions, large display headings, or unrelated calls to action between a section's visual, its explanation, and its content.
 
 ## Responsive and interaction rules
 
-- Desktop fidelity is checked at the Figma frame's actual dimensions.
-- Confirmed mobile approach: scale the complete collage
-  together within the viewport; preserve every decorative layer and avoid overflow.
-- Use independent page gutters and readable text sizing on narrow viewports.
-- Navigation must support keyboard activation, visible focus, Escape dismissal,
-  correct expanded state, and non-focusable hidden links.
-- Ensure touch targets are at least 44px, even where the visible reference is smaller.
-- Respect reduced motion. Five photos cycle like flashcards being lifted, turned, and tucked into a stack,
-  with restrained perspective/rotation and opacity rather than sliding horizontally
-  away. Decorations and the resting frame composition stay fixed. Provide pause/manual controls and stop automatic transitions
-  for reduced motion. Cadence: six seconds; in-place lift/tuck duration: 900ms. Preload the next photo.
-- MCSSv3 navigation: centered and fixed 16px from the top; click/tap toggles the
-  island, links close it, and Escape dismisses it.
-- Match its width transition of 460ms, height transition of 520ms, and radius
-  transition of 420ms, all using cubic-bezier(0.22, 1, 0.36, 1).
-- Menu content fades/slides in from y=-8px over 220ms; links enter from y=-6px
-  with an initial 40ms delay and a 45ms stagger.
-- MCSSv3 dimensions are 146x56px closed and up to 430x342px open; mobile
-  uses 138x52px closed and viewport width minus 20px open. These are motion
-  references: retain Figma visual styling and size the expanded panel for real content.
-- The plain MCSS logo occupies the left side of the pill only after scrolling
-  down (proposed threshold: 80px). At the top it is visually hidden and not focusable.
-- Use a light beige navigation surface, warm ink, and consistent shared colors;
-  never a black pill. Light mode only is confirmed; no theme toggle.
-- Use semantic header/nav/main landmarks, one accessible h1 associated with the
-  SVG wordmark, and h2 section labels styled to match Figma.
-- Below membership text, show real sponsor avatars from the existing sponsor data
-  and a custom “Discover more” link styled as a button, pointing to /sponsors.
-- Proposed menu destinations: existing Events, Sponsors, and membership anchor.
-  Keep the first pass in the Figma light palette; theme switching is outside this scope.
+- Home reading columns use 24px side gutters on small screens; inner page containers use 16px. Preserve those gutters and never let meaningful text or controls clip horizontally.
+- Let text wrap naturally. Do not position reading copy as decoration or depend on a fixed image height.
+- Interactive elements need visible keyboard focus. Links and controls should have clear hit areas and accessible names.
+- Respect `prefers-reduced-motion`. Decorative animation can stop; content and navigation must remain available.
+- Check both desktop and mobile layouts after changes, and verify `/` returns HTTP 200 before calling a local server ready, as required by `AGENTS.md`.
 
-## Implementation sequence
+## Sponsors page application
 
-1. Use the confirmed scope and source-verified MCSSv3 motion specification below;
-   visually inspect the running reference when browser access is available.
-2. Export artwork, verify image crops, source DM Mono, and finalize these tokens.
-3. Build the homepage composition with scoped styles, reusing the existing Next.js,
-   React, Tailwind, local fonts, and image infrastructure. Read the installed Next.js
-   documentation as required by AGENTS.md before coding.
-4. Build the expandable navigation as a homepage variant so shared navigation on
-   other routes does not change incidentally.
-5. Add overview, membership image, and short description.
-6. Apply mobile/tablet layouts and accessibility behavior.
-7. Compare browser screenshots to Figma, correcting crops, layering, typography,
-   spacing, shadows, and proportions. Record intentional responsive differences.
-8. Run lint, TypeScript checking, and production build. Verify the homepage returns
-   HTTP 200 and exercise navigation on desktop and mobile. Check existing routes.
-
-## Acceptance criteria
-
-- Accurate reference composition using real exported artwork and current photos.
-- No horizontal overflow or clipped meaningful content at 320, 390, 768, 1024,
-  and 1440px viewport widths; also inspect at the Figma frame's exact dimensions.
-- Text remains readable at 200% zoom; menu is operable by keyboard and touch.
-- No layout shifts from missing image dimensions or delayed artwork sizing.
-- Reduced-motion behavior works; closed menu content cannot receive focus.
-- Footer and unfinished Figma placeholder shapes are excluded from this first pass.
-- Update this document with final decisions and verified implementation values.
-
-## Implementation notes
-
-- Expanded navigation destinations use existing routes; light-only mode is confirmed.
-- Navigation and flashcard animations were exercised in Chromium. The island remains
-  290 by 48px closed; expanded width is capped at 430px and height at 358px, with
-  internal scrolling for short viewports. The plain logo appears above 80px scroll.
-- Corrected the overview grammar to “one of the largest and most influential
-  cultural student organizations”, preserving its meaning.
-- Decorative exports use multiply blending to eliminate white export margins; the
-  art container clips only beyond its bounds to protect the overview content.
-- Existing other-page components remain available. This homepage omits footer and exec team.
-- Mobile adds 48px top clearance for the fixed navigation and puts carousel controls
-  in document flow; text uses 20px / 1.45 with -0.6px tracking and 24px side gutters.
-- Browser checks passed at 320, 390, 768, 1024, and 1440px: no horizontal overflow,
-  Escape/focus restoration, scroll-driven logo visibility, five loaded photos,
-  real sponsor avatars, and light-only rendering under a dark system preference.
-- Homepage, Events, and Sponsors routes return HTTP 200. TypeScript passes.
-- Production build (`npm run build -- --webpack`) and TypeScript pass. All changed
-  homepage TypeScript files pass ESLint. Full-repository lint reports six existing
-  errors in Footer, HeroNavbar, ScrollRevealCard, theme-toggle, and EventImageLightbox,
-  plus five existing image warnings. Those unrelated files were not changed.
-- Local dependency reads stalled; lint was completed using an isolated temporary
-  installation of the exact package-lock dependencies and the same ESLint config.
-- Local preview runs at http://localhost:3000/ using the webpack development server.
+The current sequence is shared inner page title → interactive card visual → Home-style section label and short explanation → sponsor grid. The title shares its layout with Events. The introduction and card text follow Home's typography and white background. The sponsor ticket shape remains recognizable, while its text follows the home page hierarchy.

@@ -18,6 +18,12 @@
 
 .amber { --page-accent: #be6936; }
 .ink { --page-accent: #44413c; }
+.home {
+  --home-ink: #242423;
+  --home-muted: #76716b;
+  --page-accent: #a64a48;
+  background: #fff;
+}
 
 .main {
   width: 100%;
