@@ -14,7 +14,7 @@ export const sponsors: Record<string, SponsorCategory> = {
     { name: "Tsujiri", image: "mcss/sponsors/tsujiri", discount: "10% off", address: "1418 Rue Crescent, Montréal, QC" },
     { name: "Yen Cuisine Japonaise", image: "mcss/sponsors/yen_cuisine_japonaise", discount: "10% off", address: "2157 Rue Mackay, Montréal, QC" },
     { name: "San-O Brasserie", image: "mcss/sponsors/san_o_brasserie", discount: "10% off, excluding alcohol", address: "1350 Rue Mazurette, Unit 104, Montréal, QC" },
-    { name: "Charyū Tea House", image: "mcss/sponsors/charyu_tea_house", discount: "10% off", address: "6872 Rue Saint-Hubert, Montréal, QC" },
+    { name: "Charyū Tea House", image: "mcss/sponsors/charyu-par-thes-guru", discount: "10% off", address: "6872 Rue Saint-Hubert, Montréal, QC" },
     { name: "Thés Guru Store", image: "mcss/sponsors/thes_guru_store", discount: "10% off", address: "1289 Rue Beaubien E, Montréal, QC" },
     { name: "Mai Thai Cuisine", image: "mcss/sponsors/mai_thai_cuisine", discount: "12% off", address: "1743 Rue Saint-Denis, Montréal, QC" },
     { name: "Restaurant Pinophyta", image: "mcss/sponsors/pinophyta", discount: "10% off", address: "1186 Avenue Union, Montréal, QC" },
