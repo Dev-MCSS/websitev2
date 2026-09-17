@@ -1,4 +1,5 @@
 import type { ComponentType, ReactNode, SVGProps } from "react";
+import { notFound } from "next/navigation";
 import {
   Box,
   Layers,
@@ -63,7 +64,11 @@ const semanticSwatches = [
   { label: "Warning", varName: "--palette-warning" },
 ] as const;
 
+export const dynamic = "force-dynamic";
+
 export default function DesignOverviewPage() {
+  if (process.env.NODE_ENV === "production") notFound();
+
   return (
     <div
       id="top"
