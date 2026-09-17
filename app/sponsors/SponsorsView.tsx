@@ -4,7 +4,7 @@ import CloudinaryImage from "../components/CloudinaryImage";
 import styles from "./sponsors.module.css";
 
 function mapsHref(name: string, address: string) {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${name} ${address}`)}`;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${name}, ${address}`)}`;
 }
 function SponsorTicket({ item }: { item: SponsorItem }) {
   const addresses = sponsorAddresses(item);
@@ -12,7 +12,7 @@ function SponsorTicket({ item }: { item: SponsorItem }) {
   return (
     <article className={styles.ticket} data-reveal>
       <div className={styles.logoWell}>
-        <CloudinaryImage publicId={item.image} alt={`${item.name} logo`} fill sizes="(min-width: 1100px) 18vw, (min-width: 650px) 28vw, 88vw" className={styles.logo} />
+        <CloudinaryImage publicId={item.image} alt={`${item.name} image`} fill sizes="(min-width: 1100px) 18vw, (min-width: 650px) 28vw, 88vw" className={styles.logo} />
       </div>
       <div className={styles.ticketBody}>
         <h3>{item.name}</h3>
@@ -27,11 +27,16 @@ function SponsorTicket({ item }: { item: SponsorItem }) {
 }
 
 export default function SponsorsView() {
-  const items = Object.values(sponsors).flatMap((category) => category.items);
-
   return (
-    <div className={styles.ticketGrid}>
-      {items.map((item) => <SponsorTicket key={item.image} item={item} />)}
+    <div className={styles.sponsorSections}>
+      {Object.values(sponsors).map((category) => (
+        <section key={category.span} aria-label={category.span}>
+          <h2 className={styles.categoryHeading}>{category.span}</h2>
+          <div className={styles.ticketGrid}>
+            {category.items.map((item) => <SponsorTicket key={item.image} item={item} />)}
+          </div>
+        </section>
+      ))}
     </div>
   );
 }

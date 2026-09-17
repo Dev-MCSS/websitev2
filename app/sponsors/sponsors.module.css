@@ -19,6 +19,8 @@
 .directoryHeading p + p { margin-top: 16px; }
 .instagramLink { color: #a64a48; text-decoration-line: none; text-decoration-thickness: 2px; text-underline-offset: 3px; transition: color 160ms ease; }
 .instagramLink:hover, .instagramLink:focus-visible { color: #c65451; text-decoration-line: underline; }
+.sponsorSections { display: grid; gap: 56px; }
+.categoryHeading { margin: 0 0 24px; color: var(--home-ink, #242423); font: italic 400 28px/1.2 Georgia, serif; }
 .ticketGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .ticket { position: relative; display: grid; grid-template-rows: 190px 1fr; min-width: 0; overflow: hidden; border: 1px solid #cfc4b5; border-radius: 12px; background: #f7f2e9; box-shadow: 0 6px 0 #d2c5b4; mask-image: radial-gradient(circle at 0 190px, transparent 12px, #000 13px), radial-gradient(circle at 100% 190px, transparent 12px, #000 13px); mask-composite: intersect; }
 /* The logo well is inset 11px from the ticket edge. Keep both punches centered on the ticket edge. */
